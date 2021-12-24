@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 16:26:45 by balee             #+#    #+#             */
-/*   Updated: 2021/11/23 16:26:49 by balee            ###   ########.fr       */
+/*   Created: 2021/11/23 17:08:51 by balee             #+#    #+#             */
+/*   Updated: 2021/11/23 17:09:10 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	num;
+#include "libft.h"
 
-	if (str[0] == '-' || str[0] == '+')
-		i = 1;
-	else
-		i = 0;
-	num = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = num * 10 + str[i] - '0';
-		i++;
-	}
-	if (str[0] == '-')
-		num *= -1;
-	return (num);
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	index;
+
+	index = 0;
+	if (!*s)
+		return ;
+	while (s[index])
+		ft_putchar_fd(s[index++], fd);
 }

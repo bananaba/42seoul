@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 16:26:45 by balee             #+#    #+#             */
-/*   Updated: 2021/11/23 16:26:49 by balee            ###   ########.fr       */
+/*   Created: 2021/11/23 17:10:12 by balee             #+#    #+#             */
+/*   Updated: 2021/11/23 17:10:13 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	i;
-	int	num;
+	int		index;
 
-	if (str[0] == '-' || str[0] == '+')
-		i = 1;
-	else
-		i = 0;
-	num = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = num * 10 + str[i] - '0';
-		i++;
-	}
-	if (str[0] == '-')
-		num *= -1;
-	return (num);
+	if (!s || !f)
+		return (0);
+	index = 0;
+	while (s[index])
+		f(index, &s[index++]);
 }

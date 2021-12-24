@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 16:26:45 by balee             #+#    #+#             */
-/*   Updated: 2021/11/23 16:26:49 by balee            ###   ########.fr       */
+/*   Created: 2021/11/23 17:09:51 by balee             #+#    #+#             */
+/*   Updated: 2021/11/23 17:09:53 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	num;
+#include "libft.h"
 
-	if (str[0] == '-' || str[0] == '+')
-		i = 1;
-	else
-		i = 0;
-	num = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = num * 10 + str[i] - '0';
-		i++;
-	}
-	if (str[0] == '-')
-		num *= -1;
-	return (num);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		len;
+	int		index;
+	char	*str;
+
+	if (!s || !f)
+		return (0);
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	index = 0;
+	while (s[index])
+		str[index] = f(index, s[index++]);
+	str[len] = 0;
+	return (str);
 }
