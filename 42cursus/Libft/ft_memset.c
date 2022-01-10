@@ -1,6 +1,8 @@
-void *memset(void *ptr, int value, size_t n)
+#include <stdlib.h>
+
+void *ft_memset(void *b, int c, size_t len)
 {
-    while (n > 0)
-        *((char *)ptr + --n) = value;
-    return (ptr);
+    while (len > 0)
+        *((unsigned char *)b + --len) = c;
+    return (b);
 }
