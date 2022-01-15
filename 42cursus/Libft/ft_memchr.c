@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 void *ft_memchr(void *str, int c, size_t n)
 {
     int i;

@@ -1,4 +1,6 @@
-unsigned int ft_strlcpy(char *dest, char *src, unsigned int n)
+#include <stdlib.h>
+
+size_t ft_strlcpy(char *dest, char *src, size_t n)
 {
     unsigned int index;
 
