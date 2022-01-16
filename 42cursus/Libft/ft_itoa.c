@@ -49,7 +49,7 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		temp = -n;
 	}
-	while (figures >= 0 )
+	while (figures >= 0)
 	{
 		str[figures--] = temp % 10 + '0';
 		temp /= 10;

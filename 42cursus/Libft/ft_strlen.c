@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/16 16:32:46 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:32:47 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-    unsigned int len;
+	unsigned int	len;
 
-    len = 0;
-    while (str[len] != 0)
-        len++;
-    return (len);
+	len = 0;
+	while (str[len] != 0)
+		len++;
+	return (len);
 }

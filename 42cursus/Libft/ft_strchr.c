@@ -1,10 +1,22 @@
-char *ft_strchr(const char *str, int c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/16 16:32:23 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:32:27 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+char	*ft_strchr(const char *str, int c)
 {
-    while (*str != 0;)
-    {
-        if (*str == c)
-            return (str);
-        str++;
-    }
-    return (0);
+	while (*str != 0)
+	{
+		if (*str == c)
+			return (str);
+		str++;
+	}
+	return (0);
 }

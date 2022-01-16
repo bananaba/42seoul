@@ -1,13 +1,25 @@
-char *ft_strrchr(const char *str, int c)
-{
-    char *ret;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/16 16:33:03 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:33:06 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    ret = 0;
-    while (*str != 0)
-    {
-        if (*str == c)
-            ret = str;
-        str++;
-    }
-    return (ret);
+char	*ft_strrchr(const char *str, int c)
+{
+	char	*ret;
+
+	ret = 0;
+	while (*str != 0)
+	{
+		if (*str == c)
+			ret = str;
+		str++;
+	}
+	return (ret);
 }
