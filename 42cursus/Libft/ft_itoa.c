@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	figures = find_figures(n);
 	str = (char *)malloc(sizeof(char) * (figures + 1));
 	if (!str)
-		retrun (0);
+		return (0);
 	str[figures--] = 0;
 	temp = n;
 	if (n < 0)

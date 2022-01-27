@@ -10,19 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
-char	*ft_strchr(const char *str, int c)
-{
-	while (*str != 0)
-	{
-		if (*str == c)
-			return (str);
-		str++;
-	}
-	return (0);
-}
+#include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -31,7 +19,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*trim;
 	int		len;
 
-	start = s1;
+	start = (char *)s1;
 	while (*start && ft_strchr(set, *start))
 		start++;
 	end = start;

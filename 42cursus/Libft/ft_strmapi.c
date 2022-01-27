@@ -26,7 +26,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	index = 0;
 	while (s[index])
-		str[index] = f(index, s[index++]);
+	{
+		str[index] = f(index, s[index]);
+		index++;
+	}
 	str[len] = 0;
 	return (str);
 }

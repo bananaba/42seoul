@@ -15,10 +15,12 @@ char	*ft_strrchr(const char *str, int c)
 	char	*ret;
 
 	ret = 0;
-	while (*str != 0)
+	while (1)
 	{
 		if (*str == c)
-			ret = str;
+			ret = (char *)str;
+		if (!*str)
+			break ;
 		str++;
 	}
 	return (ret);

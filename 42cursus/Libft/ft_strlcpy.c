@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dest, char *src, size_t n)
 {
-	unsigned int	index;
+	size_t	index;
 
 	if (n >= 1)
 	{
@@ -24,7 +24,7 @@ size_t	ft_strlcpy(char *dest, char *src, size_t n)
 			*(dest + index) = *(src + index);
 			index++;
 		}
-		while (index < n)
+		if (index < n)
 			*(dest + index++) = '\0';
 	}
 	index = 0;
