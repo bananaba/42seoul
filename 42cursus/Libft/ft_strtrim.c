@@ -24,13 +24,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = (char *)s1;
 	while (*start && ft_strchr(set, *start))
 		start++;
-	end = start;
-	while (*end)
-	{
+	end = start - 1;
+	while (*(++end))
 		if (!ft_strchr(set, *end))
 			len = end - start + 1;
-		end++;
-	}
+	if (end == start)
+		return (ft_strdup(""));
 	trim = (char *)malloc(sizeof(char) * (len + 1));
 	if (!trim)
 		return (0);
