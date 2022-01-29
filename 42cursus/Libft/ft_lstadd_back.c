@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 16:31:56 by balee             #+#    #+#             */
-/*   Updated: 2022/01/16 16:31:57 by balee            ###   ########.fr       */
+/*   Created: 2022/01/29 15:15:19 by balee             #+#    #+#             */
+/*   Updated: 2022/01/29 15:15:20 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
-
-	if (dest < src)
-	{
-		i = 0;
-		while (i < n)
-		{
-			*((char *)dest + i) = *((char *)src + i);
-			i++;
-		}
-	}
-	else if (dest > src)
-	{
-		i = n;
-		while (i)
-		{
-			i--;
-			*((char *)dest + i) = *((char *)src + i);
-		}
-	}
-	return (dest);
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
 }

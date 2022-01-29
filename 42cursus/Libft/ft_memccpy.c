@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 16:31:56 by balee             #+#    #+#             */
-/*   Updated: 2022/01/16 16:31:57 by balee            ###   ########.fr       */
+/*   Created: 2022/01/28 17:20:35 by balee             #+#    #+#             */
+/*   Updated: 2022/01/28 17:20:37 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memccpy(void *restrict dst, \
+					const void *restrict src, int c, size_t n)
 {
 	size_t	i;
 
-	if (dest < src)
+	i = 0;
+	while (i < n)
 	{
-		i = 0;
-		while (i < n)
-		{
-			*((char *)dest + i) = *((char *)src + i);
-			i++;
-		}
+		*((unsigned char *)dst + i) = *((unsigned char *)src + i);
+		if (*((unsigned char *)src + i) == (unsigned char)c)
+			return ((void *)dst + i + 1);
+		i++;
 	}
-	else if (dest > src)
-	{
-		i = n;
-		while (i)
-		{
-			i--;
-			*((char *)dest + i) = *((char *)src + i);
-		}
-	}
-	return (dest);
+	return (0);
 }

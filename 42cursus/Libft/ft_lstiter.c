@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 16:31:56 by balee             #+#    #+#             */
-/*   Updated: 2022/01/16 16:31:57 by balee            ###   ########.fr       */
+/*   Created: 2022/01/29 15:52:33 by balee             #+#    #+#             */
+/*   Updated: 2022/01/29 15:52:34 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	if (dest < src)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		i = 0;
-		while (i < n)
-		{
-			*((char *)dest + i) = *((char *)src + i);
-			i++;
-		}
+		f(lst->content);
+		lst = lst->next;
 	}
-	else if (dest > src)
-	{
-		i = n;
-		while (i)
-		{
-			i--;
-			*((char *)dest + i) = *((char *)src + i);
-		}
-	}
-	return (dest);
 }

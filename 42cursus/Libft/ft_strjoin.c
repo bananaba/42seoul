@@ -10,55 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	ft_strlen(int size, char **strs, char *sep)
-{
-	int	temp;
-	int	index1;
-	int	index2;
-
-	temp = 0;
-	index1 = 0;
-	if (size <= 0)
-		return (0);
-	while (index1 < size)
-	{
-		index2 = 0;
-		while (strs[index1][index2] != 0)
-		{
-			temp++;
-			index2++;
-		}
-		index1++;
-	}
-	index1 = 0;
-	while (sep[index1] != 0)
-		index1++;
-	return (temp + index1 * (size - 1));
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*temp;
-	int		index1;
-	int		index2;
+	size_t	index1;
+	size_t	index2;
 
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(size, strs, sep) + 1));
-	index1 = 0;
-	while (index1 < size)
-	{
-		index2 = -1;
-		while (strs[index1][++index2] != 0)
-			*(temp++) = strs[index1][index2];
-		if (index1 != size - 1)
-		{
-			index2 = -1;
-			while (sep[++index2] != 0)
-				*(temp++) = sep[index2];
-		}
-		index1++;
-	}
-	*temp = 0;
-	return (temp - ft_strlen(size, strs, sep));
+	if (!s1 || !s2)
+		return (0);
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!temp)
+		return (0);
+	index1 = -1;
+	while (++index1 <= ft_strlen(s1))
+		temp[index1] = s1[index1];
+	index1--;
+	index2 = -1;
+	while (++index2 < ft_strlen(s2))
+		temp[index1 + index2] = s2[index2];
+	temp[index1 + index2] = 0;
+	return (temp);
 }

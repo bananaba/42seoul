@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 16:33:09 by balee             #+#    #+#             */
-/*   Updated: 2022/01/16 16:33:10 by balee            ###   ########.fr       */
+/*   Created: 2022/01/29 17:06:52 by balee             #+#    #+#             */
+/*   Updated: 2022/01/29 17:06:53 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*start;
-	char	*end;
-	char	*trim;
-	int		len;
+	t_list	*temp;
+	t_list	*first;
 
-	if (!s1 || !set)
+	if (!lst || !f || !del)
 		return (0);
-	start = (char *)s1;
-	while (*start && ft_strchr(set, *start))
-		start++;
-	end = start;
-	while (*end)
+	temp = ft_lstnew(f(lst->content));
+	if (!temp)
+		return (0);
+	first = temp;
+	while (lst->next)
 	{
-		if (!ft_strchr(set, *end))
-			len = end - start + 1;
-		end++;
+		lst = lst->next;
+		temp->next = ft_lstnew(f(lst->content));
+		if (!temp->next)
+		{
+			ft_lstclear(&first, del);
+			return (0);
+		}
+		temp = temp->next;
 	}
-	trim = (char *)malloc(sizeof(char) * (len + 1));
-	if (!trim)
-		return (0);
-	trim[len] = 0;
-	while (--len >= 0)
-		trim[len] = start[len];
-	return (trim);
+	return (first);
 }

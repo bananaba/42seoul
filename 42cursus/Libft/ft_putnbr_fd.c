@@ -10,15 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
+	unsigned int	temp;
+	char			c;
 
-	str = ft_itoa(n);
-	if (!str)
-		return ;
-	ft_putstr_fd(str, fd);
-	free(str);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		temp = n * -1;
+	}
+	else
+		temp = n;
+	c = temp % 10 + '0';
+	if (temp >= 10)
+		ft_putnbr_fd(temp / 10, fd);
+	write(fd, &c, 1);
 }

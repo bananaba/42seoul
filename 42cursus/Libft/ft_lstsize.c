@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 16:33:09 by balee             #+#    #+#             */
-/*   Updated: 2022/01/16 16:33:10 by balee            ###   ########.fr       */
+/*   Created: 2022/01/29 14:11:37 by balee             #+#    #+#             */
+/*   Updated: 2022/01/29 14:11:38 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_lstsize(t_list *lst)
 {
-	char	*start;
-	char	*end;
-	char	*trim;
-	int		len;
+	int	size;
 
-	if (!s1 || !set)
+	if (!lst)
 		return (0);
-	start = (char *)s1;
-	while (*start && ft_strchr(set, *start))
-		start++;
-	end = start;
-	while (*end)
+	size = 1;
+	while (lst->next)
 	{
-		if (!ft_strchr(set, *end))
-			len = end - start + 1;
-		end++;
+		size++;
+		lst = lst->next;
 	}
-	trim = (char *)malloc(sizeof(char) * (len + 1));
-	if (!trim)
-		return (0);
-	trim[len] = 0;
-	while (--len >= 0)
-		trim[len] = start[len];
-	return (trim);
+	return (size);
 }
