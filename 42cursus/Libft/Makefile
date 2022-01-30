@@ -63,10 +63,10 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	ar rcs $@ $^
 
-bonus:
-	make BN=1 $(NAME)
+bonus: $(BOUNUS_OBJS)
+	make BN=1 all
 
-.c.o:
+.c.o: $(SRCS) $(BOUNUS_SRCS)
 	$(CC) $(CFLAG) $(HEADER) -o $@ $<
 
 clean:
