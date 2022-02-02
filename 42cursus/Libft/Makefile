@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: balee <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/01/30 15:46:06 by balee             #+#    #+#              #
+#    Updated: 2022/01/30 17:34:39 by balee            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 .SUFFIXES: .c.o
 
 CC = gcc
@@ -6,7 +18,6 @@ NAME = libft.a
 SRCS = ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
-		ft_memccpy.c \
 		ft_memmove.c \
 		ft_memchr.c \
 		ft_memcmp.c \
@@ -63,10 +74,10 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	ar rcs $@ $^
 
-bonus: $(NAME)
-	make BN=1 all
+bonus:
+	BN=1 make all
 
-.c.o: $(SRCS) $(BOUNUS_SRCS)
+.c.o:
 	$(CC) $(CFLAG) $(HEADER) -o $@ $<
 
 clean:

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 17:20:35 by balee             #+#    #+#             */
-/*   Updated: 2022/01/28 17:20:37 by balee            ###   ########.fr       */
+/*   Created: 2022/02/02 17:21:11 by balee             #+#    #+#             */
+/*   Updated: 2022/02/02 17:21:13 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 
-void	*ft_memccpy(void *restrict dst, \
-					const void *restrict src, int c, size_t n)
+char	*get_next_line(int fd)
 {
-	size_t	i;
+	static char	*backup;
+	char		buf[BUFFER_SIZE];
 
-	i = 0;
-	while (i < n)
-	{
-		*((unsigned char *)dst + i) = *((unsigned char *)src + i);
-		if (*((unsigned char *)src + i) == (unsigned char)c)
-			return ((void *)dst + i + 1);
-		i++;
-	}
-	return (0);
+	return ((char *)backup);
 }
