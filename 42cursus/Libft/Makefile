@@ -10,8 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-.SUFFIXES: .c.o
-
 CC = gcc
 CFLAG = -Wall -Wextra -Werror -c
 NAME = libft.a
@@ -57,8 +55,7 @@ BOUNUS_SRCS = ft_lstnew.c \
 				ft_lstdelone.c \
 				ft_lstclear.c \
 				ft_lstiter.c \
-				ft_lstmap.c \
-				ft_striteri.c
+				ft_lstmap.c
 HEADER = -I.
 OBJS = $(SRCS:.c=.o)
 BOUNUS_OBJS = $(BOUNUS_SRCS:.c=.o)
