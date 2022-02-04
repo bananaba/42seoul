@@ -24,8 +24,7 @@ size_t	ft_strlcpy(char *dest, char *src, size_t n)
 			*(dest + index) = *(src + index);
 			index++;
 		}
-		if (index < n)
-			*(dest + index++) = '\0';
+		*(dest + index++) = '\0';
 	}
 	index = 0;
 	while (src[index] != 0)
