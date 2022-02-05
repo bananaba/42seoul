@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *str, int c)
 	ret = 0;
 	while (1)
 	{
-		if (*str == c)
+		if (*str == (char)c)
 			ret = (char *)str;
 		if (!*str)
 			break ;
