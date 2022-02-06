@@ -18,6 +18,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	if (!*little)
 		return ((char *)big);
+	if (!len)
+		return (0);
 	while (*big != 0)
 	{
 		index = 0;
