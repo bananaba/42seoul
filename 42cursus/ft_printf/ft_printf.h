@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 01:28:46 by balee             #+#    #+#             */
-/*   Updated: 2022/03/26 18:55:17 by balee            ###   ########.fr       */
+/*   Updated: 2022/03/28 14:09:52 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_info
 	char	type;
 }	t_info;
 
+int		ft_printf(const char *str, ...);
 int		print_char(char c, t_info *info);
 int		print_str(char *str, t_info *info);
 int		print_decimal(long long d, t_info *info);
