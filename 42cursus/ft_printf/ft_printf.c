@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	width_or_length(char c, t_info *info, va_list *ap)
+void	width_or_length(char c, t_info *info, va_list ap)
 {
 	if (info->prec && (c >= '0' && c <= '9'))
 		info->length = info->length * 10 + c - '0';
@@ -21,12 +21,12 @@ void	width_or_length(char c, t_info *info, va_list *ap)
 	else if (!info->prec && (c >= '0' && c <= '9'))
 		info->width = info->width * 10 + c - '0';
 	else if (info->prec && c == '*' && !info->length)
-		info->length = va_arg(*ap, int);
+		info->length = va_arg(ap, int);
 	else if (!info->prec && c == '*' && !info->width)
-		info->width = va_arg(*ap, int);
+		info->width = va_arg(ap, int);
 }
 
-char	*check_info(char *str, t_info *info, va_list *ap)
+char	*check_info(char *str, t_info *info, va_list ap)
 {
 	while (*(++str))
 	{
@@ -48,22 +48,22 @@ char	*check_info(char *str, t_info *info, va_list *ap)
 	return (str);
 }
 
-int	print_format(va_list *ap, t_info *info)
+int	print_format(va_list ap, t_info *info)
 {
 	if (info->type == '%')
 		return (print_char('%', info));
 	else if (info->type == 'c')
-		return (print_char(va_arg(*ap, int), info));
+		return (print_char(va_arg(ap, int), info));
 	else if (info->type == 's')
-		return (print_str(va_arg(*ap, char *), info));
+		return (print_str(va_arg(ap, char *), info));
 	else if (info->type == 'p')
-		return (print_hexa_decimal((long long)va_arg(*ap, void *), info));
+		return (print_hexa_decimal((long long)va_arg(ap, void *), info));
 	else if (info->type == 'd' || info->type == 'i')
-		return (print_decimal((long long)va_arg(*ap, int), info));
+		return (print_decimal((long long)va_arg(ap, int), info));
 	else if (info->type == 'u')
-		return (print_decimal((long long)va_arg(*ap, unsigned int), info));
+		return (print_decimal((long long)va_arg(ap, unsigned int), info));
 	else if (info->type == 'x' || info->type == 'X')
-		return (print_hexa_decimal((long long)va_arg(*ap, unsigned int), info));
+		return (print_hexa_decimal((long long)va_arg(ap, unsigned int), info));
 	return (-1);
 }
 
@@ -80,11 +80,11 @@ int	printf_main(const char *str, va_list ap, t_info *info)
 		else
 		{
 			ft_memset(info, 0, sizeof(t_info));
-			str = check_info((char *)str, info, &ap);
+			str = check_info((char *)str, info, ap);
 			if (!*str)
 				return (-1);
 			info->type = *str;
-			temp = print_format(&ap, info);
+			temp = print_format(ap, info);
 			if (temp == -1)
 				return (-1);
 			len += temp;
