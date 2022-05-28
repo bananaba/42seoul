@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:21:11 by balee             #+#    #+#             */
-/*   Updated: 2022/05/28 04:25:20 by balee            ###   ########.fr       */
+/*   Updated: 2022/05/29 04:50:57 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_newline(char *buf)
 	int	index;
 
 	index = 0;
-	while (buf[index])
+	while (buf && buf[index])
 	{
 		if (buf[index] == '\n')
 			return (index);
@@ -26,53 +26,46 @@ int	is_newline(char *buf)
 	return (-1);
 }
 
-char	*add_line(char **buf, char **line, int index, int status)
+char	*add_line(char *buf, char **line, int index, int status)
 {
 	char	*temp;
-	int		len;
 
-	if (index == -1)
-		index = ft_strlen(*buf);
-	(*buf)[index] = 0;
-	*line = ft_strjoin(line, *buf);
-	if (index != ft_strlen(*buf))
+	temp = 0;
+	if (buf && index >= 0)
 	{
-		len = ft_strlen(*buf + index + 1);
-		if (len == 0)
-		{
-			if (status == BACKUP)
-				free(*buf);
-			return (0);
-		}
-		temp = ft_strdup(*buf + index + 1);
+		temp = ft_strdup(buf + index + 1);
+		buf[index] = 0;
 	}
-	if (status == BACKUP)
-		free(*buf);
+	*line = ft_strjoin(*line, buf);
+	if (buf && status == BACKUP)
+		free(buf);
 	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*backup;
-	char		buf[BUFFER_SIZE];
 	char		*line;
+	char		buf[BUFFER_SIZE + 1];
 	int			index;
+	int			read_len;
 
-	if ((fd < 0) || (BUFFER_SIZE <= 0))
+	line = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (backup && *backup)
+	index = is_newline(backup);
+	backup = add_line(backup, &line, index, BACKUP);
+	if (index != -1)
+		return (ft_strjoin(line, "\n"));
+	read_len = read(fd, buf, BUFFER_SIZE);
+	while (index > 0)
 	{
-		index = is_newline(backup);
-		backup = add_line(&backup, &line, index, BACKUP);
-		if (index != -1)
-			return (ft_strjoin(&line, "\n"));
-	}
-	while (read(fd, buf, BUFFER_SIZE) > 0)
-	{
+		buf[index] = 0;
 		index = is_newline(buf);
-		backup = add_line(&buf, &line, index, BUF);
+		backup = add_line(buf, &line, index, BUF);
 		if (index != -1)
-			return (ft_strjoin(&line, "\n"));
+			return (ft_strjoin(line, "\n"));
+		read_len = read(fd, buf, BUFFER_SIZE);
 	}
 	return (line);
 }
