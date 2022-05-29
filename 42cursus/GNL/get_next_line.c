@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:21:11 by balee             #+#    #+#             */
-/*   Updated: 2022/05/29 04:50:57 by balee            ###   ########.fr       */
+/*   Updated: 2022/05/29 12:18:06 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		buf[BUFFER_SIZE + 1];
 	int			index;
-	int			read_len;
 
 	line = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
@@ -57,15 +56,15 @@ char	*get_next_line(int fd)
 	backup = add_line(backup, &line, index, BACKUP);
 	if (index != -1)
 		return (ft_strjoin(line, "\n"));
-	read_len = read(fd, buf, BUFFER_SIZE);
-	while (index > 0)
+	ft_memset(buf, 0, BUFFER_SIZE + 1);
+	while (read(fd, buf, BUFFER_SIZE))
 	{
 		buf[index] = 0;
 		index = is_newline(buf);
 		backup = add_line(buf, &line, index, BUF);
 		if (index != -1)
 			return (ft_strjoin(line, "\n"));
-		read_len = read(fd, buf, BUFFER_SIZE);
+		ft_memset(buf, 0, BUFFER_SIZE + 1);
 	}
 	return (line);
 }
