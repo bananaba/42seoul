@@ -59,7 +59,6 @@ char	*get_next_line(int fd)
 	ft_memset(buf, 0, BUFFER_SIZE + 1);
 	while (read(fd, buf, BUFFER_SIZE))
 	{
-		buf[index] = 0;
 		index = is_newline(buf);
 		backup = add_line(buf, &line, index, BUF);
 		if (index != -1)
