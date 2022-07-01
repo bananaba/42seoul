@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:05:45 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 18:05:47 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 18:31:37 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	is_sort(t_info *info)
 	}
 }
 
-void	do_exec(t_info *info, int status)
+int	do_exec(t_info *info, int status)
 {
 	if (status == 4)
 		sa(info);
@@ -64,9 +64,12 @@ void	do_exec(t_info *info, int status)
 		rrb(info);
 	else if (status == 24)
 		rrr(info);
+	else
+		return (1);
+	return (0);
 }
 
-void	checking(t_info *info)
+int	checking(t_info *info)
 {
 	char	c;
 	int		status;
@@ -86,11 +89,13 @@ void	checking(t_info *info)
 			status += 8;
 		else if (c == '\n')
 		{
-			do_exec(info, status);
+			if (do_exec(info, status))
+				return (1);
 			status = 0;
 		}
 	}
 	is_sort(info);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -102,6 +107,8 @@ int	main(int argc, char *argv[])
 
 	root = 0;
 	index = 0;
+	if (argc == 1)
+		return (0);
 	ft_bzero(&info, sizeof(t_info));
 	while (++index < argc)
 	{
@@ -113,7 +120,8 @@ int	main(int argc, char *argv[])
 		}
 	}
 	free_all_t_tree(root);
-	checking(&info);
+	if (checking(&info))
+		write(1, "KO\n", 3);
 	free_all(&info);
 	return (0);
 }

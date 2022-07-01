@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:36 by balee             #+#    #+#             */
-/*   Updated: 2022/07/01 17:34:22 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 18:27:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char *argv[])
 
 	root = 0;
 	index = 0;
+	if (argc == 1)
+		return (0);
 	ft_bzero(&info, sizeof(t_info));
 	while (++index < argc)
 	{
