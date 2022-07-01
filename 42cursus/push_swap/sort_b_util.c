@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:24:18 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 19:58:11 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 02:29:21 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ void	sort_b_util1(t_info *info)
 	}
 	else if (a < b && a > c)
 		do_sb(info);
-	else 
+	else
 		sort_b_util2(info, a, b, c);
 }

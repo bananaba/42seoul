@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:39 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 19:58:51 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 16:20:59 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,15 @@ void	rr(t_info *info);
 void	rra(t_info *info);
 void	rrb(t_info *info);
 void	rrr(t_info *info);
-void	sort(t_info *info, int a, int b);
+void	sort(t_info *info, int a, int b, t_tree *root);
 void	sort_a_util1(t_info *info);
 void	sort_b_util1(t_info *info);
+void	sort4_a(t_info *info);
+void	sort4_b(t_info *info);
+void	sort5_a(t_info *info);
+void	sort5_b(t_info *info);
+void	sort6_a(t_info *info);
+void	sort6_b(t_info *info);
 t_tree	*rotaterr(t_tree *node);
 t_tree	*rotaterl(t_tree *node);
 t_tree	*rotatell(t_tree *node);

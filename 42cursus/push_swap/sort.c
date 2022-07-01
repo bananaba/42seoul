@@ -6,13 +6,13 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:45 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 19:59:23 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 16:46:12 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_a(t_info *info, int a)
+void	sort_a(t_info *info, int a, t_tree *root)
 {
 	if (a <= 1)
 		return ;
@@ -21,25 +21,30 @@ void	sort_a(t_info *info, int a)
 		if (info->a_top->left->data < info->a_top->data)
 			do_sa(info);
 	}
-	else if (a == 3)
-		sort_a_util1(info);
 	else if (a_is_sorted(info, a))
-		sort(info, a, 0);
+	{
+		if (a == 3)
+			sort_a_util1(info);
+		else if (a == 4)
+			sort4_a(info);
+		else if (a == 5)
+			sort5_a(info);
+		else if (a == 6)
+			sort6_a(info);
+		else
+			sort(info, a, 0, root);
+	}
 }
 
-int	pivoting_a(t_info *info, int a)
+int	pivoting_a(t_info *info, int a, t_tree *root)
 {
 	int	index;
 	int	pivot;
 
 	index = 0;
-	pivot = info->a_top->data;
-	do_pb(info);
-	do_rb(info);
-	while (++index < a)
+	pivot = root->data;
+	while (is_big(info, pivot, a) && ++index <= a)
 	{
-		if (is_big(info, pivot, a - 1))
-			break ;
 		if (info->a_top->data < pivot)
 		{
 			do_pb(info);
@@ -49,13 +54,13 @@ int	pivoting_a(t_info *info, int a)
 		else
 			do_ra(info);
 	}
-	while (--index > 0)
+	while (index-- > 0)
 		do_rra(info);
-	sort_a(info, a - 1);
+	sort_a(info, a, root->right);
 	return (a);
 }
 
-void	sort_b(t_info *info, int b)
+void	sort_b(t_info *info, int b, t_tree *root)
 {
 	if (b <= 1)
 		return ;
@@ -64,26 +69,31 @@ void	sort_b(t_info *info, int b)
 		if (info->b_top->left->data > info->b_top->data)
 			do_sb(info);
 	}
-	else if (b == 3)
-		sort_b_util1(info);
 	else if (b_is_sorted(info, b))
-		sort(info, 0, b);
+	{
+		if (b == 3)
+			sort_b_util1(info);
+		else if (b == 4)
+			sort4_b(info);
+		else if (b == 5)
+			sort5_b(info);
+		else if (b == 6)
+			sort6_b(info);
+		else
+			sort(info, 0, b, root);
+	}
 }
 
-int	pivoting_b(t_info *info, int b)
+int	pivoting_b(t_info *info, int b, t_tree *root)
 {
 	int	index;
 	int	pivot;
 
 	index = 0;
-	pivot = info->b_top->data;
-	do_pa(info);
-	do_ra(info);
-	while (++index < b)
+	pivot = root->data;
+	while (is_small(info, pivot, b) && ++index <= b)
 	{
-		if (is_small(info, pivot, b - 1))
-			break ;
-		if (info->b_top->data > pivot)
+		if (info->b_top->data >= pivot)
 		{
 			do_pa(info);
 			b--;
@@ -92,35 +102,31 @@ int	pivoting_b(t_info *info, int b)
 		else
 			do_rb(info);
 	}
-	while (--index > 0)
+	while (index-- > 0)
 		do_rrb(info);
-	sort_b(info, b - 1);
+	sort_b(info, b, root->left);
 	return (b);
 }
 
-void	sort(t_info *info, int a, int b)
+void	sort(t_info *info, int a, int b, t_tree *root)
 {
 	int	trans;
 
-	if (a <= 3)
-		sort_a(info, a);
+	if (a <= 6)
+		sort_a(info, a, root);
 	else
 	{
-		trans = a - pivoting_a(info, a);
-		do_rrb(info);
-		do_pa(info);
-		sort_b(info, trans);
+		trans = a - pivoting_a(info, a, root);
+		sort_b(info, trans, root->left);
 		while (trans-- > 0)
 			do_pa(info);
 	}
-	if (b <= 3)
-		sort_b(info, b);
+	if (b <= 6)
+		sort_b(info, b, root);
 	else
 	{
-		trans = b - pivoting_b(info, b);
-		do_rra(info);
-		do_pb(info);
-		sort_a(info, trans);
+		trans = b - pivoting_b(info, b, root);
+		sort_a(info, trans, root->right);
 		while (trans-- > 0)
 			do_pb(info);
 	}

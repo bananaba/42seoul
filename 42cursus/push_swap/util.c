@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:55:24 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 19:07:45 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 16:26:22 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int	is_small(t_info *info, int pivot, int b)
 	temp = info->b_top;
 	while (b-- > 0)
 	{
-		if (temp->data > pivot)
-			return (0);
+		if (temp->data >= pivot)
+			return (1);
 		temp = temp->left;
 	}
-	return (1);
+	return (0);
 }
 
 int	is_big(t_info *info, int pivot, int a)
@@ -67,8 +67,8 @@ int	is_big(t_info *info, int pivot, int a)
 	while (a-- > 0)
 	{
 		if (temp->data < pivot)
-			return (0);
+			return (1);
 		temp = temp->left;
 	}
-	return (1);
+	return (0);
 }
