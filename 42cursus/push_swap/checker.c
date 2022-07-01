@@ -115,7 +115,7 @@ int	main(int argc, char *argv[])
 		status = keep_arg(&info, rm_whitespace(argv[index]), &root);
 		if (status)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			break ;
 		}
 	}

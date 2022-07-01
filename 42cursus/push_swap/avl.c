@@ -111,6 +111,8 @@ int	add_input(t_tree **node, int input, t_info *info)
 
 void	free_all_t_tree(t_tree *node)
 {
+	if (!node)
+		return ;
 	if (node->left)
 		free_all_t_tree(node->left);
 	if (node->right)
