@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:17:07 by balee             #+#    #+#             */
-/*   Updated: 2022/07/01 16:21:38 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 17:37:22 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,32 +76,4 @@ void	sort5_a(t_info *info)
 	sort(info, 3, 2, 0);
 	while (++index < 2)
 		do_pa(info);
-}
-
-void	sort5_b(t_info *info)
-{
-	int	mid;
-	int	index;
-	int	check;
-
-	mid = find_mid5(info->b_top);
-	index = 0;
-	check = 0;
-	while (check != 2 && index++ < 5)
-	{
-		if (info->b_top->data <= mid)
-			do_rb(info);
-		else
-		{
-			do_pa(info);
-			check++;
-		}
-	}
-	index = index - 2;
-	while (--index >= 0)
-		if (info->b_top->left->left->left)
-			do_rrb(info);
-	sort(info, 2, 3, 0);
-	while (++index < 2)
-		do_pb(info);
 }

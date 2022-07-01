@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 15:27:47 by balee             #+#    #+#              #
-#    Updated: 2022/07/01 16:55:00 by balee            ###   ########.fr        #
+#    Updated: 2022/07/01 17:22:02 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS = avl_rot.c \
 		sort_b_util.c \
 		sort4.c \
 		sort5.c \
-		sort6.c
+		sort6.c \
+		sort_a_b.c
 MAIN = push_swap.o
 CHECKER = checker.o
 HEADER = -I.

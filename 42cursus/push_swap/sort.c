@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:45 by balee             #+#    #+#             */
-/*   Updated: 2022/07/01 16:46:12 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/01 17:41:55 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	pivoting_a(t_info *info, int a, t_tree *root)
 	return (a);
 }
 
-void	sort_b(t_info *info, int b, t_tree *root)
+void	sort_b(t_info *info, int b)
 {
 	if (b <= 1)
 		return ;
@@ -70,64 +70,21 @@ void	sort_b(t_info *info, int b, t_tree *root)
 			do_sb(info);
 	}
 	else if (b_is_sorted(info, b))
-	{
 		if (b == 3)
 			sort_b_util1(info);
-		else if (b == 4)
-			sort4_b(info);
-		else if (b == 5)
-			sort5_b(info);
-		else if (b == 6)
-			sort6_b(info);
-		else
-			sort(info, 0, b, root);
-	}
-}
-
-int	pivoting_b(t_info *info, int b, t_tree *root)
-{
-	int	index;
-	int	pivot;
-
-	index = 0;
-	pivot = root->data;
-	while (is_small(info, pivot, b) && ++index <= b)
-	{
-		if (info->b_top->data >= pivot)
-		{
-			do_pa(info);
-			b--;
-			index--;
-		}
-		else
-			do_rb(info);
-	}
-	while (index-- > 0)
-		do_rrb(info);
-	sort_b(info, b, root->left);
-	return (b);
 }
 
 void	sort(t_info *info, int a, int b, t_tree *root)
 {
 	int	trans;
 
-	if (a <= 6)
+	if (a <= 5)
 		sort_a(info, a, root);
 	else
 	{
 		trans = a - pivoting_a(info, a, root);
-		sort_b(info, trans, root->left);
-		while (trans-- > 0)
-			do_pa(info);
+		sort_b_to_a(info, trans, root->left);
 	}
-	if (b <= 6)
-		sort_b(info, b, root);
-	else
-	{
-		trans = b - pivoting_b(info, b, root);
-		sort_a(info, trans, root->right);
-		while (trans-- > 0)
-			do_pb(info);
-	}
+	if (b <= 3)
+		sort_b(info, b);
 }
