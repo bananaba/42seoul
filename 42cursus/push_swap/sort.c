@@ -78,7 +78,7 @@ void	sort(t_info *info, int a, int b, t_tree *root)
 {
 	int	trans;
 
-	if (a <= 5)
+	if (a <= 6)
 		sort_a(info, a, root);
 	else
 	{

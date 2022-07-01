@@ -44,7 +44,7 @@ char	*add_line(char *buf, char **line, int index, int status)
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
+	static char	**backup;
 	char		*line;
 	char		*buf;
 	int			index;
@@ -52,8 +52,8 @@ char	*get_next_line(int fd)
 	line = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	index = is_newline(backup);
-	backup = add_line(backup, &line, index, BACKUP);
+	index = is_newline(backup[fd]);
+	backup[fd] = add_line(backup[fd], &line, index, BACKUP);
 	if (index != -1)
 		return (ft_strjoin(line, "\n"));
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -63,7 +63,7 @@ char	*get_next_line(int fd)
 	while (read(fd, buf, BUFFER_SIZE))
 	{
 		index = is_newline(buf);
-		backup = add_line(buf, &line, index, BUF);
+		backup[fd] = add_line(buf, &line, index, BUF);
 		if (index != -1)
 			return (ft_strjoin(line, "\n"));
 		ft_memset(buf, 0, BUFFER_SIZE + 1);
