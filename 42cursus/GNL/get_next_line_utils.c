@@ -58,11 +58,11 @@ char	*ft_strdup(const char *s1)
 	int		len;
 
 	if (!*s1)
-		return (0);
+		return (NULL);
 	len = ft_strlen(s1) + 1;
 	temp = (char *)malloc(sizeof(char) * len);
 	if (!temp)
-		return (0);
+		return (NULL);
 	ft_strlcpy(temp, (char *)s1, len);
 	return (temp);
 }
@@ -74,14 +74,14 @@ char	*ft_strjoin(char *s1, char const *s2)
 	size_t	index2;
 
 	if (!s1 && !s2)
-		return (0);
+		return (NULL);
 	else if (!s1)
 		return (ft_strdup(s2));
 	else if (!s2)
 		return (s1);
 	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!temp)
-		return (0);
+		return (NULL);
 	index1 = -1;
 	while (s1[++index1])
 		temp[index1] = s1[index1];
