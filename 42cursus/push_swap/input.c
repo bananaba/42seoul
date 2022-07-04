@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:32 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 05:28:14 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/04 00:56:01 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	push(t_info *info, int n, t_tree **node)
 	}
 	else
 		free(temp);
-	return (0);
+	return (!status);
 }
 
 char	*rm_whitespace(char *argv)
