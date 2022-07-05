@@ -6,11 +6,26 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:55:24 by balee             #+#    #+#             */
-/*   Updated: 2022/07/01 16:26:22 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/06 04:25:02 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	new_log(t_info *info, int input)
+{
+	t_stack	*temp;
+
+	temp = (t_stack *)malloc(sizeof(t_stack));
+	if (!temp)
+		return ;
+	ft_bzero(temp, sizeof(t_stack));
+	if (info->log)
+		info->log->right = temp;
+	temp->left = info->log;
+	temp->data = input;
+	info->log = temp;
+}
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -34,10 +49,10 @@ void	free_all(t_info *info)
 		free(temp);
 		temp = next;
 	}
-	temp = info->b_bottom;
+	temp = info->log;
 	while (temp)
 	{
-		next = temp->right;
+		next = temp->left;
 		ft_bzero(temp, sizeof(t_stack));
 		free(temp);
 		temp = next;

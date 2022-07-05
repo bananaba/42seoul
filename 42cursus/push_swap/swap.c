@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:47 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 16:34:27 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/04 23:54:24 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	do_sa(t_info *info)
 	if (info->a_top && info->a_top->left)
 	{
 		sa(info);
-		write(1, "sa\n", 3);
+		new_log(info, 4);
 	}
 }
 
@@ -48,7 +48,7 @@ void	do_sb(t_info *info)
 	if (info->b_top && info->b_top->left)
 	{
 		sb(info);
-		write(1, "sb\n", 3);
+		new_log(info, 5);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:05:45 by balee             #+#    #+#             */
-/*   Updated: 2022/07/01 18:39:57 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/06 03:03:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ int	checking(t_info *info)
 			status += 6;
 		else if (c == 'r')
 			status += 8;
-		else if (c == '\n')
+		else
 		{
-			if (do_exec(info, status))
+			if (c != '\n' || do_exec(info, status))
 				return (1);
 			status = 0;
 		}
@@ -121,7 +121,7 @@ int	main(int argc, char *argv[])
 	}
 	free_all_t_tree(root);
 	if (!status && checking(&info))
-		write(1, "KO\n", 3);
+		write(2, "Error\n", 6);
 	free_all(&info);
 	return (0);
 }

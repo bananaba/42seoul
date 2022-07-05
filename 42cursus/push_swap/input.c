@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:32 by balee             #+#    #+#             */
-/*   Updated: 2022/07/04 00:56:01 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/04 23:41:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,22 @@ int	keep_arg(t_info *info, char *argv, t_tree **node)
 	long long	temp;
 	int			s;
 
-	temp = 0;
-	s = 1;
+	if (!*argv)
+		return (1);
 	while (*argv)
 	{
-		while ((*argv == '+' || *argv == '-') && temp == 0)
+		temp = 0;
+		s = 1;
+		if ((*argv == '+' || *argv == '-')
+			&& *(argv + 1) >= '0' && *(argv + 1) <= '9')
 			if (*(argv++) == '-')
-				s *= -1;
-		if (*argv >= '0' && *argv <= '9')
-			temp = temp * 10 + *argv - '0';
-		else if (!((*argv >= 9 && *argv <= 13) || *argv == ' '))
+				s = -1;
+		while (*argv >= '0' && *argv <= '9')
+			temp = temp * 10 + *(argv++) - '0';
+		if (!((*argv >= 9 && *argv <= 13) || *argv == ' ' || !*argv))
 			return (1);
-		argv++;
-		if (((*argv >= 9 && *argv <= 13) || *argv == ' ') || !*argv)
-		{
-			if (temp * s > MAX || temp * s < MIN || push(info, temp * s, node))
-				return (1);
-			temp = 0;
-			s = 1;
-		}
+		else if (temp * s > MAX || temp * s < MIN || push(info, temp * s, node))
+			return (1);
 		argv = rm_whitespace(argv);
 	}
 	return (0);

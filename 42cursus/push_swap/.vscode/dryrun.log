@@ -1,0 +1,13 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/balee/42/42cursus/push_swap'
+cc -Wall -Wextra -Werror -I. -c -o sort_b_to_a.o sort_b_to_a.c
+ 
+cc -Wall -Wextra -Werror -I. -c -o print_log.o print_log.c
+cc -Wall -Wextra -Werror -I. -c -o check_log.o check_log.c
+cc -Wall -Wextra -Werror -I. -c -o check_log_util.o check_log_util.c
+ 
+cc -Wall -Wextra -Werror -I. -c -o push_swap.o push_swap.c
+cc -Wall -Wextra -Werror -I. -o push_swap push_swap.o avl_rot.o avl.o input.o push.o reverse_rotation.o rotation.o sort.o swap.o util.o sort3_a.o sort3_b.o sort4.o sort5.o sort_b_to_a.o print_log.o check_log.o check_log_util.o
+ 
+make: Leaving directory `/Users/balee/42/42cursus/push_swap'
+ 

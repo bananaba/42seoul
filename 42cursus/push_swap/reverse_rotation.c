@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 05:18:42 by balee             #+#    #+#             */
-/*   Updated: 2022/06/30 16:36:00 by balee            ###   ########.fr       */
+/*   Updated: 2022/07/05 01:52:29 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	do_rra(t_info *info)
 	if (info->a_bottom && info->a_bottom->right)
 	{
 		rra(info);
-		write(1, "rra\n", 4);
+		new_log(info, 17);
 	}
 }
 
@@ -50,7 +50,7 @@ void	do_rrb(t_info *info)
 	if (info->b_bottom && info->b_bottom->right)
 	{
 		rrb(info);
-		write(1, "rrb\n", 4);
+		new_log(info, 18);
 	}
 }
 

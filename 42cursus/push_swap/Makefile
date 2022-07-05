@@ -6,11 +6,11 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 15:27:47 by balee             #+#    #+#              #
-#    Updated: 2022/07/01 17:22:02 by balee            ###   ########.fr        #
+#    Updated: 2022/07/06 04:49:16 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 FLAG = -Wall -Wextra -Werror
 NAME = push_swap
 BONUS = checker
@@ -23,12 +23,14 @@ SRCS = avl_rot.c \
 		sort.c \
 		swap.c \
 		util.c \
-		sort_a_util.c \
-		sort_b_util.c \
+		sort3_a.c \
+		sort3_b.c \
 		sort4.c \
 		sort5.c \
-		sort6.c \
-		sort_a_b.c
+		sort_b_to_a.c \
+		print_log.c \
+		check_log.c \
+		check_log_util.c
 MAIN = push_swap.o
 CHECKER = checker.o
 HEADER = -I.
