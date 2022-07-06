@@ -47,7 +47,7 @@ void	sort_c_to_a(t_info *info, int c, t_tree *root)
 
 	index = 0;
 	if (c != info->b_factor)
-		while (index < c)
+		while (index++ < c)
 			do_rrb(info);
 	sort_b_to_a(info, c, root);
 }

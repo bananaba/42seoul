@@ -15,13 +15,11 @@
 int	pivoting_b_to_a(t_info *info, int b, t_tree *root)
 {
 	int	index;
-	int	pivot;
 
 	index = 0;
-	pivot = root->data;
-	while (is_small(info, pivot, b) && ++index <= b)
+	while (is_small(info, root->data, b) && ++index <= b)
 	{
-		if (info->b_top->data >= pivot)
+		if (info->b_top->data >= root->data)
 		{
 			do_pa(info);
 			b--;
