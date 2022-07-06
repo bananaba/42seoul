@@ -38,13 +38,15 @@ void	print_char(int data)
 		write(1, "rrr\n", 4);
 }
 
-void	print_log(t_stack *log)
+void	print_log(t_stack **log)
 {
-	if (log)
-		check_log(&log);
-	while (log)
+	if (*log)
+		check_log(log);
+	while (*log)
 	{
-		print_char(log->data);
-		log = log->right;
+		print_char((*log)->data);
+		if (!(*log)->right)
+			break ;
+		*log = (*log)->right;
 	}
 }

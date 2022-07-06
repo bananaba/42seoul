@@ -35,7 +35,7 @@ int	main(int argc, char *argv[])
 	}
 	if (!status && a_is_sorted(&info, info.a_factor))
 		sort_a(&info, info.a_factor, root);
-	print_log(info.log);
+	print_log(&(info.log));
 	free_all_t_tree(root);
 	free_all(&info);
 	return (0);

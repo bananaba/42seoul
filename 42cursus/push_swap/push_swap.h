@@ -82,7 +82,7 @@ void	sort5_a(t_info *info);
 void	sort4_b(t_info *info);
 void	sort5_b(t_info *info);
 void	new_log(t_info *info, int input);
-void	print_log(t_stack *log);
+void	print_log(t_stack **log);
 void	check_log(t_stack **log);
 t_stack	*check_swap2(t_stack **log);
 t_stack	*check_rotation2(t_stack **log);
