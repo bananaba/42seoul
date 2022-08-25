@@ -8,7 +8,7 @@ INCS		= -I./include
 LIB			= ./Libft
 LIB_FLAGS	= -L $(LIB) -l ft
 
-SRC			= pipex.c cmd.c path.c				
+SRC			= pipex.c cmd.c path.c exit.c
 SRCS		= $(addprefix ./src/, $(SRC))
 OBJS		= $(SRCS:.c=.o)
 

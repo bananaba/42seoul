@@ -29,5 +29,7 @@ void	add_path(char **cmd, t_pipex *pipex);
 void	set_cmd(t_pipex *pipex);
 
 void	close_all(t_pipex *pipex);
+void	free_all(char **ptr);
+void	safe_exit(t_pipex *pipex);
 
 #endif
