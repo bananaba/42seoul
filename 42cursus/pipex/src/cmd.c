@@ -13,6 +13,7 @@ void	add_path(char **cmd, t_pipex *pipex)
 		{
 			free(cmd[0]);
 			cmd[0] = temp;
+			errno = 0;
 			return ;
 		}
 		free(temp);

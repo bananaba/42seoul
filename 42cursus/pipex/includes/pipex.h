@@ -15,7 +15,7 @@ typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
-	int		fd[2];
+	int		**fd;
 	char	***cmd;
 	char	**path;
 }	t_pipex;
@@ -27,5 +27,7 @@ char	**find_path(char **envp);
 //cmd.c
 void	add_path(char **cmd, t_pipex *pipex);
 void	set_cmd(t_pipex *pipex);
+
+void	close_all(t_pipex *pipex);
 
 #endif
