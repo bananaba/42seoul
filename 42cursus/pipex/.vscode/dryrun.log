@@ -1,0 +1,10 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/balee/42/42cursus/pipex'
+cc -Wall -Werror -Wextra -I./include -c -o src/pipex.o src/pipex.c
+ 
+cc -Wall -Werror -Wextra -I./include -c -o src/cmd.o src/cmd.c
+cc -Wall -Werror -Wextra -I./include -c -o src/path.o src/path.c
+make -C ./Libft bonus
+cc -o pipex ./src/pipex.o ./src/cmd.o ./src/path.o -L ./Libft -l ft
+make: Leaving directory `/Users/balee/42/42cursus/pipex'
+ 

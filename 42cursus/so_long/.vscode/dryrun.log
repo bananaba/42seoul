@@ -1,5 +1,13 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/balee/42/42cursus/so_long'
-make: Nothing to be done for `all'.
+cc -Wall -Werror -Wextra -I./include -c -o src/so_long.o src/so_long.c
+cc -Wall -Werror -Wextra -I./include -c -o src/map_check.o src/map_check.c
+cc -Wall -Werror -Wextra -I./include -c -o src/map_read.o src/map_read.c
+cc -Wall -Werror -Wextra -I./include -c -o src/map_draw.o src/map_draw.c
+cc -Wall -Werror -Wextra -I./include -c -o src/init_game.o src/init_game.c
+cc -Wall -Werror -Wextra -I./include -c -o src/player.o src/player.c
+cc -Wall -Werror -Wextra -I./include -c -o src/util.o src/util.c
+make -C ./mlx
+cc -o so_long ./src/so_long.o ./src/map_check.o ./src/map_read.o ./src/map_draw.o ./src/init_game.o ./src/player.o ./src/util.o -L./mlx -lmlx -framework OpenGL -framework Appkit
 make: Leaving directory `/Users/balee/42/42cursus/so_long'
  
