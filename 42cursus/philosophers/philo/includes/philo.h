@@ -9,6 +9,7 @@
 # include	<sys/time.h>
 
 # define	SUCCESS 0
+# define	NOPHIL -1
 
 # define	NUM_OF_PHILOS 0
 # define	TIME_TO_DIE 1

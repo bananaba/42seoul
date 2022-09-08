@@ -4,8 +4,8 @@ void	print_str(char *str, t_data *data, t_philo *philo)
 {
 	long long	time;
 
-	time = time_in_ms() - data->time;
 	pthread_mutex_lock(&data->print);
+	time = time_in_ms() - data->time;
 	if (!data->fin)
 		printf("%lldms %d %s\n", time, philo->num, str);
 	pthread_mutex_unlock(&data->print);
@@ -13,6 +13,7 @@ void	print_str(char *str, t_data *data, t_philo *philo)
 
 int	print_error(int err)
 {
+	ft_putstr_fd("Error: ", 2);
 	if (err == ENOEXEC)
 		ft_putstr_fd("Exec format error\n", 2);
 	else if (err == EINVAL)
@@ -25,5 +26,7 @@ int	print_error(int err)
 		ft_putstr_fd("Resource deadlock avoided\n", 2);
 	else if (err == EAGAIN)
 		ft_putstr_fd("Resource temporarily unavailable\n", 2);
+	else if (err == NOPHIL)
+		ft_putstr_fd("No philosopher\n", 2);
 	return (err);
 }

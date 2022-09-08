@@ -91,6 +91,8 @@ int	init_philo(t_data *data, int argc, char **argv)
 {
 	if (set_info(data, argc, argv))
 		return (EINVAL);
+	if (data->info[NUM_OF_PHILOS] == 0)
+		return (NOPHIL);
 	if (malloc_all(data))
 		return (ENOMEM);
 	if (init_mutex(data))

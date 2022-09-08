@@ -22,8 +22,12 @@ void	*philo_routine(t_philo *philo)
 {
 	long long	sleep_time;
 
-	if (philo->num % 2 == 0)
-		usleep(philo->data->info[TIME_TO_EAT] * 1000);
+	if (time_in_ms() - philo->eat_time >= philo->data->info[TIME_TO_DIE])
+		return (NULL);
+	if (philo->num % 2 == 0 && philo->data->info[TIME_TO_EAT] == 0)
+		usleep(500);
+	else if (philo->num % 2 == 0)
+		usleep(philo->data->info[TIME_TO_EAT] * 900);
 	while (!philo->data->fin)
 	{
 		philo_eat(philo, philo->data);
@@ -42,7 +46,7 @@ void	monitoring(t_data *data)
 	int 		i;
 	long long	time;
 
-	while (!data->fin && data->eat != data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT] != 0)
+	while (!data->fin && data->eat != data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT])
 	{
 		i = 0;
 		time = time_in_ms();
@@ -68,7 +72,7 @@ int	philo_start(t_data *data)
 	t_philo		*temp;
 
 	i = 0;
-	while (i < data->info[NUM_OF_PHILOS])
+	while (i < data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT])
 	{
 		temp = &data->philos[i];
 		if (pthread_create(&temp->tid, NULL, (void *)&philo_routine, temp))
