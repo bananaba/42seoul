@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 13:05:53 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/08 13:44:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,18 @@ int	malloc_all(t_data *data)
 	return (SUCCESS);
 }
 
-int	init_mutex(t_data *data)
+void	init_mutex(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	if (pthread_mutex_init(&data->print, NULL))
-	{
-		free_all(data);
-		return (errno);
-	}
+	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->eating, NULL);
 	while (i < data->info[NUM_OF_PHILOS])
 	{
-		if (pthread_mutex_init(&data->forks[i], NULL))
-		{
-			while (i-- > 0)
-				pthread_mutex_destroy(&data->forks[i]);
-			pthread_mutex_destroy(&data->print);
-			free_all(data);
-			return (errno);
-		}
+		pthread_mutex_init(&data->forks[i], NULL);
 		i++;
 	}
-	return (SUCCESS);
 }
 
 void	set_philo(t_data *data)
@@ -107,8 +96,7 @@ int	init_philo(t_data *data, int argc, char **argv)
 		return (NOPHIL);
 	if (malloc_all(data))
 		return (ENOMEM);
-	if (init_mutex(data))
-		return (errno);
+	init_mutex(data);
 	data->time = time_in_ms();
 	set_philo(data);
 	data->fin = 0;

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 13:06:04 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/08 13:45:49 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ void	philo_eat(t_philo *philo, t_data *data)
 		usleep(data->info[NUM_OF_PHILOS] * 5);
 	philo->eat_cnt++;
 	if (data->info[NUM_OF_MUST_EAT] == philo->eat_cnt)
+	{
+		pthread_mutex_lock(&data->eating);
 		data->eat++;
+		pthread_mutex_unlock(&data->eating);
+	}
 	pthread_mutex_unlock(&data->forks[philo->first]);
 	pthread_mutex_unlock(&data->forks[philo->second]);
 }
@@ -58,7 +62,7 @@ void	monitoring(t_data *data)
 	int 		i;
 	long long	time;
 
-	while (!data->fin && data->eat != data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT])
+	while (!data->fin && data->eat < data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT])
 	{
 		i = 0;
 		time = time_in_ms();
@@ -76,6 +80,7 @@ void	monitoring(t_data *data)
 		printf("All philosophers have eaten enough\n");
 		data->fin++;
 	}
+	pthread_mutex_unlock(&data->print);
 }
 
 int	philo_start(t_data *data)
