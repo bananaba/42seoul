@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
+#    Updated: 2022/09/08 13:06:36 by balee            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= philo
 
 CC			= cc
@@ -6,7 +18,7 @@ RM			= rm -f
 
 INCS		= -I./include
 
-SRC			= main.c init.c philo.c time.c print.c util.c exit.c
+SRC			= main.c init.c philo.c print.c util.c exit.c
 SRCS		= $(addprefix ./srcs/, $(SRC))
 OBJS		= $(SRCS:.c=.o)
 

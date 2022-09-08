@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
+/*   Updated: 2022/09/08 13:06:59 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef		PHILO_H
 # define	PHILO_H
 
@@ -41,6 +53,7 @@ typedef struct s_data
 //util.c
 size_t		ft_strlen(const char *str);
 void		ft_putstr_fd(char *s, int fd);
+long long	time_in_ms(void);
 //init.c
 int			init_philo(t_data *data, int argc, char **argv);
 int			init_mutex(t_data *data);
@@ -59,7 +72,5 @@ void		print_str(char *str, t_data *data, t_philo *philo);
 void		free_all(t_data *data);
 void		destroy_all(t_data *data);
 void		clean_up(t_data *data);
-//time.c
-long long	time_in_ms(void);
 
 #endif
