@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `src/pipex.o', needed by `all'.  Stop.
 
-# Make data base, printed on Thu Aug 25 16:25:58 2022
+
+# Make data base, printed on Sat Sep  3 18:33:41 2022
 
 # Variables
 
@@ -39,14 +42,18 @@ MAKEFILE_LIST :=  Makefile
 LIB_FLAGS = -L $(LIB) -l ft
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
+# environment
+INFOPATH = /opt/homebrew/share/info:
 # makefile (from `Makefile', line 7)
 INCS = -I./include
 # environment
-VSCODE_CWD = /
+VSCODE_CWD = /Users/balee/42/42cursus/pipex
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = C7C1C776-FF7C-4261-946C-35A5C6031C2A
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = 5610C859-96C0-451F-8117-F286D74D3EB9
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 8)
@@ -54,7 +61,7 @@ LIB = ./Libft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.H95bfJihH7/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.CSFuQcqcDH/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 13)
@@ -62,7 +69,11 @@ OBJS = $(SRCS:.c=.o)
 # environment
 PWD = /Users/balee/42/42cursus/pipex
 # environment
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+MANPATH = /opt/homebrew/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -74,7 +85,9 @@ VSCODE_CODE_CACHE_PATH = /Users/balee/Library/Application Support/Code/CachedDat
 # environment
 LOGNAME = balee
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/balee/.oh-my-zsh
 # makefile (from `Makefile', line 4)
 CFLAG = -Wall -Werror -Wextra
 # environment
@@ -83,14 +96,16 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
 XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
+# environment
+LC_TERMINAL = iTerm2
 # makefile (from `Makefile', line 12)
 SRCS = $(addprefix ./src/, $(SRC))
 # environment
-SHLVL = 1
+SHLVL = 2
 # makefile (from `Makefile', line 3)
 CC = cc
 # default
@@ -99,12 +114,20 @@ MAKE_VERSION := 3.81
 USER = balee
 # makefile
 .DEFAULT_GOAL := all
+# default
+MAKECMDGOALS := all
+# environment
+TERM_SESSION_ID = w0t0p0:9E56F17E-1949-4016-A84D-3F80B206A2B7
 # makefile (from `Makefile', line 1)
 NAME = pipex
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# environment
+TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
@@ -122,11 +145,25 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.14146818.14146824
+TERM_PROGRAM_VERSION = 3.4.16
+# environment
+MAIL = balee@student.42.fr
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.14146818.14146824.210C17BF-E0B3-4132-9945-7E8318C387FB
+# environment
+LC_TERMINAL_VERSION = 3.4.16
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
+# environment
+ITERM_SESSION_ID = w0t0p0:9E56F17E-1949-4016-A84D-3F80B206A2B7
+# environment
+HOMEBREW_REPOSITORY = /opt/homebrew
+# environment
+COLORFGBG = 15;0
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
 # environment
@@ -136,9 +173,13 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
+ITERM_PROFILE = Default
+# environment
+PAGER = less
+# environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186b3
+SECURITYSESSIONID = 186b4
 # automatic
 ^F = $(notdir $^)
 # default
@@ -148,9 +189,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 637
+TERM = xterm-256color
+# environment
+VSCODE_PID = 2886
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=7/101=7%
+# Load=89/1024=9%, Rehash=0, Collisions=10/121=8%
 
 # Pattern-specific Variable Values
 
@@ -276,6 +319,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  commands to execute (from `Makefile', line 25):
 	make -C ./Libft fclean
 	$(RM) $(OBJS)
@@ -309,8 +353,6 @@ pipex: src/pipex.o src/cmd.o src/path.o src/exit.o
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Aug 25 16:25:58 2022
+# Finished Make data base on Sat Sep  3 18:33:41 2022
 
  
-make: *** No rule to make target `src/pipex.o', needed by `all'.  Stop.
-

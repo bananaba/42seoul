@@ -1,6 +1,7 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/balee/42/42cursus/so_long'
 cc -Wall -Werror -Wextra -I./include -c -o src/so_long.o src/so_long.c
+ 
 cc -Wall -Werror -Wextra -I./include -c -o src/map_check.o src/map_check.c
 cc -Wall -Werror -Wextra -I./include -c -o src/map_read.o src/map_read.c
 cc -Wall -Werror -Wextra -I./include -c -o src/map_draw.o src/map_draw.c

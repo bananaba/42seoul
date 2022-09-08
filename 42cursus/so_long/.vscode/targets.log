@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/so_long.o', needed by `all'.  Stop.
 
 
-# Make data base, printed on Thu Aug 25 04:01:05 2022
+# Make data base, printed on Mon Sep  5 08:57:54 2022
 
 # Variables
 
@@ -33,7 +33,7 @@ SHELL = /bin/sh
 # makefile (from `Makefile', line 6)
 RM = rm -f
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"d4733d4bd5138ffb2c9d12a76b2e9102.ko","_translationsConfigFile":"/Users/balee/Library/Application Support/Code/clp/d4733d4bd5138ffb2c9d12a76b2e9102.ko/tcf.json","_cacheRoot":"/Users/balee/Library/Application Support/Code/clp/d4733d4bd5138ffb2c9d12a76b2e9102.ko","_resolvedLanguagePackCoreLocation":"/Users/balee/Library/Application Support/Code/clp/d4733d4bd5138ffb2c9d12a76b2e9102.ko/e4503b30fc78200f846c62cf8091b76ff5547662","_corruptedFile":"/Users/balee/Library/Application Support/Code/clp/d4733d4bd5138ffb2c9d12a76b2e9102.ko/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"5c0954b80d30264ef28a0686423ee0d7.ko","_translationsConfigFile":"/Users/balee/Library/Application Support/Code/clp/5c0954b80d30264ef28a0686423ee0d7.ko/tcf.json","_cacheRoot":"/Users/balee/Library/Application Support/Code/clp/5c0954b80d30264ef28a0686423ee0d7.ko","_resolvedLanguagePackCoreLocation":"/Users/balee/Library/Application Support/Code/clp/5c0954b80d30264ef28a0686423ee0d7.ko/784b0177c56c607789f9638da7b6bf3230d47a8c","_corruptedFile":"/Users/balee/Library/Application Support/Code/clp/5c0954b80d30264ef28a0686423ee0d7.ko/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
@@ -45,13 +45,13 @@ INFOPATH = /opt/homebrew/share/info:
 # makefile (from `Makefile', line 8)
 INCS = -I./include
 # environment
-VSCODE_CWD = /Users/balee/42/42cursus/pipex
+VSCODE_CWD = /
 # environment
-PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = 8E320F3F-7713-4B92-97A0-F7C611653378
+LaunchInstanceID = F907D0CB-2ED5-4CF6-B731-56AFC0491BEF
 # makefile (from `Makefile', line 5)
 AR = ar rcs
 # environment
@@ -59,7 +59,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.atnhtKDfYH/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.8F0K1fEHhs/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 17)
@@ -79,7 +79,7 @@ HOME = /Users/balee
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/balee/Library/Application Support/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
+VSCODE_CODE_CACHE_PATH = /Users/balee/Library/Application Support/Code/CachedData/784b0177c56c607789f9638da7b6bf3230d47a8c
 # environment
 LOGNAME = balee
 # environment
@@ -94,16 +94,14 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
 XPC_FLAGS = 0x0
-# environment
-COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
-# environment
-LC_TERMINAL = iTerm2
+# default
+MAKECMDGOALS := all
 # makefile (from `Makefile', line 16)
 SRCS = $(addprefix ./src/, $(SRC))
 # environment
-SHLVL = 2
+SHLVL = 1
 # makefile (from `Makefile', line 3)
 CC = cc
 # default
@@ -112,10 +110,6 @@ MAKE_VERSION := 3.81
 USER = balee
 # makefile
 .DEFAULT_GOAL := all
-# default
-MAKECMDGOALS := all
-# environment
-TERM_SESSION_ID = w0t0p0:9E56F17E-1949-4016-A84D-3F80B206A2B7
 # makefile (from `Makefile', line 1)
 NAME = so_long
 # environment
@@ -124,8 +118,6 @@ LESS = -R
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
-# environment
-TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
@@ -133,7 +125,7 @@ TMPDIR = /var/folders/ry/dstpqyl9217886zq4p3h2xfh0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/balee/Library/Application Support/Code/1.70.2-main.sock
+VSCODE_IPC_HOOK = /Users/balee/Library/Application Support/Code/1.71.0-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -143,13 +135,9 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-TERM_PROGRAM_VERSION = 3.4.16
-# environment
 MAIL = balee@student.42.fr
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.14146818.14146824.F15524AD-7F31-4EAD-9B82-10D221D8FC44
-# environment
-LC_TERMINAL_VERSION = 3.4.16
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.15110557.15110563
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -157,11 +145,7 @@ HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:9E56F17E-1949-4016-A84D-3F80B206A2B7
-# environment
 HOMEBREW_REPOSITORY = /opt/homebrew
-# environment
-COLORFGBG = 15;0
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
 # environment
@@ -170,8 +154,6 @@ COMMAND_MODE = unix2003
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
-# environment
-ITERM_PROFILE = Default
 # makefile (from `Makefile', line 9)
 MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework Appkit
 # environment
@@ -181,7 +163,6 @@ LC_ALL = C
 # environment
 SECURITYSESSIONID = 186b3
 # automatic
- 
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
@@ -190,11 +171,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-TERM = xterm-256color
-# environment
-VSCODE_PID = 620
+VSCODE_PID = 624
 # variable set hash-table stats:
-# Load=89/1024=9%, Rehash=0, Collisions=10/122=8%
+# Load=79/1024=8%, Rehash=0, Collisions=7/112=6%
 
 # Pattern-specific Variable Values
 
@@ -202,7 +181,7 @@ VSCODE_PID = 620
 
 # Directories
 
-# . (device 16777234, inode 12182939): 10 files, no impossibilities.
+# . (device 16777233, inode 12182939): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -265,6 +244,7 @@ src/map_check.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 map_check.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -390,6 +370,6 @@ map_draw.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Aug 25 04:01:05 2022
+# Finished Make data base on Mon Sep  5 08:57:54 2022
 
  
