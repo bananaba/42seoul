@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 13:44:14 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/08 16:32:34 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_mutex(t_data *data)
 
 void	set_philo(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->info[NUM_OF_PHILOS])

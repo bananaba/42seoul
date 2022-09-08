@@ -22,7 +22,7 @@ $(NAME) : $(OBJS)
 	make -C ./mlx
 	$(CC) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
-.c.o: $(SRC)
+.c.o:
 	$(CC) $(CFLAG) $(INCS) -c -o $@ $<
 
 clean :

@@ -6,12 +6,12 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 13:44:27 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/08 16:32:13 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		PHILO_H
-# define	PHILO_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include	<stdlib.h>
 # include	<unistd.h>
@@ -20,14 +20,14 @@
 # include	<errno.h>
 # include	<sys/time.h>
 
-# define	SUCCESS 0
-# define	NOPHIL -1
+# define SUCCESS 0
+# define NOPHIL -1
 
-# define	NUM_OF_PHILOS 0
-# define	TIME_TO_DIE 1
-# define	TIME_TO_EAT 2
-# define	TIME_TO_SLEEP 3
-# define	NUM_OF_MUST_EAT 4
+# define NUM_OF_PHILOS 0
+# define TIME_TO_DIE 1
+# define TIME_TO_EAT 2
+# define TIME_TO_SLEEP 3
+# define NUM_OF_MUST_EAT 4
 
 typedef struct s_philo
 {

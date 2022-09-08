@@ -55,12 +55,8 @@ char	*rm_charset(char *str, char charset)
 void	malloc_free(char **output, int i)
 {
 	while (--i >= 0)
-	{
 		free(output[i]);
-		output[i] = 0;
-	}
 	free(output);
-	output = 0;
 }
 
 char	**ft_split(char *str, char charset)

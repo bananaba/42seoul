@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/25 18:00:25 by balee             #+#    #+#             */
+/*   Updated: 2022/08/25 19:01:08 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pipex.h"
 
 void	add_path(char **cmd, t_pipex *pipex)
@@ -19,6 +31,7 @@ void	add_path(char **cmd, t_pipex *pipex)
 		free(temp);
 		i++;
 	}
+	check_err(errno);
 }
 
 void	set_cmd(t_pipex *pipex)
@@ -28,11 +41,10 @@ void	set_cmd(t_pipex *pipex)
 	i = 0;
 	while (pipex->cmd[i] != NULL)
 	{
-		if (ft_strncmp(pipex->cmd[i][0], "/", 1) == TRUE
+		if (!(ft_strncmp(pipex->cmd[i][0], "/", 1) == TRUE
 			|| ft_strncmp(pipex->cmd[i][0], "./", 2) == TRUE
-			|| ft_strncmp(pipex->cmd[i][0], "../", 3) == TRUE)
-			continue ;
-		add_path(pipex->cmd[i], pipex);
+			|| ft_strncmp(pipex->cmd[i][0], "../", 3) == TRUE))
+			add_path(pipex->cmd[i], pipex);
 		i++;
 	}
 }
