@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/09/11 16:19:39 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/12 01:35:45 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	philo_eat(t_philo *philo, t_data *data)
 	philo->eat_time = time_in_ms();
 	usleep(data->info[TIME_TO_EAT] * 500);
 	while (time_in_ms() - philo->eat_time < data->info[TIME_TO_EAT])
-		usleep(data->info[NUM_OF_PHILOS] * 5);
+		usleep(10);
 	pthread_mutex_unlock(&data->forks[philo->first]);
 	pthread_mutex_unlock(&data->forks[philo->second]);
 	philo->eat_cnt++;
@@ -51,7 +51,7 @@ void	*philo_routine(t_philo *philo)
 		print_str("is sleeping", philo->data, philo);
 		usleep(philo->data->info[TIME_TO_SLEEP] * 500);
 		while (time_in_ms() - sleep_time < philo->data->info[TIME_TO_SLEEP])
-			usleep(philo->data->info[NUM_OF_PHILOS] * 5);
+			usleep(10);
 		print_str("is thinking", philo->data, philo);
 	}
 	return (NULL);
