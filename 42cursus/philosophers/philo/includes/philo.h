@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 16:32:13 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/11 15:50:34 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define SUCCESS 0
 # define NOPHIL -1
+# define NONEED -2
 
 # define NUM_OF_PHILOS 0
 # define TIME_TO_DIE 1

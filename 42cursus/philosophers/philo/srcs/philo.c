@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 19:14:56 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/11 16:19:39 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	philo_eat(t_philo *philo, t_data *data)
 	usleep(data->info[TIME_TO_EAT] * 500);
 	while (time_in_ms() - philo->eat_time < data->info[TIME_TO_EAT])
 		usleep(data->info[NUM_OF_PHILOS] * 5);
+	pthread_mutex_unlock(&data->forks[philo->first]);
+	pthread_mutex_unlock(&data->forks[philo->second]);
 	philo->eat_cnt++;
 	if (data->info[NUM_OF_MUST_EAT] == philo->eat_cnt)
 	{
@@ -30,15 +32,13 @@ void	philo_eat(t_philo *philo, t_data *data)
 		data->eat++;
 		pthread_mutex_unlock(&data->eating);
 	}
-	pthread_mutex_unlock(&data->forks[philo->first]);
-	pthread_mutex_unlock(&data->forks[philo->second]);
 }
 
 void	*philo_routine(t_philo *philo)
 {
 	long long	sleep_time;
 
-	if (time_in_ms() - philo->eat_time >= philo->data->info[TIME_TO_DIE])
+	if (philo->data->info[TIME_TO_DIE] == 0)
 		return (NULL);
 	if (philo->num % 2 == 0 && philo->data->info[TIME_TO_EAT] == 0)
 		usleep(500);
@@ -62,22 +62,20 @@ void	monitoring(t_data *data)
 	int			i;
 	long long	time;
 
-	while (!data->fin && data->eat < data->info[NUM_OF_PHILOS]
-		&& data->info[NUM_OF_MUST_EAT])
+	while (!data->fin && data->eat < data->info[NUM_OF_PHILOS])
 	{
 		i = 0;
-		pthread_mutex_lock(&data->print);
 		time = time_in_ms();
 		while (i++ < data->info[NUM_OF_PHILOS] && !data->fin)
 		{
 			if (time - data->philos[i - 1].eat_time >= data->info[TIME_TO_DIE])
 			{
-				printf("%lldms %d died\n", time - data->time, i);
+				pthread_mutex_lock(&data->print);
+				printf("%lldms %d died\n", time_in_ms() - data->time, i);
 				data->fin++;
 				break ;
 			}
 		}
-		pthread_mutex_unlock(&data->print);
 	}
 	if (!data->fin)
 	{
@@ -94,7 +92,7 @@ int	philo_start(t_data *data)
 	t_philo		*temp;
 
 	i = 0;
-	while (i < data->info[NUM_OF_PHILOS] && data->info[NUM_OF_MUST_EAT])
+	while (i < data->info[NUM_OF_PHILOS])
 	{
 		temp = &data->philos[i];
 		if (pthread_create(&temp->tid, NULL, (void *)&philo_routine, temp))

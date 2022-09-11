@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 16:32:34 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/11 16:15:13 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,14 @@ int	init_philo(t_data *data, int argc, char **argv)
 		return (EINVAL);
 	if (data->info[NUM_OF_PHILOS] == 0)
 		return (NOPHIL);
+	if (data->info[NUM_OF_MUST_EAT] == 0)
+		return (NONEED);
 	if (malloc_all(data))
 		return (ENOMEM);
 	init_mutex(data);
 	data->time = time_in_ms();
 	set_philo(data);
 	data->fin = 0;
-	data->eat = 0;
+	data->eat = 0;	
 	return (SUCCESS);
 }
