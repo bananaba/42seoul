@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 13:05:46 by balee             #+#    #+#             */
+/*   Updated: 2022/09/13 13:25:15 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
@@ -62,6 +74,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	int		frame;
+	int		enemy_frame;
 	int		step;
 	int		fin;
 	t_map	map_info;

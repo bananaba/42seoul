@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 03:52:09 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:16:16 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 12:59:02 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	move_player(t_game *game, int add_x, int add_y)
 		game->map_info.colletion--;
 		game->map_info.map[i][j] = EMPTY;
 	}
-	if (game->map_info.map[i][j] == EXIT && game->map_info.colletion == 0)
-		game->fin = TRUE;
 }
 
 int	key_press(int key_code, t_game *game)

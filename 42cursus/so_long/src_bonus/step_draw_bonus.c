@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   step_draw_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 13:06:06 by balee             #+#    #+#             */
+/*   Updated: 2022/09/13 13:06:07 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_bonus.h"
 
 int	find_figures(int n)
@@ -50,7 +62,7 @@ char	*ft_itoa(int n)
 void	draw_step(t_game *game)
 {
 	char	*str;
-	
+
 	str = ft_itoa(game->step);
 	mlx_put_image_to_window(game->mlx, game->win,
 		game->tile_info.tile_lake.ptr, 0, 0);

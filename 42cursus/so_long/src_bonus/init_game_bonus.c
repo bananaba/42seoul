@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 03:27:41 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:31:41 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:32:50 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	init_texture(t_game *game)
 	xpm_load(game, &game->tile_info.tile_grass_1, "./tile/grass1.xpm");
 	xpm_load(game, &game->tile_info.tile_grass_2, "./tile/grass2.xpm");
 	xpm_load(game, &game->tile_info.tile_lake, "./tile/lake.xpm");
-	
 	xpm_load(game, &game->tile_info.tile_attack[0], "./tile/Attack0.xpm");
 	xpm_load(game, &game->tile_info.tile_attack[1], "./tile/Attack1.xpm");
 	xpm_load(game, &game->tile_info.tile_attack[2], "./tile/Attack2.xpm");
@@ -78,5 +77,6 @@ void	init_game(t_game *game)
 	init_enemy(game);
 	game->step = 0;
 	game->frame = 0;
+	game->enemy_frame = 0;
 	game->fin = FALSE;
 }

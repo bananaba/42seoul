@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:17:37 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 05:06:45 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:29:17 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,31 @@ void	map_load(t_game *game, int fd)
 	close(fd);
 }
 
+void	add_enemy(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < game->map_info.row - 1)
+	{
+		j = 1;
+		while (j < game->map_info.col - 1)
+		{
+			if (game->map_info.map[i][j] == EMPTY
+				&& ((i * 23) + (j * 17)) % 13 == 0)
+				game->map_info.map[i][j] = ENEMY;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	map_read(t_game *game, char *file)
 {
 	check_extention(file, ".ber");
 	check_row_col(game, file_open(file));
 	map_load(game, file_open(file));
 	check_map(&game->map_info);
+	add_enemy(game);
 }

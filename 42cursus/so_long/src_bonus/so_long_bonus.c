@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:17:18 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:45:18 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:41:29 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,17 @@ int	main_loop(t_game *game)
 	draw_map(game);
 	i = game->map_info.player.y_b;
 	j = game->map_info.player.x_b;
-	if (game->map_info.map[i][j] == EXIT && game->map_info.colletion == 0)
+	if (game->map_info.map[i][j] == EXIT && game->map_info.colletion == 0
+		&& game->fin == FALSE)
+	{
 		game->fin = TRUE;
+		ft_putstr_fd("\033[0;31mYou win!\n", 1);
+	}
+	if (game->map_info.map[i][j] == ENEMY && game->fin == FALSE)
+	{
+		game->fin = TRUE;
+		ft_putstr_fd("\033[0;31mYou died!\n", 1);
+	}
 	return (0);
 }
 

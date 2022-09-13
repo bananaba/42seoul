@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2022/09/11 15:50:34 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/12 18:21:26 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
-	pthread_mutex_t	eating;
 }	t_data;
 //util.c
 size_t		ft_strlen(const char *str);
@@ -65,6 +64,7 @@ void		set_philo(t_data *data);
 //philo.c
 int			philo_start(t_data *data);
 void		philo_eat(t_philo *philo, t_data *data);
+void		check_philos(t_data *data);
 void		monitoring(t_data *data);
 void		*philo_routine(t_philo *philo);
 //print.c

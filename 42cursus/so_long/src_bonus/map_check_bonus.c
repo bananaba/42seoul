@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:17:41 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 08:15:40 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:13:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	check_component(t_map *map_info, int i, int j)
 	}
 	else if (map_info->map[i][j] == COLLECTIBLE)
 		map_info->colletion++;
-	else if (map_info->map[i][j] != ENEMY)
+	else
 		exit_err("Notice: Undefined map component\n");
 }
 

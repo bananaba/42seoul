@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:38:59 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:35:10 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:28:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,15 @@ void	draw_player(t_game *game)
 	}
 }
 
-void	draw_attack(t_game *game)
+int	draw_attack(t_game *game)
 {
 	int	x;
 	int	y;
 
-	x = game->map_info.player.x;
-	y = game->map_info.player.y;
+	x = game->map_info.player.x_b;
+	y = game->map_info.player.y_b;
+	if (game->map_info.map[y][x] != COLLECTIBLE)
+		return (1);
 	mlx_put_image_to_window(game->mlx, game->win,
 		game->tile_info.tile_attack[game->frame / 2].ptr, x * TILE, y * TILE);
 	game->frame++;
@@ -81,17 +83,14 @@ void	draw_attack(t_game *game)
 		game->frame = 0;
 		game->map_info.map[y][x] = EMPTY;
 	}
+	return (0);
 }
 
 void	draw_enemy(t_game *game, int i, int j)
 {
-	static int	f = 0;
-
 	mlx_put_image_to_window(game->mlx, game->win,
-		game->tile_info.tile_enemy[f / 4].ptr, j * TILE - 8, i * TILE - 16);
-	f++;
-	if (f == 32)
-		f = 0;
+		game->tile_info.tile_enemy[game->enemy_frame / 4].ptr,
+		j * TILE - 8, i * TILE - 16);
 }
 
 void	draw_map(t_game *game)
@@ -114,9 +113,9 @@ void	draw_map(t_game *game)
 		}
 		i++;
 	}
+	if (++game->enemy_frame == 32)
+		game->enemy_frame = 0;
 	draw_step(game);
-	if (game->map_info.map[game->map_info.player.y_b][game->map_info.player.x_b] != COLLECTIBLE)
+	if (draw_attack(game))
 		draw_player(game);
-	else
-		draw_attack(game);
 }

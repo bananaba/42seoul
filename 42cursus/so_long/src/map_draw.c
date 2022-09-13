@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:38:59 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:15:48 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 12:59:33 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	draw_map(t_game *game)
 			mlx_put_image_to_window(game->mlx, game->win,
 				game->tile_info.tile_empty.ptr, j * TILE, i * TILE);
 			draw_component(game, i, j);
-			if (game->map_info.map[i][j] == ENEMY)
 			j++;
 		}
 		i++;
