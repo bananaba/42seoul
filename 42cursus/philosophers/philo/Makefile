@@ -6,14 +6,14 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2022/09/08 13:06:36 by balee            ###   ########.fr        #
+#    Updated: 2022/09/13 16:12:23 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
 CC			= cc
-CFLAG		= -Wall -Werror -Wextra
+CFLAG		= -Wall -Werror -Wextra -fsanitize=thread -g
 RM			= rm -f
 
 INCS		= -I./include
@@ -25,7 +25,7 @@ OBJS		= $(SRCS:.c=.o)
 all : $(OBJS) $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAG) $(INCS) -o $(NAME) $(OBJS)
 
 .c.o: $(SRC)
 	$(CC) $(CFLAG) $(INCS) -c -o $@ $<

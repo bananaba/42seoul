@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/goinfre/balee/42/42cursus/philosophers/philo'
+make: Nothing to be done for `all'.
+make: Leaving directory `/goinfre/balee/42/42cursus/philosophers/philo'
+ 

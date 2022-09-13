@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 14:26:46 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:20:26 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	philo_eat(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(&data->forks[philo->first]);
 	print_str("has taken a fork", data, philo);
-	if (data->info[NUM_OF_PHILOS] == 0)
+	if (data->info[NUM_OF_PHILOS] == 1)
 	{
+		usleep(data->info[TIME_TO_DIE] * 1000);
 		pthread_mutex_unlock(&data->forks[philo->first]);
 		return ;
 	}
@@ -43,12 +44,12 @@ void	*philo_routine(t_philo *philo)
 		usleep(500);
 	else if (philo->num % 2 == 0)
 		usleep(philo->data->info[TIME_TO_EAT] * 900);
-	while (!philo->data->fin)
+	while (!fin_num(philo->data))
 	{
 		philo_eat(philo, philo->data);
 		sleep_time = time_in_ms();
 		print_str("is sleeping", philo->data, philo);
-		usleep(philo->data->info[TIME_TO_SLEEP] * 500);
+		usleep(philo->data->info[TIME_TO_SLEEP] * 900);
 		while (time_in_ms() - sleep_time < philo->data->info[TIME_TO_SLEEP])
 			usleep(100);
 		print_str("is thinking", philo->data, philo);
@@ -70,7 +71,9 @@ void	check_philos(t_data *data)
 		{
 			pthread_mutex_lock(&data->print);
 			printf("%lldms %d died\n", time_in_ms() - data->time, i);
+			pthread_mutex_lock(&data->finish);
 			data->fin++;
+			pthread_mutex_unlock(&data->finish);
 		}
 		if (data->philos[i - 1].eat_cnt >= data->info[NUM_OF_MUST_EAT]
 			&& data->info[NUM_OF_MUST_EAT] >= 0)
@@ -84,11 +87,13 @@ void	monitoring(t_data *data)
 	{
 		data->eat = 0;
 		check_philos(data);
-		if (data->eat == data->info[NUM_OF_PHILOS])
+		if (data->eat == data->info[NUM_OF_PHILOS] && !data->fin)
 		{
 			pthread_mutex_lock(&data->print);
 			printf("All philosophers have eaten enough\n");
+			pthread_mutex_lock(&data->finish);
 			data->fin++;
+			pthread_mutex_unlock(&data->finish);
 		}
 	}
 	pthread_mutex_unlock(&data->print);

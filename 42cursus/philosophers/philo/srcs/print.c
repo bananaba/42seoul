@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:08 by balee             #+#    #+#             */
-/*   Updated: 2022/09/11 15:52:18 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 15:28:21 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_str(char *str, t_data *data, t_philo *philo)
 
 	pthread_mutex_lock(&data->print);
 	time = time_in_ms() - data->time;
-	if (!data->fin)
+	if (!fin_num(philo->data))
 		printf("%lldms %d %s\n", time, philo->num, str);
 	pthread_mutex_unlock(&data->print);
 }

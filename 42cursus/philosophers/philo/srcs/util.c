@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:14 by balee             #+#    #+#             */
-/*   Updated: 2022/09/08 13:06:25 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:20:45 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ long long	time_in_ms(void)
 
 	gettimeofday(&temp, NULL);
 	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000));
+}
+
+int	fin_num(t_data *data)
+{
+	int	n;
+
+	pthread_mutex_lock(&data->finish);
+	n = data->fin;
+	pthread_mutex_unlock(&data->finish);
+	return (n);
 }

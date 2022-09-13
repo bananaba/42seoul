@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/09/12 17:55:11 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:15:15 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	init_mutex(t_data *data)
 
 	i = 0;
 	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->finish, NULL);
+	pthread_mutex_init(&data->eating, NULL);
 	while (i < data->info[NUM_OF_PHILOS])
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
