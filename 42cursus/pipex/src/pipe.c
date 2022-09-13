@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:02:57 by balee             #+#    #+#             */
-/*   Updated: 2022/08/25 18:18:51 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 04:51:13 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	make_pipe(int cmd_num, char **envp, t_pipex *pipex)
 			check_err(errno);
 		else if (pid == 0)
 			child_process(pipex, envp, i, cmd_num - 1);
-		waitpid(pid, &status, WNOHANG);
 		i++;
 	}
 }

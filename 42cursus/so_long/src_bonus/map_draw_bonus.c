@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_draw.c                                         :+:      :+:    :+:   */
+/*   map_draw_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:38:59 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:15:48 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 09:35:10 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	draw_component(t_game *game, int i, int j)
 {
@@ -66,6 +66,34 @@ void	draw_player(t_game *game)
 	}
 }
 
+void	draw_attack(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = game->map_info.player.x;
+	y = game->map_info.player.y;
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->tile_info.tile_attack[game->frame / 2].ptr, x * TILE, y * TILE);
+	game->frame++;
+	if (game->frame == 20)
+	{
+		game->frame = 0;
+		game->map_info.map[y][x] = EMPTY;
+	}
+}
+
+void	draw_enemy(t_game *game, int i, int j)
+{
+	static int	f = 0;
+
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->tile_info.tile_enemy[f / 4].ptr, j * TILE - 8, i * TILE - 16);
+	f++;
+	if (f == 32)
+		f = 0;
+}
+
 void	draw_map(t_game *game)
 {
 	int	i;
@@ -81,9 +109,14 @@ void	draw_map(t_game *game)
 				game->tile_info.tile_empty.ptr, j * TILE, i * TILE);
 			draw_component(game, i, j);
 			if (game->map_info.map[i][j] == ENEMY)
+				draw_enemy(game, i, j);
 			j++;
 		}
 		i++;
 	}
-	draw_player(game);
+	draw_step(game);
+	if (game->map_info.map[game->map_info.player.y_b][game->map_info.player.x_b] != COLLECTIBLE)
+		draw_player(game);
+	else
+		draw_attack(game);
 }

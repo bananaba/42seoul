@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 16:17:11 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 05:02:56 by balee            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -27,6 +15,7 @@
 # define EXIT			'E'
 # define PLAYER			'P'
 # define EMPTY			'0'
+# define ENEMY			'M'
 
 typedef struct s_player
 {
@@ -63,6 +52,9 @@ typedef struct s_tile
 	t_img	tile_collectible;
 	t_img	tile_grass_1;
 	t_img	tile_grass_2;
+	t_img	tile_lake;
+	t_img	tile_attack[10];
+	t_img	tile_enemy[8];
 }	t_tile;
 
 typedef struct s_game
@@ -98,6 +90,7 @@ void	xpm_load(t_game *game, t_img *img, char *path);
 
 void	draw_map(t_game *game);
 void	draw_component(t_game *game, int i, int j);
+void	draw_step(t_game *game);
 
 int		key_press(int key_code, t_game *game);
 

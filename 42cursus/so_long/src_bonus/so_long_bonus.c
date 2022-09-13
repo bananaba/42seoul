@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:17:18 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:16:22 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 09:45:18 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	exit_err(char *str)
 {
@@ -21,7 +21,14 @@ void	exit_err(char *str)
 
 int	main_loop(t_game *game)
 {
+	int	i;
+	int	j;
+
 	draw_map(game);
+	i = game->map_info.player.y_b;
+	j = game->map_info.player.x_b;
+	if (game->map_info.map[i][j] == EXIT && game->map_info.colletion == 0)
+		game->fin = TRUE;
 	return (0);
 }
 

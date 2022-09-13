@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:17:41 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 09:15:59 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/13 08:15:40 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	check_extention(char *file, char *ext)
 {
@@ -74,6 +74,7 @@ void	check_number_of_component(t_map *map_info, int cnt_exit, int cnt_player)
 		ft_putstr_fd("\n", 2);
 		exit(1);
 	}
+	map_info->map[0][0] = EMPTY;
 }
 
 void	check_component(t_map *map_info, int i, int j)
@@ -96,7 +97,7 @@ void	check_component(t_map *map_info, int i, int j)
 	}
 	else if (map_info->map[i][j] == COLLECTIBLE)
 		map_info->colletion++;
-	else
+	else if (map_info->map[i][j] != ENEMY)
 		exit_err("Notice: Undefined map component\n");
 }
 
