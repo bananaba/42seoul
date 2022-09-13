@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/goinfre/balee/philo/philo'
+make: Entering directory `/goinfre/balee/42/42cursus/philosophers/philo'
 cc -Wall -Werror -Wextra -I./include -c -o srcs/main.o srcs/main.c
 cc -Wall -Werror -Wextra -I./include -c -o srcs/init.o srcs/init.c
 cc -Wall -Werror -Wextra -I./include -c -o srcs/philo.o srcs/philo.c
@@ -7,5 +7,5 @@ cc -Wall -Werror -Wextra -I./include -c -o srcs/print.o srcs/print.c
 cc -Wall -Werror -Wextra -I./include -c -o srcs/util.o srcs/util.c
 cc -Wall -Werror -Wextra -I./include -c -o srcs/exit.o srcs/exit.c
 cc -o philo ./srcs/main.o ./srcs/init.o ./srcs/philo.o ./srcs/print.o ./srcs/util.o ./srcs/exit.o
-make: Leaving directory `/goinfre/balee/philo/philo'
+make: Leaving directory `/goinfre/balee/42/42cursus/philosophers/philo'
  
