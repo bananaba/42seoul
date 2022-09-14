@@ -6,14 +6,14 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2022/09/13 16:12:23 by balee            ###   ########.fr        #
+#    Updated: 2022/09/14 16:05:14 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
 CC			= cc
-CFLAG		= -Wall -Werror -Wextra -fsanitize=thread -g
+CFLAG		= -Wall -Werror -Wextra
 RM			= rm -f
 
 INCS		= -I./include
@@ -22,7 +22,7 @@ SRC			= main.c init.c philo.c print.c util.c exit.c
 SRCS		= $(addprefix ./srcs/, $(SRC))
 OBJS		= $(SRCS:.c=.o)
 
-all : $(OBJS) $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAG) $(INCS) -o $(NAME) $(OBJS)

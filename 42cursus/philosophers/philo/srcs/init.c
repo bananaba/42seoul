@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 16:15:15 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/14 15:37:50 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	init_mutex(t_data *data)
 	i = 0;
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->finish, NULL);
-	pthread_mutex_init(&data->eating, NULL);
 	while (i < data->info[NUM_OF_PHILOS])
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&data->philos[i].eating, NULL);
 		i++;
 	}
 }
@@ -103,5 +103,6 @@ int	init_philo(t_data *data, int argc, char **argv)
 	data->time = time_in_ms();
 	set_philo(data);
 	data->fin = 0;
+	data->eat = 0;
 	return (SUCCESS);
 }

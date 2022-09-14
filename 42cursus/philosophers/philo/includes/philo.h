@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 16:20:36 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/14 15:35:41 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
 	long long		eat_time;
 	struct s_data	*data;
 	pthread_t		tid;
+	pthread_mutex_t	eating;
 }	t_philo;
 
 typedef struct s_data
@@ -51,7 +52,6 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	finish;
-	pthread_mutex_t	eating;
 }	t_data;
 //util.c
 size_t		ft_strlen(const char *str);

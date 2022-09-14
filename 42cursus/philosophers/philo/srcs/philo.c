@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 16:20:26 by balee            ###   ########.fr       */
+/*   Updated: 2022/09/14 15:59:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	philo_eat(t_philo *philo, t_data *data)
 	pthread_mutex_lock(&data->forks[philo->second]);
 	print_str("has taken a fork", data, philo);
 	print_str("is eating", data, philo);
+	pthread_mutex_lock(&philo->eating);
 	philo->eat_time = time_in_ms();
 	philo->eat_cnt++;
+	pthread_mutex_unlock(&philo->eating);
 	usleep(data->info[TIME_TO_EAT] * 900);
 	while (time_in_ms() - philo->eat_time < data->info[TIME_TO_EAT])
 		usleep(100);
@@ -65,19 +67,23 @@ void	check_philos(t_data *data)
 
 	i = 0;
 	time = time_in_ms();
-	while (i++ < data->info[NUM_OF_PHILOS] && !data->fin)
+	while (i < data->info[NUM_OF_PHILOS] && !data->fin)
 	{
-		if (time - data->philos[i - 1].eat_time >= data->info[TIME_TO_DIE])
+		pthread_mutex_lock(&data->philos[i].eating);
+		if (time - data->philos[i].eat_time >= data->info[TIME_TO_DIE])
 		{
 			pthread_mutex_lock(&data->print);
-			printf("%lldms %d died\n", time_in_ms() - data->time, i);
+			printf("%lldms %d died\n", time_in_ms() - data->time, i + 1);
 			pthread_mutex_lock(&data->finish);
 			data->fin++;
 			pthread_mutex_unlock(&data->finish);
+			pthread_mutex_unlock(&data->print);
 		}
-		if (data->philos[i - 1].eat_cnt >= data->info[NUM_OF_MUST_EAT]
+		if (data->philos[i].eat_cnt >= data->info[NUM_OF_MUST_EAT]
 			&& data->info[NUM_OF_MUST_EAT] >= 0)
 			data->eat++;
+		pthread_mutex_unlock(&data->philos[i].eating);
+		i++;
 	}
 }
 
@@ -94,9 +100,9 @@ void	monitoring(t_data *data)
 			pthread_mutex_lock(&data->finish);
 			data->fin++;
 			pthread_mutex_unlock(&data->finish);
+			pthread_mutex_unlock(&data->print);
 		}
 	}
-	pthread_mutex_unlock(&data->print);
 }
 
 int	philo_start(t_data *data)
