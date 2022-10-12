@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:02:57 by balee             #+#    #+#             */
-/*   Updated: 2022/09/13 04:51:13 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/09 23:49:20 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	make_pipe(int cmd_num, char **envp, t_pipex *pipex)
 {
 	pid_t	pid;
 	int		i;
-	int		status;
 
 	i = 0;
 	link_pipe(cmd_num, pipex);
