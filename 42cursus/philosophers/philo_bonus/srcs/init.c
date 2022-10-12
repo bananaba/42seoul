@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/10/10 02:59:04 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:40:02 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	init_sem(t_data *data)
 {
 	sem_unlink("forks");
 	sem_unlink("finish");
-	sem_unlink("full");
+	sem_unlink("eaten");
 	sem_unlink("print");
 	data->forks = sem_open("forks", O_CREAT, 0644, data->info[NUM_OF_PHILOS]);
 	data->finish = sem_open("finish", O_CREAT, 0644, 0);
-	data->full = sem_open("full", O_CREAT, 0644, 0);
+	data->eaten = sem_open("eaten", O_CREAT, 0644, 0);
 	data->print = sem_open("print", O_CREAT, 0644, 1);
 }
 

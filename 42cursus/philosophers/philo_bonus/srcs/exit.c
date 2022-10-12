@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:45 by balee             #+#    #+#             */
-/*   Updated: 2022/10/10 03:06:44 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:59:38 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	clean_up(t_data *data)
 
 	i = 0;
 	while (i < data->info[NUM_OF_PHILOS])
-		kill(data->pid[i++], SIGKILL);
+		kill(data->pid[i++], SIGINT);
 	free(data->pid);
 	data->pid = NULL;
-	sem_close(data->forks);
-	sem_close(data->full);
-	sem_close(data->finish);
-	sem_close(data->print);
+	sem_unlink("forks");
+	sem_unlink("finish");
+	sem_unlink("eaten");
+	sem_unlink("print");
 }

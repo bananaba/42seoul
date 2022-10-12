@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/10/12 02:41:12 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:40:21 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	*monitoring(t_philo *philo)
 		{
 			sem_wait(philo->data->print);
 			sem_post(philo->data->finish);
-			printf("%lldms %d died\n", time_in_ms() - philo->data->time, philo->num);
+			printf("%lldms %d died\n",
+				time_in_ms() - philo->data->time, philo->num);
 		}
 		pthread_mutex_unlock(&philo->eating);
-		usleep((philo->data->info[TIME_TO_DIE] - time_in_ms() + eat_time) * 900);
+		usleep((philo->data->info[TIME_TO_DIE]
+				- time_in_ms() + eat_time) * 900);
 		while (time_in_ms() - eat_time < philo->data->info[TIME_TO_DIE])
 			usleep(100);
 	}
@@ -55,7 +57,7 @@ void	eating(t_philo *philo, t_data *data)
 	pthread_mutex_unlock(&philo->eating);
 	philo->eat_cnt++;
 	if (philo->eat_cnt == philo->data->info[NUM_OF_MUST_EAT])
-		sem_post(philo->data->full);	
+		sem_post(philo->data->eaten);
 	usleep(data->info[TIME_TO_EAT] * 900);
 	while (time_in_ms() - philo->eat_time < data->info[TIME_TO_EAT])
 		usleep(100);
@@ -70,9 +72,15 @@ void	philosopher(t_data *data, int num)
 	t_philo		philo;
 
 	set_philo(&philo, data, num);
-	pthread_create(&monitor, NULL, (void *)&monitoring, &philo);
 	if (num > (data->info[NUM_OF_PHILOS] + 1) / 2)
-		usleep(data->info[TIME_TO_EAT] * 900);
+		usleep((data->time - time_in_ms() + data->info[TIME_TO_EAT]) * 900);
+	else
+	{
+		usleep((data->time - time_in_ms()) * 900);
+		while (data->time > time_in_ms())
+			usleep(100);
+	}
+	pthread_create(&monitor, NULL, (void *)&monitoring, &philo);
 	while (1)
 	{
 		eating(&philo, data);
@@ -91,6 +99,7 @@ int	philo_start(t_data *data)
 	int	i;
 
 	i = 0;
+	data->time += 1000;
 	while (i < data->info[NUM_OF_PHILOS])
 	{
 		data->pid[i] = fork();
