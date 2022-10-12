@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:45 by balee             #+#    #+#             */
-/*   Updated: 2022/10/12 16:59:38 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/12 17:56:17 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	clean_up(t_data *data)
 		kill(data->pid[i++], SIGINT);
 	free(data->pid);
 	data->pid = NULL;
+	sem_close(data->forks);
+	sem_close(data->finish);
+	sem_close(data->print);
+	sem_close(data->eaten);
 	sem_unlink("forks");
 	sem_unlink("finish");
 	sem_unlink("eaten");
