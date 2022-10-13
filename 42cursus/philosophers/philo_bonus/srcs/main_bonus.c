@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:58 by balee             #+#    #+#             */
-/*   Updated: 2022/10/12 17:56:12 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/13 19:14:38 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
 void	*monitoring_all_eat(t_data *data)
 {
@@ -39,6 +39,6 @@ int	main(int argc, char **argv)
 	sem_wait(data.finish);
 	clean_up(&data);
 	if (data.info[NUM_OF_PHILOS] != -1)
-		pthread_join(monitor, NULL);
+		pthread_detach(monitor);
 	return (SUCCESS);
 }

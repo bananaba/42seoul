@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/10/12 16:40:21 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/13 19:26:49 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
 void	*monitoring(t_philo *philo)
 {
@@ -38,11 +38,19 @@ void	*monitoring(t_philo *philo)
 
 void	set_philo(t_philo *philo, t_data *data, int num)
 {
+	char	*name;
+	int		len;
+
+	len = 1;
+	while (len <= num)
+		len *= 10;
+	name = (char *)malloc(sizeof(char) * (len / 10 + 1));
 	philo->num = num;
 	philo->eat_cnt = 0;
 	philo->eat_time = data->time;
 	philo->data = data;
-	pthread_mutex_init(&philo->eating, NULL);
+	sem_unlink(name);
+	philo->eating = sem_open(name, O_CREAT, 0644, 1);
 }
 
 void	eating(t_philo *philo, t_data *data)
