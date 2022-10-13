@@ -6,14 +6,14 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2022/10/12 16:49:52 by balee            ###   ########.fr        #
+#    Updated: 2022/10/13 09:22:01 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
 CC			= cc
-CFLAG		= -Wall -Werror -Wextra -fsanitize=thread -g
+CFLAG		= -Wall -Werror -Wextra
 RM			= rm -f
 
 INCS		= -I./include

@@ -1,5 +1,11 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/goinfre/balee/42/42cursus/philosophers/philo'
-make: Nothing to be done for `all'.
-make: Leaving directory `/goinfre/balee/42/42cursus/philosophers/philo'
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/balee/42/42cursus/philosophers/philo_bonus'
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/main.o srcs/main.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/init.o srcs/init.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/philo.o srcs/philo.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/print.o srcs/print.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/util.o srcs/util.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -c -o srcs/exit.o srcs/exit.c
+cc -Wall -Werror -Wextra -fsanitize=thread -g -I./include -o philo ./srcs/main.o ./srcs/init.o ./srcs/philo.o ./srcs/print.o ./srcs/util.o ./srcs/exit.o
+make: Leaving directory `/Users/balee/42/42cursus/philosophers/philo_bonus'
  
