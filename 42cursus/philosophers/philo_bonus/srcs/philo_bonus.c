@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/10/12 16:40:21 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/15 17:26:55 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
 void	*monitoring(t_philo *philo)
 {
@@ -18,7 +18,7 @@ void	*monitoring(t_philo *philo)
 
 	while (1)
 	{
-		pthread_mutex_lock(&philo->eating);
+		sem_wait(philo->eating);
 		eat_time = philo->eat_time;
 		if (time_in_ms() - eat_time >= philo->data->info[TIME_TO_DIE])
 		{
@@ -27,22 +27,13 @@ void	*monitoring(t_philo *philo)
 			printf("%lldms %d died\n",
 				time_in_ms() - philo->data->time, philo->num);
 		}
-		pthread_mutex_unlock(&philo->eating);
+		sem_post(philo->eating);
 		usleep((philo->data->info[TIME_TO_DIE]
 				- time_in_ms() + eat_time) * 900);
 		while (time_in_ms() - eat_time < philo->data->info[TIME_TO_DIE])
 			usleep(100);
 	}
 	return (NULL);
-}
-
-void	set_philo(t_philo *philo, t_data *data, int num)
-{
-	philo->num = num;
-	philo->eat_cnt = 0;
-	philo->eat_time = data->time;
-	philo->data = data;
-	pthread_mutex_init(&philo->eating, NULL);
 }
 
 void	eating(t_philo *philo, t_data *data)
@@ -52,9 +43,9 @@ void	eating(t_philo *philo, t_data *data)
 	sem_wait(data->forks);
 	print_str("has taken a fork", data, philo);
 	print_str("is eating", data, philo);
-	pthread_mutex_lock(&philo->eating);
+	sem_wait(philo->eating);
 	philo->eat_time = time_in_ms();
-	pthread_mutex_unlock(&philo->eating);
+	sem_post(philo->eating);
 	philo->eat_cnt++;
 	if (philo->eat_cnt == philo->data->info[NUM_OF_MUST_EAT])
 		sem_post(philo->data->eaten);
@@ -69,10 +60,12 @@ void	philosopher(t_data *data, int num)
 {
 	long long	sleep_time;
 	pthread_t	monitor;
-	t_philo		philo;
+	t_philo		*philo;
 
-	set_philo(&philo, data, num);
-	if (num > (data->info[NUM_OF_PHILOS] + 1) / 2)
+	philo = &data->philo[num - 1];
+	if (num > (data->info[NUM_OF_PHILOS] + 1) / 2 && data->info[TIME_TO_EAT] == 0)
+		usleep(500);
+	else if (num > (data->info[NUM_OF_PHILOS] + 1) / 2)
 		usleep((data->time - time_in_ms() + data->info[TIME_TO_EAT]) * 900);
 	else
 	{
@@ -80,16 +73,16 @@ void	philosopher(t_data *data, int num)
 		while (data->time > time_in_ms())
 			usleep(100);
 	}
-	pthread_create(&monitor, NULL, (void *)&monitoring, &philo);
+	pthread_create(&monitor, NULL, (void *)&monitoring, philo);
 	while (1)
 	{
-		eating(&philo, data);
-		print_str("is sleeping", data, &philo);
+		eating(philo, data);
+		print_str("is sleeping", data, philo);
 		sleep_time = time_in_ms();
 		usleep(data->info[TIME_TO_SLEEP] * 900);
 		while (time_in_ms() - sleep_time < data->info[TIME_TO_SLEEP])
 			usleep(100);
-		print_str("is thinking", data, &philo);
+		print_str("is thinking", data, philo);
 		usleep(100);
 	}
 }
@@ -99,7 +92,6 @@ int	philo_start(t_data *data)
 	int	i;
 
 	i = 0;
-	data->time += 1000;
 	while (i < data->info[NUM_OF_PHILOS])
 	{
 		data->pid[i] = fork();

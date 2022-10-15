@@ -10,11 +10,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Wed Oct 12 10:00:58 2022
+# Make data base, printed on Sat Oct 15 17:17:08 2022
 
 # Variables
 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
@@ -29,7 +30,7 @@ CURDIR := /Users/balee/42/42cursus/philosophers
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"8bdf5965f351c24676ce46eb668b1a26.ko","_translationsConfigFile":"/Users/balee/Library/Application Support/Code/clp/8bdf5965f351c24676ce46eb668b1a26.ko/tcf.json","_cacheRoot":"/Users/balee/Library/Application Support/Code/clp/8bdf5965f351c24676ce46eb668b1a26.ko","_resolvedLanguagePackCoreLocation":"/Users/balee/Library/Application Support/Code/clp/8bdf5965f351c24676ce46eb668b1a26.ko/129500ee4c8ab7263461ffe327268ba56b9f210d","_corruptedFile":"/Users/balee/Library/Application Support/Code/clp/8bdf5965f351c24676ce46eb668b1a26.ko/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"c52c1e49612ff79df6ac4072c56848e2.ko","_translationsConfigFile":"/Users/balee/Library/Application Support/Code/clp/c52c1e49612ff79df6ac4072c56848e2.ko/tcf.json","_cacheRoot":"/Users/balee/Library/Application Support/Code/clp/c52c1e49612ff79df6ac4072c56848e2.ko","_resolvedLanguagePackCoreLocation":"/Users/balee/Library/Application Support/Code/clp/c52c1e49612ff79df6ac4072c56848e2.ko/129500ee4c8ab7263461ffe327268ba56b9f210d","_corruptedFile":"/Users/balee/Library/Application Support/Code/clp/c52c1e49612ff79df6ac4072c56848e2.ko/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -37,23 +38,31 @@ MAKEFILE_LIST :=
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_CWD = /
+INFOPATH = /opt/homebrew/share/info:/opt/homebrew/share/info:
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin
+VSCODE_CWD = /Users/balee/42/42cursus/philosophers
 # environment
-LaunchInstanceID = EB9D4D3F-7D2D-4A79-B67A-632F339A2832
+PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/opt/homebrew/bin:/opt/homebrew/sbin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = 59222754-7FE2-494D-84C7-A48625491C8E
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.tHApSPOTI2/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.NVAKOkfXzq/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 PWD = /Users/balee/42/42cursus/philosophers
 # environment
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+MANPATH = /opt/homebrew/share/man:/usr/share/man:/usr/local/share/man:/opt/homebrew/share/man:
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -67,27 +76,40 @@ LOGNAME = balee
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
+ZSH = /Users/balee/.oh-my-zsh
+# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
 XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
 # environment
-SHLVL = 1
+LC_TERMINAL = iTerm2
+# environment
+SHLVL = 2
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = balee
 # makefile
 .DEFAULT_GOAL := 
+# default
+MAKECMDGOALS := all
+# environment
+TERM_SESSION_ID = w0t0p0:4E1E3377-6C53-4A7F-915D-C76579CAFA0B
+# environment
+LESS = -R
 # automatic
+ 
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# environment
+TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
@@ -105,11 +127,25 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.17444029.17444035
+TERM_PROGRAM_VERSION = 3.4.16
+# environment
+MAIL = balee@student.42.fr
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.17444029.17444035.D17E8A42-446A-4FEA-88CA-9F3E2EA4E1FA
+# environment
+LC_TERMINAL_VERSION = 3.4.16
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
+# environment
+ITERM_SESSION_ID = w0t0p0:4E1E3377-6C53-4A7F-915D-C76579CAFA0B
+# environment
+HOMEBREW_REPOSITORY = /opt/homebrew
+# environment
+COLORFGBG = 15;0
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
 # environment
@@ -119,9 +155,13 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
+ITERM_PROFILE = Default
+# environment
+PAGER = less
+# environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186b4
+SECURITYSESSIONID = 186b3
 # automatic
 ^F = $(notdir $^)
 # default
@@ -131,9 +171,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 614
+TERM = xterm-256color
+# environment
+VSCODE_PID = 8853
 # variable set hash-table stats:
-# Load=59/1024=6%, Rehash=0, Collisions=1/79=1%
+# Load=79/1024=8%, Rehash=0, Collisions=4/99=4%
 
 # Pattern-specific Variable Values
 
@@ -141,7 +183,7 @@ VSCODE_PID = 614
 
 # Directories
 
-# . (device 16777232, inode 17084818): 5 files, no impossibilities.
+# . (device 16777233, inode 17084818): 5 files, no impossibilities.
 
 # 5 files, no impossibilities in 1 directories.
 
@@ -167,13 +209,13 @@ all:
 #  File has not been updated.
 
 # Not a target:
+ 
 Makefile:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
- 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -216,6 +258,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Oct 12 10:00:58 2022
+# Finished Make data base on Sat Oct 15 17:17:08 2022
 
  

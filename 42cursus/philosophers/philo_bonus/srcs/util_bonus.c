@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   util_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:14 by balee             #+#    #+#             */
-/*   Updated: 2022/10/09 17:06:39 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/13 19:17:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
+
+void	print_str(char *str, t_data *data, t_philo *philo)
+{
+	long long	time;
+
+	sem_wait(data->print);
+	time = time_in_ms() - data->time;
+	printf("%lldms %d %s\n", time, philo->num, str);
+	sem_post(data->print);
+}
 
 size_t	ft_strlen(const char *str)
 {
