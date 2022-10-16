@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:32:00 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:32:02 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+void	*ft_memset(void *b, int c, size_t len)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	size_t	i;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	i = 0;
+	while (len > i)
+		*((unsigned char *)b + i++) = c;
+	return (b);
 }

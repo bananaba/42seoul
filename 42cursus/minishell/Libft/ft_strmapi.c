@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2021/11/23 17:09:51 by balee             #+#    #+#             */
+/*   Updated: 2021/11/23 17:09:53 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	unsigned int	len;
+	unsigned int	index;
+	char			*str;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	if (!s || !f)
+		return (0);
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	index = 0;
+	while (s[index])
+	{
+		str[index] = f(index, s[index]);
+		index++;
+	}
+	str[len] = 0;
+	return (str);
 }

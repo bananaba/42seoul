@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:29:11 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:29:12 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	if (!new || !lst)
+		return ;
+	else if (*lst)
+		new->next = *lst;
+	else
+		new->next = 0;
+	*lst = new;
 }

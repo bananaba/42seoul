@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:31:56 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:31:57 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	size_t	i;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	if (dest < src)
+	{
+		i = 0;
+		while (i < n)
+		{
+			*((unsigned char *)dest + i) = *((unsigned char *)src + i);
+			i++;
+		}
+	}
+	else if (dest > src)
+	{
+		i = n;
+		while (i)
+		{
+			i--;
+			*((unsigned char *)dest + i) = *((unsigned char *)src + i);
+		}
+	}
+	return (dest);
 }

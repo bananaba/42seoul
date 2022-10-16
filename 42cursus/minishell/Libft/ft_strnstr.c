@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:32:59 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:33:01 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	size_t	index;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
+	if (!*little)
+		return ((char *)big);
+	while (*big != 0)
+	{
+		index = 0;
+		while (len > index && little[index] == big[index] && big[index])
+		{
+			index++;
+			if (little[index] == 0)
+				return ((char *)big);
+		}
+		if (len == index)
+			break ;
+		big++;
+		len--;
+	}
 	return (0);
 }

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2021/11/23 17:08:51 by balee             #+#    #+#             */
+/*   Updated: 2021/11/23 17:09:10 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+void	ft_putstr_fd(char *s, int fd)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	if (!s || fd < 0)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

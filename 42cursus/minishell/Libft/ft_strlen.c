@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:32:46 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:32:47 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+size_t	ft_strlen(const char *str)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	size_t	len;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	len = 0;
+	while (str[len] != 0)
+		len++;
+	return (len);
 }

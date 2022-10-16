@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:31:40 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:31:41 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	unsigned char	c1;
+	unsigned char	c2;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
+	while (n-- > 0)
+	{
+		c1 = *(unsigned char *)str1;
+		c2 = *(unsigned char *)str2;
+		if (c1 != c2)
+			return (c1 - c2);
+		str1++;
+		str2++;
+	}
 	return (0);
 }

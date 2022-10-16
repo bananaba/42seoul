@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:31:20 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:31:30 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+t_list	*ft_lstnew(void *content)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	t_list	*newlst;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	newlst = (t_list *)malloc(sizeof(t_list));
+	if (!newlst)
+		return (0);
+	newlst->content = content;
+	newlst->next = 0;
+	return (newlst);
 }

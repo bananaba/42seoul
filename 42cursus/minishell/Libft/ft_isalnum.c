@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:27:59 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:28:00 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-void	init_minishell(t_myshell *myshell, char *envp[])
+int	ft_isalnum(int c)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
+	if (c >= '0' && c <= '9')
+		return (1);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
 	return (0);
 }

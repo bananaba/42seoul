@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:09:44 by balee             #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:00 by balee            ###   ########.fr       */
+/*   Created: 2022/01/16 16:27:47 by balee             #+#    #+#             */
+/*   Updated: 2022/01/16 16:27:49 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include <stdlib.h>
 
-void	init_minishell(t_myshell *myshell, char *envp[])
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	set_input_mode(myshell);
-	myshell->envp = envp;
-}
+	char	*temp;
+	size_t	index;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_myshell	*myshell;
-
-	signal_management();
-	return (0);
+	index = 0;
+	temp = (char *)malloc(sizeof(char) * size * nmemb);
+	if (!temp)
+		return (0);
+	while (index < size * nmemb)
+		*(temp + index++) = 0;
+	return (temp);
 }
