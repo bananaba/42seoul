@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:06:03 by balee             #+#    #+#             */
-/*   Updated: 2022/10/15 17:26:55 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:44:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ void	philosopher(t_data *data, int num)
 	t_philo		*philo;
 
 	philo = &data->philo[num - 1];
-	if (num > (data->info[NUM_OF_PHILOS] + 1) / 2 && data->info[TIME_TO_EAT] == 0)
-		usleep(500);
-	else if (num > (data->info[NUM_OF_PHILOS] + 1) / 2)
+	if (num > (data->info[NUM_OF_PHILOS] + 1) / 2)
 		usleep((data->time - time_in_ms() + data->info[TIME_TO_EAT]) * 900);
 	else
 	{

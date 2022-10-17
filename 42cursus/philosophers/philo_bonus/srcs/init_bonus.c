@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:50 by balee             #+#    #+#             */
-/*   Updated: 2022/10/15 17:25:44 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:12:22 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void	init_philo(t_data *data, int argc, char **argv)
 	data->pid = (pid_t *)malloc(sizeof(pid_t) * (data->info[NUM_OF_PHILOS]));
 	if (data->pid == NULL)
 		exit_err(ENOMEM);
-	data->philo = (t_philo *)malloc(sizeof(t_philo) * (data->info[NUM_OF_PHILOS]));
+	data->philo = (t_philo *)malloc(sizeof(t_philo)
+			* (data->info[NUM_OF_PHILOS]));
 	if (data->philo == NULL)
 		exit_err(ENOMEM);
 	n = 0;

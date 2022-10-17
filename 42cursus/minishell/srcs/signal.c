@@ -7,9 +7,7 @@ void	signal_handler(int signum)
 
 	i = 0;
 	status = 0;
-	if (pid == 0)
-		return (0);
-	while (pid[i])
+	while (pid && pid[i])
 	{
 		if (waitpid(pid[i], NULL, WNOHANG) == 0)
 		{

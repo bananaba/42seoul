@@ -22,5 +22,6 @@ void	init_minishell(t_myshell *myshell, char *envp[])
 	pid = 0;
 	set_input_mode(myshell);
 	get_info(myshell, envp);
+	signal_management();
 	myshell->envp = envp;
 }

@@ -6,13 +6,13 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:58 by balee             #+#    #+#             */
-/*   Updated: 2022/10/15 17:52:49 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:54:06 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_bonus.h"
 
-void	*monitoring_all_eat(t_data *data)
+void	monitoring_all_eat(t_data *data)
 {
 	int	i;
 
@@ -22,23 +22,26 @@ void	*monitoring_all_eat(t_data *data)
 	sem_post(data->finish);
 	sem_wait(data->print);
 	printf("All philosophers have eaten enough\n");
-	return (NULL);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data		data;
-	pthread_t	monitor;
+	t_data	data;
+	pid_t	monitor;
 
 	if (argc != 5 && argc != 6)
 		exit_err(ENOEXEC);
 	init_philo(&data, argc, argv);
 	philo_start(&data);
 	if (data.info[NUM_OF_MUST_EAT] != -1)
-		pthread_create(&monitor, NULL, (void *)&monitoring_all_eat, &data);
+	{
+		monitor = fork();
+		if (monitor == 0)
+			monitoring_all_eat(&data);
+	}
 	sem_wait(data.finish);
+	if (data.info[NUM_OF_MUST_EAT] != -1)
+		kill(monitor, SIGINT);
 	clean_up(&data);
-	if (data.info[NUM_OF_PHILOS] != -1)
-		pthread_detach(monitor);
 	return (SUCCESS);
 }

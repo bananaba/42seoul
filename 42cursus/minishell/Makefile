@@ -1,12 +1,12 @@
 NAME		= minishell
 
 CC			= cc
-CFLAG		= -Wall -Werror -Wextra
+CFLAG		= -Wall -Werror -Wextra -I ${HOME}/.brew/opt/readline/include
 RM			= rm -f
 
 INCS		= -I./includes
 LIB			= ./Libft
-LIB_FLAGS	= -L$(LIB) -lft -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
+LIB_FLAGS	= -L$(LIB) -lft -lreadline -L ${HOME}/.brew/opt/readline/lib
 
 SRCS		= $(addprefix ./srcs/, $(SRC))
 OBJS		= $(SRCS:.c=.o)
