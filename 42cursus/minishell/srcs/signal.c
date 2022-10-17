@@ -2,12 +2,29 @@
 
 void	signal_handler(int signum)
 {
-	if (signum == SIGINT)
-	{
+	int	i;
+	int	status;
 
+	i = 0;
+	status = 0;
+	if (pid == 0)
+		return (0);
+	while (pid[i])
+	{
+		if (waitpid(pid[i], NULL, WNOHANG) == 0)
+		{
+			kill(pid[i], signum);
+			status = 1;
+		}
+		i++;
 	}
-	else if (signum == SIGQUIT)
-	{}
+	if (status == 0 && signum == SIGINT)
+	{
+		if (rl_on_new_line() == -1)
+			;
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
 }
 
 void	signal_management(void)
