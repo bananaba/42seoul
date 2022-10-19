@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:03:27 by balee             #+#    #+#             */
-/*   Updated: 2022/10/17 14:20:40 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/19 17:21:03 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <readline/readline.h>
 # include "../Libft/libft.h"
 
-pid_t	*pid;
+pid_t	*g_pid;
 
 typedef struct s_myshell
 {

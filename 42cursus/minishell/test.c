@@ -9,74 +9,32 @@
 # include <stdbool.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <string.h>
 
-pid_t	pid = 0;
-
-void	signal_handler(int signum)
+void	process(char *envp[])
 {
-	int	status;
+	char	*cmd[3];
+	char	*c;
 
-	if (signum == SIGINT)
-	{
-		if (waitpid(0, NULL, WNOHANG) == 0)
-			exit(0);
-		else
-			kill(pid, SIGINT);
-	}
-	else if (signum == SIGQUIT)
-	{
-		if (waitpid(0, &status, WNOHANG) != 0)
-			exit(0);
-		else
-			kill(pid, SIGQUIT);
-	}
-}
-
-void	signal_management(void)
-{
-//	signal(SIGINT, signal_handler_parent);
-	signal(SIGQUIT, signal_handler);
+//	cmd[0] = strdup("/Users/balee/42/42cursus/minishell/echo");
+	cmd[0] = strdup("/bin/echo");
+	cmd[1] = strdup("A = $A");
+	cmd[2] = NULL;
+	execve(cmd[0], cmd, envp);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-//	pid = fork();
-	int		status;
-	char	str[] = "asd";
-	char	*cmd;
-	struct termios org;
-	struct termios new;
-	signal_management();
+//	pid_t	pid;
 
 //	for (int i = 0; envp[i]; i++)
 //		printf("%s\n", envp[i]);
-	printf("%d\n", waitpid(0, &status, WNOHANG));
-	pid = fork();
-	if (pid == 0)
-	{
-//		while (1)
-//		{
-//			printf("child\n");
-//			usleep(1000000);
-//		}
-		exit(0);
-	}
-	else
-	{
-//		usleep(100000);
-//		printf("%d\n", waitpid(0, &status, WNOHANG));
-//		printf("%d\n", WIFEXITED(status));
-//		printf("%s", str);
-		cmd = readline("> ");
-		if (rl_on_new_line() == -1)
-			;
-		rl_replace_line("", 1);
-		rl_redisplay();
-//		printf("%d\n", *cmd);
-//		while (1)
-//		{
-//			printf("parent\n");
-//			usleep(1000000);
-//		}
-	}
+//	printf("A = $A\n");
+//	pid = fork();
+//	if (pid == 0)
+//		process(envp);
+//	else
+//		wait(NULL);
+	printf("%s", 12311231);
+	return (0);
 }

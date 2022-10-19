@@ -11,8 +11,6 @@ void	get_info(t_myshell *myshell, char *envp[])
 			myshell->pwd = ft_strdup(&envp[i][4]);
 		else if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0)
 			myshell->oldpwd = ft_strdup(&envp[i][7]);
-		else if (ft_strncmp(envp[i], "HOME=", 5) == 0)
-			myshell->home = ft_strdup(&envp[i][5]);
 		i++;
 	}
 }
@@ -24,4 +22,6 @@ void	init_minishell(t_myshell *myshell, char *envp[])
 	get_info(myshell, envp);
 	signal_management();
 	myshell->envp = envp;
+	myshell->home = getenv("HOME");
 }
+
