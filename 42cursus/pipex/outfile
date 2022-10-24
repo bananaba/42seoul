@@ -1,0 +1,8 @@
+total 120
+drwxr-xr-x  92 balee  2021_seoul   3128 Oct 25 00:59 Libft
+-rw-r--r--   1 balee  2021_seoul   1541 Sep 14 14:47 Makefile
+drwxr-xr-x   3 balee  2021_seoul    102 Sep 14 14:47 includes
+-rw-r--r--   1 balee  2021_seoul     10 Sep 14 14:47 infile
+-rw-r--r--   1 balee  2021_seoul      0 Oct 25 00:59 outfile
+-rwxr-xr-x   1 balee  2021_seoul  51032 Oct 25 00:59 pipex
+drwxr-xr-x  13 balee  2021_seoul    442 Oct 25 00:59 src

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:11 by balee             #+#    #+#             */
-/*   Updated: 2022/10/24 20:24:52 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/24 23:15:54 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*find_value(t_mp *mp, char *target)
 
 void	print_errno(int err, char **argv)
 {
-	if (err == 0)
+	if (err == 0 || err == -1)
 		return ;
 	ft_putstr_fd("Error: ", 2);
 	ft_putstr_fd(argv[0], 2);
