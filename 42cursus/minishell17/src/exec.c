@@ -4,12 +4,14 @@ void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes)
 {
 	dup2(pipes[0][0], STDIN_FILENO);
 	dup2(pipes[1][1], STDOUT_FILENO);
-	if (argv == NULL || errno != 0)
+	if (errno != 0)
 	{
 		printf("Error: ");
-		if (argv == NULL)
-			printf("%s : ", argv[0]);
-		printf("%s\n", strerror(errno));
+		printf("%s : ", argv[0]);
+		if (errno == 127)
+			printf("%s\n", "command not found");
+		else
+			printf("%s\n", strerror(errno));
 		exit(errno);
 	}
 	if (check_builtin(argv[0]))
@@ -20,7 +22,6 @@ void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes)
 
 void	do_builtin(t_mp *mp, char **argv, int **pipes)
 {
-	char	*name;
 	int		len;
 
 	len = ft_strlen(argv[0]);
@@ -51,18 +52,13 @@ pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
 	else
 	{
 		argv = set_argv(mp, excutable->argv);
-		if (argv)
-			envp = set_envp(mp, argv[0]);
+		envp = set_envp(mp, argv[0]);
 	}
 	pid = fork();
-	if (pid < 0)
-	{
-		mp->error_flag = errno;
-		return (pid);
-	}
-	else if (pid == 0)
+	if (pid == 0)
 		exec_proc(excutable, argv, envp, pipes);
 	free_arg_env(argv, envp);
+	mp->error_flag = errno;
 	return (pid);
 }
 
@@ -94,11 +90,13 @@ int	run(t_mp *mp)
 		errno = 0;
 		close(pipes[i][1]);
 		pid = run_proc(mp, mp->runnable->excutables[i], &pipes[i]);
+		if (mp->error_flag)
+			break ;
 		waitpid(pid, &status, 0);
 		close(pipes[i][0]);
 		mp->recent_exit_code = WEXITSTATUS(status);
 		set_recent_exit_code(mp);
 	}
 	pipes = free_pipes(pipes, i);
-	return (0);
+	return (errno);
 }

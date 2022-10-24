@@ -10,20 +10,13 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 
-void	child_process()
-{
-	exit(4);
-}
 
-int main()
+int main(int argc, char **arv, char **envp)
 {
-	pid_t	pid;
-	int		status;
+	int i;
 
-	pid = fork();
-	if (pid == 0)
-		child_process();
-	else
-		waitpid(pid, &status, 0);
-	printf("%d\n", WEXITSTATUS(status));
+	i = 0;
+	while (envp[i])
+		printf("%s\n", envp[i++]);
+	return 0;
 }

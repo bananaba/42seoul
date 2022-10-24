@@ -76,7 +76,7 @@ char	**set_argv(t_mp *mp, char **argv)
 
 	cmd = find_path(mp, argv[0]);
 	if (cmd == NULL)
-		free_double_pointer(&argv);
+		errno = 127;
 	else
 	{
 		free(argv[0]);

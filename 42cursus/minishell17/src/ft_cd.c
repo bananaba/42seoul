@@ -13,6 +13,8 @@ char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd)
 		dir = ft_strjoin(home, temp);
 		free(temp);
 	}
+	else if (dir[0] == '-' && dir[1] == 0 && oldpwd == NULL)
+		dir = ft_strdup(pwd);
 	else if (dir[0] == '-' && dir[1] == 0)
 		dir = ft_strdup(oldpwd);
 	else if (dir[0] != '/')
@@ -62,6 +64,7 @@ void	ft_cd(t_mp *mp, char *dir)
 	}
 	free(home);
 	free(pwd);
-	free(oldpwd);
+	if (oldpwd)
+		free(oldpwd);
 	free(dir);
 }

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:42:31 by snoh              #+#    #+#             */
-/*   Updated: 2022/10/24 17:20:27 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/24 18:30:18 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,28 +185,45 @@ int run(t_mp *mp);
 pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes);
 void	do_builtin(t_mp *mp, char **argv, int **pipes);
 void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes);
+void	set_recent_exit_code(t_mp *mp);
 
 void	ft_cd(t_mp *mp, char *dir);
+char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd);
+void	set_value(t_mp *mp, char *target, char *value);
+
 void	free_double_pointer(char ***arr);
-int	check_builtin(char *cmd);
 char	**lst_to_arr(t_list *lst);
-char *find_value(t_mp *mp, char *target);
+char	*find_value(t_mp *mp, char *target);
 void	free_arg_env(char **argv, char **envp);
-int	ft_echo(t_mp *mp, char *argv[], int **pipes);
-int	ft_env(t_mp *mp, int **pipes);
-int	ft_pwd(t_mp *mp, int **pipes);
-int	ft_export(t_mp *mp, char **argv, int **pipes);
-int	ft_unset(t_mp *mp, char **target);
-int	is_ltoken(t_list *rd);
-int	is_rtoken(t_list *rd);
-int	**init_pipe(t_r *runnable);
-void	set_pipes(t_r *runnable, int **pipes);
-char	**path_value(t_mp *mp);
+
+int	check_builtin(char *cmd);
 char	**set_argv(t_mp *mp, char **argv);
 char	**set_envp(t_mp *mp, char *cmd);
+char	**path_value(t_mp *mp);
+char	*find_path(t_mp *mp, char *cmd);
+
+int	ft_echo(t_mp *mp, char *argv[], int **pipes);
+int	check_n(char *argv[]);
+
+int	ft_env(t_mp *mp, int **pipes);
+int	ft_pwd(t_mp *mp, int **pipes);
+
+int	ft_export(t_mp *mp, char **argv, int **pipes);
+void	print_env(t_list *envp, int **pipes);
+void	add_env(t_list *envp, char **str);
+void	destroy_list(t_list *list);
+t_list	*sort_env(t_list *envp);
+
+int	ft_unset(t_mp *mp, char **target);
+void	free_target(t_list *temp);
+
+int	is_ltoken(t_list *rd);
+int	is_rtoken(t_list *rd);
+int	**free_pipes(int **pipes, int i);
+
+int	**init_pipe(t_r *runnable);
+void	set_pipes(t_r *runnable, int **pipes);
 void	set_rredirect(t_list *rd, int **pipes);
 void	set_lredirect(t_list *rd, int **pipes);
-void	add_env(t_list *envp, char **str);
-int	**free_pipes(int **pipes, int i);
 
 #endif	

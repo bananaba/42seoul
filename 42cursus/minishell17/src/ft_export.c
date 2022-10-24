@@ -38,7 +38,7 @@ t_list	*sort_env(t_list *envp)
 	{
 		temp1 = sorted;
 		while (ft_strncmp(temp1->next->content, envp->content,
-			ft_strlen(temp1->next->content) < 0))
+				ft_strlen(temp1->next->content) < 0))
 			temp1 = temp1->next;
 		temp2 = ft_lstnew(ft_strdup(envp->content));
 		temp2->next = temp1->next;
@@ -48,25 +48,38 @@ t_list	*sort_env(t_list *envp)
 	return (sorted);
 }
 
+void	destroy_list(t_list *list)
+{
+	if (list->content)
+		free(list->content);
+	free(list);
+}
+
 void	print_env(t_list *envp, int **pipes)
 {
 	t_list	*sorted;
 	t_list	*temp1;
 	t_list	*temp2;
+	int		i;
 
 	sorted = sort_env(envp);
 	temp1 = sorted->next;
 	while (temp1)
 	{
+		i = 0;
 		ft_putstr_fd("declare -x ", pipes[1][1]);
-		ft_putstr_fd(temp1->content, pipes[1][1]);
+		while (((char *)temp1->content)[i])
+		{
+			ft_putchar_fd(((char *)temp1->content)[i], pipes[1][1]);
+			if (((char *)temp1->content)[i++] == '=')
+				ft_putchar_fd('"', pipes[1][1]);
+			if (((char *)temp1->content)[i] == 0
+				&& ft_strchr(temp1->content, '='))
+				ft_putchar_fd('"', pipes[1][1]);
+		}
 		ft_putchar_fd('\n', pipes[1][1]);
-		temp2 = temp1;
-		temp1 = temp1->next;
-		free(temp2->content);
-		free(temp2);
 	}
-	free(sorted);
+	ft_lstclear(sorted, destroy_list);
 }
 
 int	ft_export(t_mp *mp, char **argv, int **pipes)
