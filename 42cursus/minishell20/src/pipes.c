@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:41 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 05:04:57 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 05:20:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,9 @@ void	set_lredirect(t_list *rd, int **pipes)
 			if (ft_strncmp(line, ((t_token *)rd->next->content)->text,
 					ft_strlen(line)) == 0)
 				break ;
-			ft_putendl_fd(line, pipes[0][0]);
+			ft_putendl_fd(line, pipes[0][1]);
 			free(line);
 		}
-		dup2(fd, pipes[0][0]);
 	}
 	else if (ft_strncmp(((t_token *)rd->content)->text, "<", 1) == 0)
 	{
