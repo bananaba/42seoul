@@ -42,8 +42,9 @@ void	signal_management(void)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	pid = fork();
-	int		status;
+	execve("/asdasdasdasdadsa", argv, envp);
+//	pid = fork();
+//	int		status;
 //	char	str[] = "asd";
 //	char	*cmd;
 //	struct termios org;
@@ -54,25 +55,25 @@ int	main(int argc, char *argv[], char *envp[])
 //		printf("%s\n", envp[i]);
 //	printf("%d\n", waitpid(0, &status, WNOHANG));
 //	pid = fork();
-	if (pid == 0)
-	{
-		char *cmd[3];
-		cmd[0] = strdup("/Users/balee/42/42cursus/minishell/ft_cd");
-		cmd[1] = strdup("..");
-		cmd[2] = NULL;
-		printf("%s\n", getcwd(NULL, 0));
-		execve(cmd[0], cmd, envp);
+//	if (pid == 0)
+//	{
+//		char *cmd[3];
+//		cmd[0] = strdup("/Users/balee/42/42cursus/minishell/ft_cd");
+//		cmd[1] = strdup("..");
+//		cmd[2] = NULL;
+//		printf("%s\n", getcwd(NULL, 0));
+//		execve(cmd[0], cmd, envp);
 //		while (1)
 //		{
 //			printf("child\n");
 //			usleep(1000000);
 //		}
 //		exit(0);
-	}
-	else
-	{
-		waitpid(0, NULL, 0);
-		printf("%s\n", getcwd(NULL, 0));	
+//	}
+//	else
+//	{
+//		waitpid(0, NULL, 0);
+//		printf("%s\n", getcwd(NULL, 0));	
 //		usleep(100000);
 //		printf("%d\n", waitpid(0, &status, WNOHANG));
 //		printf("%d\n", WIFEXITED(status));
@@ -88,5 +89,5 @@ int	main(int argc, char *argv[], char *envp[])
 //			printf("parent\n");
 //			usleep(1000000);
 //		}
-	}
+//	}
 }
