@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:17 by balee             #+#    #+#             */
-/*   Updated: 2022/10/24 21:17:16 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/24 22:57:41 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd)
 		dir = home;
 	else if (dir[0] == '~')
 	{
-		temp = ft_strjoin("/", &dir[1]);
+		temp = ft_strjoin(home, &dir[1]);
 		free(dir);
-		dir = ft_strjoin(home, temp);
-		free(temp);
+		dir = temp;
 	}
 	else if (dir[0] == '-' && dir[1] == 0 && oldpwd == NULL)
 		dir = ft_strdup(pwd);
@@ -61,7 +60,6 @@ void	ft_cd(t_mp *mp, char *dir)
 	char	*home;
 	char	*pwd;
 	char	*oldpwd;
-	char	*temp;
 
 	home = find_value(mp, "HOME=");
 	pwd = find_value(mp, "PWD=");

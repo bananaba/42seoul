@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:04 by balee             #+#    #+#             */
-/*   Updated: 2022/10/24 21:10:43 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/24 23:09:15 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ void	do_builtin(t_mp *mp, char **argv, int **pipes)
 		ft_echo(mp, &argv[1], pipes);
 	else if (ft_strncmp(argv[0], "exit", len))
 		ft_exit(argv);
+	if (errno != -1)
+		print_errno(errno, argv);
+	if (errno)
+	{
+		errno = 1;
+		mp->recent_exit_code = 1;
+	}
 }
 
 pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
@@ -59,7 +66,6 @@ pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
 	if (mp->runnable->num_of_excutables == 1 && check_builtin(argv[0]))
 	{
 		do_builtin(mp, excutable->argv, pipes);
-		print_errno(errno, argv);
 		return (errno);
 	}
 	argv = set_argv(mp, excutable->argv);
@@ -68,7 +74,6 @@ pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
 	if (pid == 0 && check_builtin(argv[0]))
 	{
 		do_builtin(mp, excutable->argv, pipes);
-		print_errno(errno, argv);
 		exit(errno);
 	}
 	else if (pid == 0)
@@ -108,7 +113,7 @@ int	run(t_mp *mp)
 		close(pipes[i][0]);
 	}
 	i = -1;
-	while (++i < mp->runnable->num_of_excutables)
+	while (++i < mp->runnable->num_of_excutables && pid[i] > 1)
 	{
 		waitpid(pid[i], &status, 0);
 		mp->recent_exit_code = WEXITSTATUS(status);
