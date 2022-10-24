@@ -9,32 +9,21 @@
 # include <stdbool.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <string.h>
 
-void	process(char *envp[])
+void	child_process()
 {
-	char	*cmd[3];
-	char	*c;
-
-	cmd[0] = strdup("/Users/balee/42/42cursus/minishell/echo");
-//	cmd[0] = strdup("/bin/echo");
-	cmd[1] = strdup("a*");
-	cmd[2] = NULL;
-	execve(cmd[0], cmd, envp);
+	exit(4);
 }
 
-int	main(int argc, char *argv[], char *envp[])
+int main()
 {
 	pid_t	pid;
+	int		status;
 
-//	for (int i = 0; envp[i]; i++)
-//		printf("%s\n", envp[i]);
-//	printf("A = $A\n");
 	pid = fork();
 	if (pid == 0)
-		process(envp);
+		child_process();
 	else
-		wait(NULL);
-//	printf("%s", 12311231);
-	return (0);
+		waitpid(pid, &status, 0);
+	printf("%d\n", WEXITSTATUS(status));
 }

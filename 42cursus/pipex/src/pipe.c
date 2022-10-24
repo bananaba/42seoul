@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:02:57 by balee             #+#    #+#             */
-/*   Updated: 2022/10/09 23:49:20 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/21 18:31:43 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	link_pipe(int cmd_num, t_pipex *pipex)
 
 void	make_pipe(int cmd_num, char **envp, t_pipex *pipex)
 {
-	pid_t	pid;
+	pid_t	pid[2];
 	int		i;
 
 	i = 0;
 	link_pipe(cmd_num, pipex);
 	while (i < cmd_num)
 	{
-		pid = fork();
-		if (pid < 0)
+		pid[i] = fork();
+		if (pid[i] < 0)
 			check_err(errno);
-		else if (pid == 0)
+		else if (pid[i] == 0)
 			child_process(pipex, envp, i, cmd_num - 1);
 		i++;
 	}

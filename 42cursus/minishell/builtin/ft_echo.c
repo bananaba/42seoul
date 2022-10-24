@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -13,12 +14,18 @@
 #include "../includes/minishell.h"
 
 int	check_option(int argc, char *argv[])
+=======
+#include "../includes/minishell.h"
+
+int	check_n(int argc, char *argv[])
+>>>>>>> b2e2fc83eaaabc95589be59b8de7883a22617cd1
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	if (argc == 1)
+<<<<<<< HEAD
 		return (1);
 	while (argv[i])
 	{
@@ -27,6 +34,18 @@ int	check_option(int argc, char *argv[])
 			while (argv[i][j])
 				if (argv[i][j++] != 'n')
 					return (i);
+=======
+		return (0);
+	while (i < argc && ft_strncmp(argv[i], "-n", 2) == 0)
+	{
+		j = 2;
+		while (argv[i][j])
+		{
+			if (argv[i][j] != 'n')
+				return (i);
+			j++;
+		}
+>>>>>>> b2e2fc83eaaabc95589be59b8de7883a22617cd1
 		i++;
 	}
 	return (i);
@@ -37,8 +56,13 @@ int	main(int argc, char *argv[])
 	int	i;
 	int	option;
 
+<<<<<<< HEAD
 	i = check_option(argc, argv);
 	if (i == 1)
+=======
+	i = check_n(argc, argv);
+	if (i != 1)
+>>>>>>> b2e2fc83eaaabc95589be59b8de7883a22617cd1
 		option = true;
 	else
 		option = false;
@@ -46,7 +70,11 @@ int	main(int argc, char *argv[])
 	{
 		if (i != 1)
 			printf(" ");
+<<<<<<< HEAD
 		printf("%s", argv[i++]);
+=======
+		printf("%s", argv[i]);
+>>>>>>> b2e2fc83eaaabc95589be59b8de7883a22617cd1
 	}
 	if (option == false)
 		printf("\n");
