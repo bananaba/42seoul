@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:54:17 by balee             #+#    #+#             */
+/*   Updated: 2022/10/24 21:17:16 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd)
@@ -59,7 +71,7 @@ void	ft_cd(t_mp *mp, char *dir)
 	{
 		free(dir);
 		dir = getcwd(NULL, 0);
-		set_value(mp, "OLDPWD=", ft_strjoin("OLDPWD=", pwd));
+		set_value(mp, "OLDPWD", ft_strjoin("OLDPWD=", pwd));
 		set_value(mp, "PWD=", ft_strjoin("PWD=", dir));
 	}
 	free(home);

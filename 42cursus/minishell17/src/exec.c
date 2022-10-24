@@ -1,21 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:54:04 by balee             #+#    #+#             */
+/*   Updated: 2022/10/24 21:10:43 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes)
 {
-	dup2(pipes[0][0], STDIN_FILENO);
-	dup2(pipes[1][1], STDOUT_FILENO);
 	if (errno != 0)
 	{
-		printf("Error: ");
-		printf("%s : ", argv[0]);
-		if (errno == 127)
-			printf("%s\n", "command not found");
-		else
-			printf("%s\n", strerror(errno));
+		print_errno(errno, argv);
 		exit(errno);
 	}
-	if (check_builtin(argv[0]))
-		exit(0);
+	if (ex->redirections)
+		set_lredirect(ex->redirections, pipes);
+	dup2(pipes[0][0], STDIN_FILENO);
+	dup2(pipes[1][1], STDOUT_FILENO);
 	execve(argv[0], argv, envp);
 	exit(errno);
 }
@@ -24,11 +31,10 @@ void	do_builtin(t_mp *mp, char **argv, int **pipes)
 {
 	int		len;
 
+	errno = 0;
 	len = ft_strlen(argv[0]);
 	if (ft_strncmp(argv[0], "cd", len))
 		ft_cd(mp, argv[1]);
-//	else if (ft_strncmp(argv[0], "exit", len))
-//		ft_exit();
 	else if (ft_strncmp(argv[0], "unset", len))
 		ft_unset(mp, &argv[1]);
 	else if (ft_strncmp(argv[0], "export", len))
@@ -39,6 +45,8 @@ void	do_builtin(t_mp *mp, char **argv, int **pipes)
 		ft_env(mp, pipes);
 	else if (ft_strncmp(argv[0], "echo", len))
 		ft_echo(mp, &argv[1], pipes);
+	else if (ft_strncmp(argv[0], "exit", len))
+		ft_exit(argv);
 }
 
 pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
@@ -47,17 +55,25 @@ pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
 	char	**argv;
 	pid_t	pid;
 
-	if (check_builtin(excutable->argv[0]))
-		do_builtin(mp, excutable->argv, pipes);
-	else
+	errno = 0;
+	if (mp->runnable->num_of_excutables == 1 && check_builtin(argv[0]))
 	{
-		argv = set_argv(mp, excutable->argv);
-		envp = set_envp(mp, argv[0]);
+		do_builtin(mp, excutable->argv, pipes);
+		print_errno(errno, argv);
+		return (errno);
 	}
+	argv = set_argv(mp, excutable->argv);
+	envp = set_envp(mp, argv[0]);
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0 && check_builtin(argv[0]))
+	{
+		do_builtin(mp, excutable->argv, pipes);
+		print_errno(errno, argv);
+		exit(errno);
+	}
+	else if (pid == 0)
 		exec_proc(excutable, argv, envp, pipes);
-	free_arg_env(argv, envp);
+	free_double_pointer(&envp);
 	mp->error_flag = errno;
 	return (pid);
 }
@@ -78,25 +94,26 @@ int	run(t_mp *mp)
 	int		i;
 	int		status;
 	int		**pipes;
-	pid_t	pid;
+	pid_t	*pid;
 
 	if (mp->error_flag != 0)
 		return (mp->error_flag);
 	i = -1;
 	pipes = init_pipe(mp->runnable);
-	set_pipes(mp->runnable, pipes);
-	while (mp->runnable->excutables[++i])
+	pid = (pid_t *)malloc(sizeof(pid_t) * (mp->runnable->num_of_excutables));
+	while (mp->runnable->excutables[++i] && mp->error_flag == 0)
 	{
-		errno = 0;
 		close(pipes[i][1]);
-		pid = run_proc(mp, mp->runnable->excutables[i], &pipes[i]);
-		if (mp->error_flag)
-			break ;
-		waitpid(pid, &status, 0);
+		pid[i] = run_proc(mp, mp->runnable->excutables[i], &pipes[i]);
 		close(pipes[i][0]);
+	}
+	i = -1;
+	while (++i < mp->runnable->num_of_excutables)
+	{
+		waitpid(pid[i], &status, 0);
 		mp->recent_exit_code = WEXITSTATUS(status);
 		set_recent_exit_code(mp);
 	}
-	pipes = free_pipes(pipes, i);
+	free_run(pipes, i, pid);
 	return (errno);
 }

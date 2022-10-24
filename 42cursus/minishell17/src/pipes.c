@@ -1,4 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:54:41 by balee             #+#    #+#             */
+/*   Updated: 2022/10/24 21:19:23 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
+void	set_pipes(t_r *runnable, int **pipes)
+{
+	int	i;
+	t_e	*ex;
+
+	i = 0;
+	ex = runnable->excutables[0];
+	while (i <= runnable->num_of_excutables)
+	{
+		if (i == 0 && is_ltoken(ex->redirections))
+			dup2(STDIN_FILENO, pipes[i][0]);
+		else if (i == runnable->num_of_excutables
+			&& is_rtoken(ex->redirections))
+			dup2(STDOUT_FILENO, pipes[i + 1][0]);
+		i++;
+	}
+}
 
 int	**init_pipe(t_r *runnable)
 {
@@ -13,6 +43,7 @@ int	**init_pipe(t_r *runnable)
 		pipe(pipes[i]);
 		i++;
 	}
+	set_pipes(runnable, pipes);
 	return (pipes);
 }
 
@@ -51,6 +82,7 @@ void	set_lredirect(t_list *rd, int **pipes)
 					ft_strlen(line)))
 				break ;
 			ft_putendl_fd(line, pipes[0][0]);
+			free(line);
 		}
 		dup2(fd, pipes[0][0]);
 	}
@@ -60,24 +92,4 @@ void	set_lredirect(t_list *rd, int **pipes)
 		dup2(fd, pipes[0][0]);
 	}
 	set_rredirect(rd, pipes);
-}
-
-void	set_pipes(t_r *runnable, int **pipes)
-{
-	int	i;
-	t_e	*ex;
-
-	i = 0;
-	ex = runnable->excutables[0];
-	while (i <= runnable->num_of_excutables)
-	{
-		if (ex->redirections)
-			set_lredirect(ex->redirections, pipes);
-		if (i == 0 && is_ltoken(ex->redirections))
-			dup2(STDIN_FILENO, pipes[i][0]);
-		else if (i == runnable->num_of_excutables
-			&& is_rtoken(ex->redirections))
-			dup2(STDOUT_FILENO, pipes[i + 1][0]);
-		i++;
-	}
 }

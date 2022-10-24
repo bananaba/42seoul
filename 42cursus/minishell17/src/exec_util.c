@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_util.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:54:11 by balee             #+#    #+#             */
+/*   Updated: 2022/10/24 20:24:52 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	free_double_pointer(char ***arr)
@@ -49,16 +61,16 @@ char	*find_value(t_mp *mp, char *target)
 	return (value);
 }
 
-void	free_arg_env(char **argv, char **envp)
+void	print_errno(int err, char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (envp[i])
-		free(envp[i++]);
-	free(envp);
-	i = 0;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv);
+	if (err == 0)
+		return ;
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(argv[0], 2);
+	ft_putstr_fd(": ", 2);
+	if (err == 127)
+		ft_putstr_fd("command not found", 2);
+	else
+		ft_putstr_fd(strerror(errno), 2);
+	ft_putchar_fd('\n', 2);
 }

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:42:31 by snoh              #+#    #+#             */
-/*   Updated: 2022/10/24 18:30:18 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/24 20:25:29 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	set_value(t_mp *mp, char *target, char *value);
 void	free_double_pointer(char ***arr);
 char	**lst_to_arr(t_list *lst);
 char	*find_value(t_mp *mp, char *target);
-void	free_arg_env(char **argv, char **envp);
+void	print_errno(int err, char **argv);
 
 int	check_builtin(char *cmd);
 char	**set_argv(t_mp *mp, char **argv);
@@ -207,6 +207,7 @@ int	check_n(char *argv[]);
 
 int	ft_env(t_mp *mp, int **pipes);
 int	ft_pwd(t_mp *mp, int **pipes);
+void	ft_exit(char **argv);
 
 int	ft_export(t_mp *mp, char **argv, int **pipes);
 void	print_env(t_list *envp, int **pipes);
@@ -219,7 +220,7 @@ void	free_target(t_list *temp);
 
 int	is_ltoken(t_list *rd);
 int	is_rtoken(t_list *rd);
-int	**free_pipes(int **pipes, int i);
+void	free_run(int **pipes, int i, pid_t *pid);
 
 int	**init_pipe(t_r *runnable);
 void	set_pipes(t_r *runnable, int **pipes);

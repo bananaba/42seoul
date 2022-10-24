@@ -9,14 +9,15 @@
 # include <stdbool.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <string.h>
 
 
-int main(int argc, char **arv, char **envp)
+int main(int argc, char **arvg, char **envp)
 {
-	int i;
-
-	i = 0;
-	while (envp[i])
-		printf("%s\n", envp[i++]);
+	char *str[2];
+	
+	str[0] = strdup("../minishell17/minishell");
+	str[1] = 0;
+	execve("../minishell17/minishell", str, envp);
 	return 0;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_exec.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 19:54:46 by balee             #+#    #+#             */
+/*   Updated: 2022/10/24 20:58:19 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	**set_envp(t_mp *mp, char *cmd)
@@ -52,18 +64,17 @@ char	*find_path(t_mp *mp, char *cmd)
 	char		**path;
 	struct stat	s;
 
-	i = 0;
+	i = -1;
 	if (stat(cmd, &s) == 0)
 		return (cmd);
 	path = path_value(mp);
-	while (path[i] != NULL)
+	while (path[++i] != NULL)
 	{
 		temp = ft_strjoin(path[i], cmd);
 		if (stat(temp, &s) == 0)
 			break ;
 		free(temp);
 		temp = NULL;
-		i++;
 	}
 	free_double_pointer(&path);
 	errno = 0;
@@ -72,7 +83,9 @@ char	*find_path(t_mp *mp, char *cmd)
 
 char	**set_argv(t_mp *mp, char **argv)
 {
-	char	*cmd;
+	char		*cmd;
+	char		*temp;
+	struct stat	s;
 
 	cmd = find_path(mp, argv[0]);
 	if (cmd == NULL)

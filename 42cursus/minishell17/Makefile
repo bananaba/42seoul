@@ -99,6 +99,7 @@
 					ft_export			\
 					ft_pwd				\
 					ft_unset			\
+					ft_exit				\
 					pipes				\
 					pipes_util			\
 					set_exec			\
