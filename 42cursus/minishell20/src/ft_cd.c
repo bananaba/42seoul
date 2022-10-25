@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:17 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 03:32:59 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 22:18:35 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,28 @@
 char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd)
 {
 	char	*temp;
+	char	*ret;
 
 	if (dir == NULL)
-		dir = ft_strdup(home);
+		ret = ft_strdup(home);
 	else if (dir[0] == '~')
 	{
 		temp = ft_strjoin(home, &dir[1]);
-		free(dir);
-		dir = temp;
+		ret = temp;
 	}
 	else if (dir[0] == '-' && dir[1] == 0 && oldpwd == NULL)
-		dir = ft_strdup(pwd);
+		ret = ft_strdup(pwd);
 	else if (dir[0] == '-' && dir[1] == 0)
-		dir = ft_strdup(oldpwd);
-	else if (dir[0] != '/')
+		ret = ft_strdup(oldpwd);
+	else if (dir[0] == '/')
+		ret = ft_strdup(dir);
+	else
 	{
 		temp = ft_strjoin("/", dir);
-		free(dir);
-		dir = ft_strjoin(pwd, temp);
+		ret = ft_strjoin(pwd, temp);
 		free(temp);
 	}
-	return (dir);
+	return (ret);
 }
 
 void	set_value(t_mp *mp, char *target, char *value)
@@ -60,22 +61,21 @@ void	ft_cd(t_mp *mp, char *dir)
 	char	*home;
 	char	*pwd;
 	char	*oldpwd;
+	char	*new;
 
 	home = find_value(mp, "HOME=");
 	pwd = find_value(mp, "PWD=");
 	oldpwd = find_value(mp, "OLDPWD=");
-	dir = set_dir(dir, home, pwd, oldpwd);
-	if (chdir(dir) == 0)
+	new = set_dir(dir, home, pwd, oldpwd);
+	if (chdir(new) == 0)
 	{
-		free(dir);
-		dir = getcwd(NULL, 0);
+		free(new);
+		new = getcwd(NULL, 0);
 		set_value(mp, "OLDPWD", ft_strjoin("OLDPWD=", pwd));
-		set_value(mp, "PWD=", ft_strjoin("PWD=", dir));
+		set_value(mp, "PWD=", ft_strjoin("PWD=", new));
 	}
-	if (home)
-		free(home);
+	free(home);
 	free(pwd);
-	if (oldpwd)
-		free(oldpwd);
-	free(dir);
+	free(oldpwd);
+	free(new);
 }

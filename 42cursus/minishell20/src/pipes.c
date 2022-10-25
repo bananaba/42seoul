@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:41 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 05:20:14 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 17:10:49 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	set_pipes(t_r *runnable, int **pipes)
 	t_e	*ex;
 
 	i = 0;
-	ex = runnable->excutables[0];
 	while (i < runnable->num_of_excutables)
 	{
+		ex = runnable->excutables[i];
 		if (i == 0 && is_ltoken(ex->redirections))
 			dup2(STDIN_FILENO, pipes[i][0]);
 		if (i + 1 == runnable->num_of_excutables
@@ -80,7 +80,10 @@ void	set_lredirect(t_list *rd, int **pipes)
 			line = readline("> ");
 			if (ft_strncmp(line, ((t_token *)rd->next->content)->text,
 					ft_strlen(line)) == 0)
+			{
+				free(line);
 				break ;
+			}
 			ft_putendl_fd(line, pipes[0][1]);
 			free(line);
 		}

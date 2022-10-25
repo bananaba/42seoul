@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:04 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 04:30:34 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 19:41:55 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes)
 {
-	if (errno != 0)
+	if (errno != EINVAL && errno != 0)
 	{
 		print_errno(errno, argv);
 		exit(errno);
 	}
-	if (ex->redirections)
-		set_lredirect(ex->redirections, pipes);
 	dup2(pipes[0][0], STDIN_FILENO);
 	dup2(pipes[1][1], STDOUT_FILENO);
 	execve(argv[0], argv, envp);
@@ -47,13 +45,12 @@ void	do_builtin(t_mp *mp, char **argv, int **pipes)
 		ft_echo(mp, &argv[1], pipes);
 	else if (ft_strncmp(argv[0], "exit", len) == 0)
 		ft_exit(argv);
-	if (errno != -1)
-		print_errno(errno, argv);
 	if (errno)
 	{
+		print_errno(errno, argv);
 		errno = 1;
-		mp->recent_exit_code = 1;
 	}
+	mp->recent_exit_code = errno;
 }
 
 pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
@@ -62,28 +59,26 @@ pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes)
 	char	**argv;
 	pid_t	pid;
 
-	errno = 0;
-	if (mp->runnable->num_of_excutables == 1 && check_builtin(excutable->argv[0]))
+	if (mp->runnable->num_of_excutables == 1
+		&& check_builtin(excutable->argv[0]))
 	{
-		set_lredirect(excutable->redirections, pipes);
 		do_builtin(mp, excutable->argv, pipes);
-		return (errno);
+		return (0);
 	}
-	argv = set_argv(mp, excutable->argv);
-	envp = set_envp(mp, argv[0]);
-	pid = fork();
-	if (errno == EINVAL)
-		errno = 0;
-	if (pid == 0 && check_builtin(argv[0]))
+	else
+		pid = fork();
+	if (pid == 0)
 	{
-		set_lredirect(excutable->redirections, pipes);
-		do_builtin(mp, excutable->argv, pipes);
+		errno = 0;
+		argv = set_argv(mp, excutable->argv);
+		envp = set_envp(mp, argv[0]);
+		if (check_builtin(argv[0]))
+			do_builtin(mp, excutable->argv, pipes);
+		else
+			exec_proc(excutable, argv, envp, pipes);
+		envp = ft_split_free(envp);
 		exit(errno);
 	}
-	else if (pid == 0)
-		exec_proc(excutable, argv, envp, pipes);
-	envp = ft_split_free(envp);
-	mp->error_flag = errno;
 	return (pid);
 }
 
@@ -103,26 +98,30 @@ int	run(t_mp *mp)
 	int		i;
 	int		status;
 	int		**pipes;
-	pid_t	*pid;
 
 	if (mp->error_flag != 0)
 		return (mp->error_flag);
 	i = -1;
 	pipes = init_pipe(mp->runnable);
-	pid = (pid_t *)malloc(sizeof(pid_t) * (mp->runnable->num_of_excutables));
+	pid = malloc(sizeof(pid_t) * (mp->runnable->num_of_excutables + 1));
+	ft_bzero(pid, sizeof(pid));
 	while (mp->runnable->excutables[++i] && mp->error_flag == 0)
 	{
+		errno = 0;
+		if (mp->runnable->excutables[i]->redirections)
+			set_lredirect(mp->runnable->excutables[i]->redirections, pipes);
 		close(pipes[i][1]);
-		pid[i] = run_proc(mp, mp->runnable->excutables[i], &pipes[i]);
+		if (mp->runnable->excutables[i]->argv)
+			pid[i] = run_proc(mp, mp->runnable->excutables[i], &pipes[i]);
 		close(pipes[i][0]);
-	}
-	i = -1;
-	while (++i < mp->runnable->num_of_excutables && pid[i] > 1)
-	{
-		waitpid(pid[i], &status, 0);
-		mp->recent_exit_code = WEXITSTATUS(status);
+		if (pid[i] > 0)
+		{
+			waitpid(pid[i], &status, 0);
+			mp->recent_exit_code = WEXITSTATUS(status);
+		}
 		set_recent_exit_code(mp);
 	}
-	free_run(pipes, i, pid);
+	close(pipes[i][0]);
+	close(pipes[i][1]);
 	return (errno);
 }

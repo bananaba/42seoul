@@ -6,14 +6,14 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 07:15:20 by snoh              #+#    #+#             */
-/*   Updated: 2022/10/25 03:43:17 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:38:03 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int initialize_signal();
-static void	handlr(int sig, siginfo_t *siginfo, void *context);
+static void	handlr(int sig);
 
 
 int initialize(t_mp **mpp, int argc, char **argv, char **envp)
@@ -40,39 +40,37 @@ int initialize(t_mp **mpp, int argc, char **argv, char **envp)
 	return (0);
 }
 
-int initialize_signal()
+int	initialize_signal(void)
 {
-	struct sigaction	act;
-
 	ft_printf("server PID  : %i\n", getpid());
-	ft_bzero(&act, sizeof(act));
-	act.sa_sigaction = &handlr;
-	act.sa_flags = SA_SIGINFO;
-	
-	if (sigaction(SIGINT, &act, NULL))
-		return (1);
-	if (sigaction(SIGQUIT, &act, NULL))
-		return (1);
+	signal(SIGINT, handlr);
+	signal(SIGQUIT, handlr);
 	return (0);
 }
 
-static void	handlr(int sig, siginfo_t *siginfo, void *context)
+static void	handlr(int sig)
 {
+	int	i;
 
+	i = -1;
+	while (pid && pid[++i])
+	{
+		if (pid[i] > 0)
+			kill(pid[i], sig);
+	}
 	if (sig == SIGINT)
 	{
 		ft_printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		rl_redisplay();
-
+		if (!pid)
+			rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
 	{
 		ft_printf("\b\b");
 		rl_on_new_line();
-		rl_redisplay();
+		if (!pid)
+			rl_redisplay();
 	}
-
-
 }

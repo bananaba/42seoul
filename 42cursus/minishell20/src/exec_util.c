@@ -6,26 +6,11 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:11 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 02:38:50 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:59:12 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_double_pointer(char ***arr)
-{
-	int	i;
-
-	i = 0;
-	while (*arr[i])
-	{
-		free(*arr[i]);
-		*arr[i] = NULL;
-		i++;
-	}
-	free(*arr);
-	*arr = NULL;
-}
 
 char	**lst_to_arr(t_list *lst)
 {
@@ -63,13 +48,22 @@ char	*find_value(t_mp *mp, char *target)
 
 void	print_errno(int err, char **argv)
 {
-	if (err == 0 || err == -1)
+	if (err == 0)
 		return ;
-	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd("\nError: ", 2);
 	ft_putstr_fd(argv[0], 2);
 	ft_putstr_fd(": ", 2);
+	if (argv[1])
+	{
+		ft_putstr_fd(argv[1], 2);
+		ft_putstr_fd(": ", 2);
+	}
 	if (err == 127)
 		ft_putstr_fd("command not found", 2);
+	else if (err == 255)
+		ft_putstr_fd("numeric argument required", 2);
+	else if (err == -1)
+		ft_putstr_fd("too many arguments", 2);
 	else
 		ft_putstr_fd(strerror(errno), 2);
 	ft_putchar_fd('\n', 2);

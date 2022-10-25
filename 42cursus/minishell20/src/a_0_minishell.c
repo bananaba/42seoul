@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 07:15:20 by snoh              #+#    #+#             */
-/*   Updated: 2022/10/25 04:22:48 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:51:03 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (initialize(&mp, argc, argv, envp))
 		return(1);
+	pid = NULL;
 	while (mp->error_flag == 0)
 	{
 		prompt(mp);				//프롬프트 : 문자열을 받는다 

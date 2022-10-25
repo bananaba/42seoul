@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:46 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 04:00:31 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:58:33 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*find_path(t_mp *mp, char *cmd)
 	if (stat(cmd, &s) == 0)
 		return (ft_strdup(cmd));
 	path = path_value(mp);
-	while (path[++i] != NULL)
+	while (path && path[++i] != NULL)
 	{
 		temp = ft_strjoin(path[i], cmd);
 		if (stat(temp, &s) == 0)

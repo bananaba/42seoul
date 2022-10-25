@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:42:31 by snoh              #+#    #+#             */
-/*   Updated: 2022/10/25 03:45:22 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 20:59:38 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_token
 	char	*text;
 }	t_token;
 
+pid_t	*pid;
 
 
 //m_1.c
@@ -217,53 +218,49 @@ void print_runnable(t_r *runnable, char *name);
 
 
 
-
-int run(t_mp *mp);
-pid_t	run_proc(t_mp *mp, t_e *excutable, int **pipes);
-void	do_builtin(t_mp *mp, char **argv, int **pipes);
-void	exec_proc(t_e *ex, char **argv, char **envp, int **pipes);
-void	set_recent_exit_code(t_mp *mp);
-
-void	ft_cd(t_mp *mp, char *dir);
-char	*set_dir(char *dir, char *home, char *pwd, char *oldpwd);
-void	set_value(t_mp *mp, char *target, char *value);
-
-void	free_double_pointer(char ***arr);
-char	**lst_to_arr(t_list *lst);
-char	*find_value(t_mp *mp, char *target);
-void	print_errno(int err, char **argv);
-
-int	check_builtin(char *cmd);
-char	**set_argv(t_mp *mp, char **argv);
-char	**set_envp(t_mp *mp, char *cmd);
-char	**path_value(t_mp *mp);
-char	*find_path(t_mp *mp, char *cmd);
-
-int	ft_echo(t_mp *mp, char *argv[], int **pipes);
-int	check_n(char *argv[]);
-
-int	ft_env(t_mp *mp, int **pipes);
-int	ft_pwd(t_mp *mp, int **pipes);
-void	ft_exit(char **argv);
-
-int	ft_export(t_mp *mp, char **argv, int **pipes);
-void	print_env(t_list *envp, int **pipes);
-void	add_env(t_list *envp, char **str);
-void	destroy_list(t_list *list);
-t_list	*sort_env(t_list *envp);
-
-int	ft_unset(t_mp *mp, char **target);
-void	free_target(t_list *temp);
-
-int	is_ltoken(t_list *rd);
-int	is_rtoken(t_list *rd);
-void	free_run(int **pipes, int i, pid_t *pid);
-
-int	**init_pipe(t_r *runnable);
-void	set_pipes(t_r *runnable, int **pipes);
-void	set_rredirect(t_list *rd, int **pipes);
-void	set_lredirect(t_list *rd, int **pipes);
-
-
+//exec.c
+int 		run(t_mp *mp);
+pid_t		run_proc(t_mp *mp, t_e *excutable, int **pipes);
+void		do_builtin(t_mp *mp, char **argv, int **pipes);
+void		exec_proc(t_e *ex, char **argv, char **envp, int **pipes);
+void		set_recent_exit_code(t_mp *mp);
+//ft_cd.c
+void		ft_cd(t_mp *mp, char *dir);
+char		*set_dir(char *dir, char *home, char *pwd, char *oldpwd);
+void		set_value(t_mp *mp, char *target, char *value);
+//exec_util.c
+char		**lst_to_arr(t_list *lst);
+char		*find_value(t_mp *mp, char *target);
+void		print_errno(int err, char **argv);
+//set_exec.c
+int			check_builtin(char *cmd);
+char		**set_argv(t_mp *mp, char **argv);
+char		**set_envp(t_mp *mp, char *cmd);
+char		**path_value(t_mp *mp);
+char		*find_path(t_mp *mp, char *cmd);
+//ft_echo.c
+int			ft_echo(t_mp *mp, char *argv[], int **pipes);
+int			check_n(char *argv[]);
+//ft_env.c ft_pwd.c ft_exit.c
+int			ft_env(t_mp *mp, int **pipes);
+int			ft_pwd(t_mp *mp, int **pipes);
+void		ft_exit(char **argv);
+//ft_export.c
+int			ft_export(t_mp *mp, char **argv, int **pipes);
+void		print_env(t_list *envp, int **pipes);
+void		add_env(t_list *envp, char **str);
+void		destroy_list(t_list *list);
+t_list		*sort_env(t_list *envp);
+//ft_unset.c
+int			ft_unset(t_mp *mp, char **target);
+void		free_target(t_list *temp);
+//pipes_util.c
+int			is_ltoken(t_list *rd);
+int			is_rtoken(t_list *rd);
+//pipes.c
+int			**init_pipe(t_r *runnable);
+void		set_pipes(t_r *runnable, int **pipes);
+void		set_rredirect(t_list *rd, int **pipes);
+void		set_lredirect(t_list *rd, int **pipes);
 
 #endif	

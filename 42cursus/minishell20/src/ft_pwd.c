@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:54:29 by balee             #+#    #+#             */
-/*   Updated: 2022/10/25 02:53:01 by balee            ###   ########.fr       */
+/*   Updated: 2022/10/25 22:10:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_pwd(t_mp *mp, int **pipes)
 		if (ft_strncmp(envp->content, "PWD=", 4) == 0)
 		{
 			pwd = ft_strdup(&envp->content[4]);
+			if (pwd == NULL)
+				return (errno);
 			break ;
 		}
 		envp = envp->next;
