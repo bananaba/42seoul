@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Mon Oct 17 17:08:35 2022
+# Make data base, printed on Sat Nov 19 00:36:43 2022
 
 # Variables
 
@@ -18,8 +15,6 @@ make: *** No rule to make target `all'.  Stop.
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -31,35 +26,37 @@ CURDIR := /Users/balee/42/42cursus/philosophers
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{},"_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"6eb1e43add40af3ffb323dfa86580dd8.ko","_translationsConfigFile":"/Users/balee/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/tcf.json","_cacheRoot":"/Users/balee/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko","_resolvedLanguagePackCoreLocation":"/Users/balee/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/6261075646f055b99068d3688932416f2346dd3b","_corruptedFile":"/Users/balee/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
 MAKEFILE_LIST := 
 # environment
-VSCODE_VERBOSE_LOGGING = true
+__CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cm5c00351b/T/vscode-ipc-72285545-a2ad-4f54-9812-aaabb0446e39.sock
+INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_CWD = /Users/balee/42/42cursus/philosophers
+VSCODE_CWD = /Users/balee/42/42cursus/cpp_module/cpp01/ex00
 # environment
-PATH = /Users/balee/.brew/bin:/Users/balee/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+PATH = /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-VSCODE_LOG_STACK = false
+LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.sSKclnK1KQ/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.TQbJlwH79R/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
 PWD = /Users/balee/42/42cursus/philosophers
 # environment
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+MANPATH = /opt/homebrew/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -67,11 +64,13 @@ HOME = /Users/balee
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/balee/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /Users/balee/Library/Application Support/Code/CachedData/6261075646f055b99068d3688932416f2346dd3b
 # environment
 LOGNAME = balee
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/balee/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -95,7 +94,9 @@ USER = balee
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:405348C4-9967-4838-82DA-CF6546A55D52
+TERM_SESSION_ID = w0t0p0:3BE3F0A1-F179-483B-AD51-1D83E9482794
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -105,11 +106,13 @@ TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cm5c00351b/T/
+TMPDIR = /var/folders/ry/dstpqyl9217886zq4p3h2xfh0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/balee/Library/Application Support/Code/1.67.2-main.sock
+VSCODE_IPC_HOOK = /Users/balee/Library/Application Support/Code/1.73.1-main.sock
+# environment
+MallocNanoZone = 0
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -117,21 +120,29 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-TERM_PROGRAM_VERSION = 3.3.7
+TERM_PROGRAM_VERSION = 3.4.16
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1156.D69494DE-8148-4316-BF7B-D5DB36401DE8
+MAIL = balee@student.42.fr
 # environment
-LC_TERMINAL_VERSION = 3.3.7
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.19102556.19102562.804679A0-D308-4C02-9F75-D622F841BDF3
+# environment
+LC_TERMINAL_VERSION = 3.4.16
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:405348C4-9967-4838-82DA-CF6546A55D52
+ITERM_SESSION_ID = w0t0p0:3BE3F0A1-F179-483B-AD51-1D83E9482794
 # environment
-COLORFGBG = 7;0
+HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
-__CF_USER_TEXT_ENCODING = 0x1942B:0x3:0x33
+COLORFGBG = 15;0
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -139,13 +150,13 @@ MAKEFILES :=
 # environment
 ITERM_PROFILE = Default
 # environment
+PAGER = less
+# environment
 LC_ALL = C
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# default
-.INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
@@ -153,9 +164,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 42666
+VSCODE_PID = 30242
 # variable set hash-table stats:
-# Load=70/1024=7%, Rehash=0, Collisions=4/91=4%
+# Load=77/1024=8%, Rehash=0, Collisions=4/97=4%
 
 # Pattern-specific Variable Values
 
@@ -163,7 +174,7 @@ VSCODE_PID = 42666
 
 # Directories
 
-# . (device 16777225, inode 438767): 5 files, no impossibilities.
+# . (device 16777231, inode 18521565): 5 files, no impossibilities.
 
 # 5 files, no impossibilities in 1 directories.
 
@@ -237,6 +248,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Oct 17 17:08:35 2022
+# Finished Make data base on Sat Nov 19 00:36:43 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
