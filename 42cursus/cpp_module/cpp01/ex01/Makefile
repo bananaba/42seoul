@@ -1,10 +1,10 @@
-NAME		= megaphone
+NAME		= PhoneBook
 
 CC			= clang++
-CFLAG		= -Wall -Werror -Wextra -std=c++98
+CFLAG		= -Wall -Werror -Wextra -std=c++98 -I.
 RM			= rm -f
 
-SRCS		= megaphone.cpp
+SRCS		= PhoneBook.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all : $(NAME)
@@ -25,10 +25,5 @@ fclean :
 re :
 	make fclean
 	make all
-
-test :
-	./$(NAME) "shhhhh... I think the students are asleep..."
-	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
-	./$(NAME)
 
 PHONY : all clean fclean re
