@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 16:28:12 by balee             #+#    #+#             */
+/*   Updated: 2022/11/22 16:55:48 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 void	PhoneBook::add(int i)
@@ -44,15 +56,15 @@ void	PhoneBook::search(void)
 
 void	Contact::add(void)
 {
-	std::cout << std::left << std::setw(15) << "_firstName" << ": ";
+	std::cout << std::left << std::setw(15) << "First Name" << ": ";
 	std::getline(std::cin >> std::ws, _firstName);
-	std::cout << std::left << std::setw(15) << "_lastName" << ": ";
+	std::cout << std::left << std::setw(15) << "Last Name" << ": ";
 	std::getline(std::cin >> std::ws, _lastName);
-	std::cout << std::left << std::setw(15) << "nickname" << ": ";
+	std::cout << std::left << std::setw(15) << "Nick Name" << ": ";
 	std::getline(std::cin >> std::ws, _nickName);
-	std::cout << std::left << std::setw(15) << "_phoneNumber" << ": ";
+	std::cout << std::left << std::setw(15) << "Phone Number" << ": ";
 	std::getline(std::cin >> std::ws, _phoneNumber);
-	std::cout << std::left << std::setw(15) << "secret" << ": ";
+	std::cout << std::left << std::setw(15) << "Secret" << ": ";
 	std::getline(std::cin >> std::ws, _darkestSecret);
 }
 

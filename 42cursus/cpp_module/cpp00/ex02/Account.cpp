@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 16:28:17 by balee             #+#    #+#             */
+/*   Updated: 2022/11/22 17:07:13 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Account.hpp"
 #include <ctime>
 #include <iostream>
@@ -73,6 +85,8 @@ void	Account::makeDeposit( int deposit )
 	std::cout << " index:" << _accountIndex;
 	std::cout << ";p_amount:" << _amount;
 	_amount += deposit;
+	_totalAmount += deposit;
+	_totalNbDeposits++;
 	std::cout << ";deposits:" << deposit;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";nb_deposits:" << ++_nbDeposits << std::endl;
@@ -86,6 +100,8 @@ bool	Account::makeWithdrawal( int withdrawal )
 	if (_amount >= withdrawal)
 	{
 		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
+		_totalNbWithdrawals++;
 		std::cout << ";withdrawal:" << withdrawal;
 		std::cout << ";amount:" << _amount;
 		std::cout << ";nb_withdrawal:" << ++_nbWithdrawals << std::endl;
