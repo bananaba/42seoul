@@ -6,27 +6,25 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 16:28:11 by balee             #+#    #+#              #
-#    Updated: 2022/11/22 16:54:26 by balee            ###   ########.fr        #
+#    Updated: 2022/11/22 19:27:13 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= PhoneBook
 
-CC			= c++
-CFLAG		= -Wall -Werror -Wextra -std=c++98
-RM			= rm -f
+CFLAGS		= -Wall -Werror -Wextra -std=c++98
 
 INCS		= -I.
-SRCS		= main.cpp PhoneBook.cpp
+SRCS		= main.cpp PhoneBook.cpp Contact.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAG) -o $(NAME) $(OBJS)
+	$(CXX) $(CFLAGS) -o $(NAME) $(OBJS)
 
 .cpp.o: $(SRC)
-	$(CC) $(CFLAG) $(INCS) -c -o $@ $<
+	$(CXX) $(CFLAGS) $(INCS) -c -o $@ $<
 
 clean :
 	$(RM) $(OBJS)

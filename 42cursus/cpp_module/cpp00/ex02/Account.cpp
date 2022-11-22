@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:28:17 by balee             #+#    #+#             */
-/*   Updated: 2022/11/22 17:07:13 by balee            ###   ########.fr       */
+/*   Updated: 2022/11/22 19:16:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Account::~Account( void )
 	_displayTimestamp();
 	std::cout << " index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
-	std::cout << ";closeded" << std::endl;
+	std::cout << ";closed" << std::endl;
 }
 
 int	Account::getNbAccounts( void )

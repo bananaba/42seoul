@@ -6,15 +6,13 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 16:27:48 by balee             #+#    #+#              #
-#    Updated: 2022/11/22 16:54:52 by balee            ###   ########.fr        #
+#    Updated: 2022/11/22 19:23:51 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= megaphone
 
-CC			= c++
-CFLAG		= -Wall -Werror -Wextra -std=c++98
-RM			= rm -f
+CFLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		= megaphone.cpp
 OBJS		= $(SRCS:.cpp=.o)
@@ -22,10 +20,10 @@ OBJS		= $(SRCS:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAG) -o $(NAME) $(OBJS)
+	$(CXX) $(CFLAGS) -o $(NAME) $(OBJS)
 
 .cpp.o: $(SRC)
-	$(CC) $(CFLAG) -c -o $@ $<
+	$(CXX) $(CFLAGS) -c -o $@ $<
 
 clean :
 	$(RM) $(OBJS)
