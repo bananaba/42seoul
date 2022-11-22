@@ -1,10 +1,10 @@
-NAME		= PhoneBook
+NAME		= Job
 
 CC			= clang++
 CFLAG		= -Wall -Werror -Wextra -std=c++98 -I.
 RM			= rm -f
 
-SRCS		= main.cpp PhoneBook.cpp
+SRCS		= tests.cpp Account.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all : $(NAME)
