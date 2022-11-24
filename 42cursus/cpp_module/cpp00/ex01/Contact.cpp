@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:29:03 by balee             #+#    #+#             */
-/*   Updated: 2022/11/22 19:29:05 by balee            ###   ########.fr       */
+/*   Updated: 2022/11/24 19:54:06 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,24 @@ void	Contact::add(void)
 {
 	std::cout << std::left << std::setw(15) << "First Name" << ": ";
 	std::getline(std::cin >> std::ws, _firstName);
+	if (std::cin.eof())
+		return ;
 	std::cout << std::left << std::setw(15) << "Last Name" << ": ";
 	std::getline(std::cin >> std::ws, _lastName);
+	if (std::cin.eof())
+		return ;
 	std::cout << std::left << std::setw(15) << "Nick Name" << ": ";
 	std::getline(std::cin >> std::ws, _nickName);
+	if (std::cin.eof())
+		return ;
 	std::cout << std::left << std::setw(15) << "Phone Number" << ": ";
 	std::getline(std::cin >> std::ws, _phoneNumber);
+	if (std::cin.eof())
+		return ;
 	std::cout << std::left << std::setw(15) << "Secret" << ": ";
 	std::getline(std::cin >> std::ws, _darkestSecret);
+	if (std::cin.eof())
+		return ;
 }
 
 bool	Contact::print_info(int i)
