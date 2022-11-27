@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 21:22:08 by balee             #+#    #+#             */
-/*   Updated: 2022/11/27 21:22:09 by balee            ###   ########.fr       */
+/*   Created: 2022/11/27 21:22:25 by balee             #+#    #+#             */
+/*   Updated: 2022/11/27 21:22:26 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#include "Harl.hpp"
 
-# include <iostream>
-# include <string>
-
-class Harl
+int	main(int argc, char **argv)
 {
-	private:
-		void		etc( void );
-		void		debug( void );
-		void		info( void );
-		void		warning( void );
-		void		error( void );
-		void		(Harl::*f[5])( void );
-		std::string	lv[4];
-	public:
-		void complain( std::string level );
-		Harl( void );
-		~Harl( void );
-};
+	Harl		harl;
 
-#endif
+	if (argc != 2)
+	{
+		std::cerr << "Usage: ./harlFilter <filter>" << std::endl;
+		return (1);
+	}
+	harl.harlFilter(argv[1]);
+	return (0);
+}

@@ -1,35 +1,16 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/27 21:21:37 by balee             #+#    #+#             */
+/*   Updated: 2022/11/27 21:21:38 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	replaceStr(std::string &content, std::string s1, std::string s2)
-{
-	int	len1;
-	int	len2;
-	int	i;
-
-	len1 = content.length();
-	len2 = s1.length();
-	i = 0;
-	while (i + len2 <= len1)
-	{
-		if (content.compare(i, len2, s1) == 0)
-		{
-			content.erase(i, len2);
-			content.insert(i, s2);
-			len1 = content.length();
-			i += s2.length();
-		}
-		i++;
-	}
-}
-
-int	exitErr(std::string str)
-{
-	std::cerr << "Error: " << str << std::endl;
-	return (1);
-}
+#include "replacer.hpp"
 
 int	main(int argc, char **argv)
 {
@@ -39,7 +20,7 @@ int	main(int argc, char **argv)
 	std::stringstream	ss;
 
 	if (argc != 4)
-		return (exitErr("Usage: ./Replacer <filename> s1 s2"));
+		return (exitErr("Usage: ./replacer <filename> s1 s2"));
 	else if (argv[2][0] == '\0')
 		return (exitErr("s1 is empty"));
 	ifs.open(argv[1], std::ios_base::in);

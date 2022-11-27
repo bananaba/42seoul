@@ -1,4 +1,16 @@
-NAME		= BraiiiiiiinnnzzzZ
-SRCS		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/27 21:22:28 by balee             #+#    #+#              #
+#    Updated: 2022/11/27 21:22:29 by balee            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		= harlFilter
+SRCS		= main.cpp Harl.cpp
 
 include		../template.mk

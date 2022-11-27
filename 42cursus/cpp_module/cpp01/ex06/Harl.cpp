@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 21:22:05 by balee             #+#    #+#             */
-/*   Updated: 2022/11/27 21:22:06 by balee            ###   ########.fr       */
+/*   Created: 2022/11/27 21:22:18 by balee             #+#    #+#             */
+/*   Updated: 2022/11/27 21:22:19 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,44 @@ void	Harl::complain( std::string level )
 		i++;
 	}
 	(this->*f[lvIndex])();
+}
+
+void	Harl::harlFilter( std::string level )
+{
+	int	i;
+	int	lvIndex;
+
+	i = 0;
+	lvIndex = 0;
+	while (i < 4)
+	{
+		lvIndex += (lv[i] == level) * (i + 1);
+		i++;
+	}
+	switch (lvIndex)
+	{
+		case 1:
+			std::cout << "[ DEBUG ]" << std::endl;
+			(this->*f[1])();
+			std::cout << std::endl;
+		case 2:
+			std::cout << "[ INFO ]" << std::endl;
+			(this->*f[2])();
+			std::cout << std::endl;
+		case 3:
+			std::cout << "[ WARNING ]" << std::endl;
+			(this->*f[3])();
+			std::cout << std::endl;
+		case 4:
+			std::cout << "[ ERROR ]" << std::endl;
+			(this->*f[4])();
+			std::cout << std::endl;
+			break ;
+
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+	}
 }
 
 Harl::Harl( void )
