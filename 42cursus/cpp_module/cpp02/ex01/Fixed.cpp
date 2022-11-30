@@ -11,25 +11,25 @@ Fixed::~Fixed( void )
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed( const Fixed &fixed )
+Fixed::Fixed( Fixed const &fixed )
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
 }
 
-Fixed::Fixed( const int num )
+Fixed::Fixed( int const num )
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->_value = num << this->_fractionalBits;
 }
 
-Fixed::Fixed( const float num )
+Fixed::Fixed( float const num )
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->_value = roundf(num * (1 << this->_fractionalBits));
 }
 
-Fixed &Fixed::operator=( const Fixed &fixed )
+Fixed &Fixed::operator=( Fixed const &fixed )
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fixed)
@@ -58,7 +58,7 @@ int		Fixed::toInt( void ) const
 	return (this->_value >> this->_fractionalBits);
 }
 
-std::ostream &operator<<( std::ostream &out, const Fixed &fixed )
+std::ostream &operator<<( std::ostream &out, Fixed const &fixed )
 {
 	out << fixed.toFloat();
 	return (out);
