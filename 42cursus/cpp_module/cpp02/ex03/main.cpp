@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/08 16:14:03 by balee             #+#    #+#             */
+/*   Updated: 2022/12/08 16:26:02 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Point.hpp"
 
 int	main(void)
@@ -16,16 +28,16 @@ int	main(void)
 	std::cout << "Point p2.x = " << p2.getX() << " p2.y = " << p2.getY() << std::endl;
 	std::cout << "Point p3.x = " << p3.getX() << " p3.y = " << p3.getY() << std::endl;
 	if (bsp(a, b, c, p1))
-		std::cout << "p is in the triangle" << std::endl;
+		std::cout << "p1 is in the triangle" << std::endl;
 	else
-		std::cout << "p is out of the triangle" << std::endl;
+		std::cout << "p1 is out of the triangle" << std::endl;
 	if (bsp(a, b, c, p2))
 		std::cout << "p2 is in the triangle" << std::endl;
 	else
 		std::cout << "p2 is out of the triangle" << std::endl;
 	if (bsp(a, b, c, p3))
-		std::cout << "p2 is in the triangle" << std::endl;
+		std::cout << "p3 is in the triangle" << std::endl;
 	else
-		std::cout << "p2 is out of the triangle" << std::endl;
+		std::cout << "p3 is out of the triangle" << std::endl;
 	return 0;
 }

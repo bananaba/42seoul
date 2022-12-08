@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:21 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:21 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/08 17:12:48 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ int main(void)
 	std::cout << "dog_copy" << dog_copy << std::endl;
 	std::cout << "cat" << cat << std::endl;
 	std::cout << "cat_copy" << cat << std::endl;
+
+	// const Animal * animal = new Animal();
 	return (0);
 }

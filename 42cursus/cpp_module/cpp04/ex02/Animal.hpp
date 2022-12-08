@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 17:08:26 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:27 by balee            ###   ########.fr       */
+/*   Created: 2022/12/08 17:07:56 by balee             #+#    #+#             */
+/*   Updated: 2022/12/08 17:09:14 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 # include <iostream>
 # include <string>
 
-class WrongAnimal
+class Animal
 {
 
 	public:
 
-		WrongAnimal();
-		WrongAnimal( WrongAnimal const & src );
-		virtual	~WrongAnimal();
+		Animal();
+		Animal( Animal const & src );
+		virtual	~Animal();
 
-		WrongAnimal &		operator=( WrongAnimal const & rhs );
+		Animal &		operator=( Animal const & rhs );
 
-		void	makeSound(void) const;
+		virtual void	makeSound(void) const = 0;
 
 		std::string		getType(void) const;
 		void			setType(std::string const _type);
@@ -38,6 +38,6 @@ class WrongAnimal
 
 };
 
-std::ostream &			operator<<( std::ostream & o, WrongAnimal const & i );
+std::ostream &			operator<<( std::ostream & o, Animal const & i );
 
-#endif /* ***************************************************** WRONGANIMAL_H */
+#endif /* ********************************************************** ANIMAL_H */
