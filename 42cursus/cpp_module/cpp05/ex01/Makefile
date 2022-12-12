@@ -11,6 +11,6 @@
 # **************************************************************************** #
 
 NAME		= ex01
-SRCS		= main.cpp Bureaucrat.cpp Form.cpp
+SRCS		= Bureaucrat.cpp Form.cpp main.cpp
 
 include		../template.mk

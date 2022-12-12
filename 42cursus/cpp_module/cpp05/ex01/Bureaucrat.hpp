@@ -18,13 +18,6 @@ class Bureaucrat
 
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 
-		std::string	getName(void) const;
-		int			getGrade(void) const;
-		void		setName(std::string const name);
-		void		setGrade(int grade);
-		void		incrementGrade(void);
-		void		decrementGrade(void);
-
 		class GradeTooLowException: public std::exception
 		{
 			public:
@@ -35,6 +28,15 @@ class Bureaucrat
 			public:
 				const char*	what() const throw();
 		};
+
+		void	signForm();
+
+		std::string	getName(void) const;
+		int			getGrade(void) const;
+		void		setName(std::string const name);
+		void		setGrade(int grade);
+		void		incrementGrade(void);
+		void		decrementGrade(void);
 
 	private:
 

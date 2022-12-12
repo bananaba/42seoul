@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:07:53 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:07:54 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/12 15:30:15 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ std::ostream &			operator<<( std::ostream & o, Animal const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-void	Animal::makeSound(void) const
-{
-	std::cout << "Animal make sound" << std::endl;
-}
 
 
 /*

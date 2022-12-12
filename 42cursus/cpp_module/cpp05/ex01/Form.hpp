@@ -28,6 +28,8 @@ class Form
 				const char*	what() const throw();
 		};
 
+		void	beSigned(Bureaucrat const & rhs);
+
 		std::string	getName(void) const;
 		bool		getSigned(void) const;
 		int			getGradeToSign(void) const;

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:06 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:06 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/12 20:26:36 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Cat::Cat(): Animal()
 Cat::Cat( const Cat & src ): Animal(src)
 {
 	std::cout << "Cat Copy constructor called" << std::endl;
-	*this = src;
+	this->setType(src.getType());
 	this->brain = new Brain(*src.brain);
 }
 
@@ -52,6 +52,7 @@ Cat &				Cat::operator=( Cat const & rhs )
 	if ( this != &rhs )
 	{
 		this->setType(rhs.getType());
+		this->brain = rhs.brain;
 	}
 	return (*this);
 }

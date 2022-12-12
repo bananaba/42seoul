@@ -9,9 +9,10 @@ Form::Form(): _name("default"), _signed(false), _gradeToSign(150), _gradeToExecu
 	std::cout << "Form Default Constructor called" << std::endl;
 }
 
-Form::Form( const Form & src ): _name(src.getName()), _signed(src.getSigned()), _gradeToSign(src.getGradeToSign()), _gradeToExecute(src.getGradeToExecute())
+Form::Form( const Form & src ): _gradeToSign(150), _gradeToExecute(150)
 {
 	std::cout << "Form copy Constructor called" << std::endl;
+	*this = src;
 }
 
 Form::Form(std::string const name): _name(name), _signed(false), _gradeToSign(150), _gradeToExecute(150)
@@ -59,7 +60,7 @@ Form &				Form::operator=( Form const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	o << "Name = " << i.getName();
+	o << i.getName() << ", signed : " << std::boolalpha << i.getSigned() << std::noboolalpha << ", sign grade : " << i.getGradeToSign() << ", execute grade : "<< i.getGradeToExecute() << ".";
 	return o;
 }
 
@@ -76,6 +77,16 @@ const char *Form::GradeTooLowException::what(void) const throw()
 const char *Form::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high");
+}
+
+void	Form::beSigned(Bureaucrat const & rhs)
+{
+	if (rhs.getGrade() > 150)
+		throw Form::GradeTooLowException();
+	else if (rhs.getGrade() < 1)
+		throw Form::GradeTooHighException();
+	else if (rhs.getGrade() <= this->getGradeToSign())
+		setSigned(true);
 }
 
 

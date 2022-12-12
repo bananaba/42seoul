@@ -60,7 +60,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 {
-	o << "Name = " << i.getName() << ", Grade = " << i.getGrade();
+	o << i.getName() << ", bureaucrat grade " << i.getGrade() << ".";
 	return o;
 }
 
@@ -102,9 +102,9 @@ void		Bureaucrat::setName(std::string const name)
 void		Bureaucrat::setGrade(int grade)
 {
 	if (grade > 150)
-		throw Bureaucrat::LowGradeException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (grade < 1)
-		throw Bureaucrat::HighGradeException();
+		throw Bureaucrat::GradeTooHighException();
 	else
 		this->_grade = grade;
 }
