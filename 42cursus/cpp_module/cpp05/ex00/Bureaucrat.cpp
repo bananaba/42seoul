@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/15 16:16:33 by balee             #+#    #+#             */
+/*   Updated: 2022/12/15 16:20:34 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 /*
@@ -102,7 +114,7 @@ void		Bureaucrat::setName(std::string const name)
 void		Bureaucrat::setGrade(int grade)
 {
 	if (grade > 150)
-		throw Bureaucrat::GradeTooException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else
