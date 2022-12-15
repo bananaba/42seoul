@@ -104,7 +104,7 @@ void	Form::beSigned(Bureaucrat const & rhs)
 	if (this->getSigned() == true)
 		std::cout << rhs.getName() << " couldn't sign " << this->getName()
 			<< " because " << this->getName() << " already signed" << std::endl;
-	else if (rhs.getGrade() > this->getGradeToExecute() || rhs.getGrade() > this->getGradeToSign())
+	else if (rhs.getGrade() > this->getGradeToSign())
 		throw Form::GradeTooLowException();
 	else
 	{

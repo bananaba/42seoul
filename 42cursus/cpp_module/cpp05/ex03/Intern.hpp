@@ -30,10 +30,10 @@ class Intern
 
 		AForm	*makeForm(std::string Name, std::string Target);
 
-		class UnknownForm : public std::exception
+		class UnknownForm: public std::exception
 		{
-		public:
-			const char *what(void) const throw();
+			public:
+				const char *what(void) const throw();
 		};
 
 	private:

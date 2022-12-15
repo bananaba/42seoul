@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:17:17 by balee             #+#    #+#             */
-/*   Updated: 2022/12/15 16:17:18 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 21:42:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	AForm::beSigned(Bureaucrat const & rhs)
 	if (this->getSigned() == true)
 		std::cout << rhs.getName() << " couldn't sign " << this->getName()
 			<< " because " << this->getName() << " already signed" << std::endl;
-	else if (rhs.getGrade() > this->getGradeToExecute() || rhs.getGrade() > this->getGradeToSign())
+	else if (rhs.getGrade() > this->getGradeToSign())
 		throw AForm::GradeTooLowException();
 	else
 	{
