@@ -70,13 +70,10 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 
 void RobotomyRequestForm::robotomize(void) const
 {
-	time_t		temp;
-	struct tm	*info;
+	std::srand(std::time(NULL));
 
-	time(&temp);
-	info = localtime(&temp);
 	std::cout << "Drrrrrrrr... Drrrrrr... Drr!" << std::endl;
-	if (info->tm_sec % 2 == 0)
+	if (std::rand() % 2 == 0)
 		std::cout << this->getTarget() << " has become a robot." << std::endl;
 	else
 		std::cout << this->getTarget() << " robotomization fall!" << std::endl;
