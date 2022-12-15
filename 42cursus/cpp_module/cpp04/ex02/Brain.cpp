@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:07:59 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:00 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 01:59:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ Brain &				Brain::operator=( Brain const & rhs )
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+std::string const	*Brain::getIdeas(void) const
+{
+	return (this->ideas);
+}
+
+void	Brain::setIdeas(int i, std::string str)
+{
+	this->ideas[i] = str;
+}
 
 
 /* ************************************************************************** */

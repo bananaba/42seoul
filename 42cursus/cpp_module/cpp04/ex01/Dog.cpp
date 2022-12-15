@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:14 by balee             #+#    #+#             */
-/*   Updated: 2022/12/12 20:26:31 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 01:41:42 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ Dog &				Dog::operator=( Dog const & rhs )
 	if ( this != &rhs )
 	{
 		this->setType(rhs.getType());
-		this->brain = rhs.brain;
+		*this->brain = *rhs.brain;
 	}
 	return (*this);
 }
@@ -77,6 +77,11 @@ void	Dog::makeSound(void) const
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+Brain	*Dog::getBrain(void) const
+{
+	return (this->brain);
+}
 
 
 /* ************************************************************************** */

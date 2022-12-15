@@ -73,6 +73,10 @@
 		"__memory": "cpp",
 		"memory_resource": "cpp",
 		"version": "cpp",
-		"__availability": "cpp"
+		"__availability": "cpp",
+		"deque": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"stack": "cpp"
 	}
 }

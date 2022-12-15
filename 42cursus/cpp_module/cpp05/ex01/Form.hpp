@@ -3,6 +3,8 @@
 
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 
@@ -43,8 +45,8 @@ class Form
 
 		std::string const	_name;
 		bool				_signed;
-		int const			_gradeToSign;
-		int const			_gradeToExecute;
+		const int			_gradeToSign;
+		const int			_gradeToExecute;
 
 };
 

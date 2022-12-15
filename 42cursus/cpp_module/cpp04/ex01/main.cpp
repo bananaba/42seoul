@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:21 by balee             #+#    #+#             */
-/*   Updated: 2022/12/12 20:28:11 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 01:58:53 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,24 @@ int main(void)
 	// for (size_t i = 0; i < 4; i++)
 	// 	delete animal[i];
 
-	const Animal * dog2 = new Dog();
-	const Animal * dog1 = new Dog(*(static_cast<Dog const *>(dog2)));
+	// const Animal * dog2 = new Dog();
+	// const Animal * dog1 = new Dog(*(static_cast<Dog const *>(dog2)));
 
-	dog2 = dog1;
+	// delete dog2;
+	// delete dog1;
 
-	delete dog2;
-	delete dog1;
+	// Dog	*dog1 = new Dog();
+	// Dog	*dog2 = new Dog();
+
+	// dog1->getBrain()->getIdeas()[0] = "I like potatoes";
+	// dog1->getBrain()->getIdeas()[1] = "I like ice cream";
+
+	// *dog2 = *dog1;
+
+	// std::cout << dog2->getBrain()->getIdeas()[0] << std::endl << dog2->getBrain()->getIdeas()[1] << std::endl;
+
+	// delete dog2;
+	// delete dog1;
 
 	// Dog	dog;
 	// Cat	cat;

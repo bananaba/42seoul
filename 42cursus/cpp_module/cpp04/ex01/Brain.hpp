@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:03 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:03 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 01:58:43 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ class Brain
 		~Brain();
 
 		Brain &		operator=( Brain const & rhs );
+
+		std::string const	*getIdeas(void) const;
+		void		setIdeas(int i, std::string str);
 
 	private:
 

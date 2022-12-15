@@ -23,11 +23,19 @@ Form::Form(std::string const name): _name(name), _signed(false), _gradeToSign(15
 Form::Form(int const gradeToSign, int const gradeToExecute): _name("default"), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
 	std::cout << "Form Normal constructor called" << std::endl;
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (gradeToSign > 150 || gradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(std::string const name, int const gradeToSign, int const gradeToExecute): _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
 	std::cout << "Form Normal constructor called" << std::endl;
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (gradeToSign > 150 || gradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 
@@ -81,12 +89,17 @@ const char *Form::GradeTooHighException::what(void) const throw()
 
 void	Form::beSigned(Bureaucrat const & rhs)
 {
-	if (rhs.getGrade() > 150)
+	if (this->getSigned() == true)
+		std::cout << rhs.getName() << " couldn't sign " << this->getName()
+			<< " because " << this->getName() << " already signed" << std::endl;
+	else if (rhs.getGrade() > this->getGradeToExecute() || rhs.getGrade() > this->getGradeToSign())
 		throw Form::GradeTooLowException();
-	else if (rhs.getGrade() < 1)
-		throw Form::GradeTooHighException();
-	else if (rhs.getGrade() <= this->getGradeToSign())
-		setSigned(true);
+	else
+	{
+		this->setSigned(true);
+		std::cout << rhs.getName() << " signed " << this->getName() << std::endl;
+	}
+		
 }
 
 
@@ -126,12 +139,22 @@ void		Form::setSigned(bool sign)
 
 void		Form::setGradeToSign(int const gradeToSign)
 {
-	const_cast<int &>(this->_gradeToSign) = gradeToSign;
+	if (gradeToSign < 1)
+		throw Form::GradeTooHighException();
+	else if (gradeToSign > 150)
+		throw Form::GradeTooLowException();
+	else
+		const_cast<int &>(this->_gradeToSign) = gradeToSign;
 }
 
 void		Form::setGradeToExecute(int const gradeToExecute)
 {
-	const_cast<int &>(this->_gradeToExecute) = gradeToExecute;
+	if (gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (gradeToExecute > 150)
+		throw Form::GradeTooLowException();
+	else
+		const_cast<int &>(this->_gradeToExecute) = gradeToExecute;
 }
 
 

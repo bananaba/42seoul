@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:14 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:14 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 02:00:55 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Dog::Dog(): Animal()
 Dog::Dog( const Dog & src ): Animal(src)
 {
 	std::cout << "Dog Copy constructor called" << std::endl;
-	*this = src;
+	this->setType(src.getType());
 	this->brain = new Brain(*src.brain);
 }
 
@@ -52,6 +52,7 @@ Dog &				Dog::operator=( Dog const & rhs )
 	if ( this != &rhs )
 	{
 		this->setType(rhs.getType());
+		*this->brain = *rhs.brain;
 	}
 	return (*this);
 }
@@ -76,6 +77,11 @@ void	Dog::makeSound(void) const
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+Brain	*Dog::getBrain(void) const
+{
+	return (this->brain);
+}
 
 
 /* ************************************************************************** */

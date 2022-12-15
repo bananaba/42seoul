@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:08:17 by balee             #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:17 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/15 02:01:01 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Dog: public Animal
 		Dog &		operator=( Dog const & rhs );
 
 		void	makeSound(void) const;
+
+		Brain	*getBrain(void) const;
 
 	private:
 
