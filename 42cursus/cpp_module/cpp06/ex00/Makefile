@@ -6,11 +6,11 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/27 21:21:44 by balee             #+#    #+#              #
-#    Updated: 2022/12/16 17:54:06 by balee            ###   ########.fr        #
+#    Updated: 2022/12/17 16:31:52 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= convert
-SRCS		= main.cpp Scalar.cpp
+SRCS		= main.cpp
 
 include		../template.mk

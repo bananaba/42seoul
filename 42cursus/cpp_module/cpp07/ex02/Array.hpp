@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/17 15:57:40 by balee             #+#    #+#             */
+/*   Updated: 2022/12/17 16:53:30 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
@@ -19,8 +31,11 @@ class Array
 
 		~Array()
 		{
-			delete [] _arr;
-			_arr = NULL;
+			if (this->_arr != NULL)
+			{
+				delete [] _arr;
+				_arr = NULL;
+			}
 			std::cout << "Array destructor called." << std::endl;
 		}
 
@@ -67,8 +82,8 @@ class Array
 
 	private:
 
-		T	*_arr;
-		unsigned int _size;
+		T				*_arr;
+		unsigned int	_size;
 
 
 };

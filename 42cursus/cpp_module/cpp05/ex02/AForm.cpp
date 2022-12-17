@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:17:17 by balee             #+#    #+#             */
-/*   Updated: 2022/12/15 21:42:28 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/17 13:15:05 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ AForm &				AForm::operator=( AForm const & rhs )
 	if ( this != &rhs )
 	{
 		this->setName(rhs.getName());
+		this->setTarget(rhs.getTarget());
 		this->setSigned(rhs.getSigned());
 		this->setGradeToSign(rhs.getGradeToSign());
 		this->setGradeToExecute(rhs.getGradeToExecute());

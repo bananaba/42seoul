@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:17:12 by balee             #+#    #+#             */
-/*   Updated: 2022/12/15 16:36:00 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/17 13:13:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int main()
 		temp = form;
 		std::cout << temp << std::endl;
 		
-		// Form	form_err(151, 151);
-		// std::cout << "\nTest Finish" << std::endl;
+		Form	form_err(151, 151);
+		std::cout << "\nTest Finish" << std::endl;
 	}
 	catch (const std::exception &e)
 	{

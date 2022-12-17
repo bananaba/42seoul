@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:07:17 by balee             #+#    #+#             */
-/*   Updated: 2022/12/17 16:31:34 by balee            ###   ########.fr       */
+/*   Created: 2022/12/17 14:08:01 by balee             #+#    #+#             */
+/*   Updated: 2022/12/17 16:40:48 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Scalar.hpp"
+#ifndef A_HPP
+# define A_HPP
 
-int main(int argc, char *argv[])
-{
-	if (argc == 1)
-	{
-		std::cout << "Error: no argument" << std::endl;
-		return (1);
-	}
+# include "Base.hpp"
 
-	convert(argv[1]);
+class A : public Base {};
 
-	return (0);
-}
+#endif /* ************************************************************* ABC_H */
