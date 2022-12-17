@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:18:29 by balee             #+#    #+#             */
-/*   Updated: 2022/12/15 16:42:11 by balee            ###   ########.fr       */
+/*   Updated: 2022/12/16 17:45:09 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,25 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 
 AForm	*Intern::makeForm(std::string Name, std::string Target)
 {
+	int	info;
+
+	info = 0;
 	for (int i = 0; i < 3; i++)
+	{
 		form[i]->setTarget(Target);
-	for (int i = 0; i < 3; i++)
-		if (Name == form[i]->getName())
-			return (form[i]);
-	throw Intern::UnknownForm();
+		info = (info << 1) | (Name == form[i]->getName());
+	}
+	switch (info)
+	{
+		case 0b100:
+			return (form[0]);
+		case 0b010:
+			return (form[1]);
+		case 0b001:
+			return (form[2]);
+		default:
+			throw Intern::UnknownForm();
+	}
 }
 
 const char	*Intern::UnknownForm::what() const throw()

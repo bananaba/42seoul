@@ -1,24 +1,18 @@
 #ifndef BASE_HPP
 # define BASE_HPP
 
-# include <iostream>
-# include <string>
+#include <iostream>
 
 class Base
 {
 
 	public:
 
-		Base();
-		Base( Base const & src );
-		~Base();
-
-		Base &		operator=( Base const & rhs );
-
-	private:
+		virtual ~Base()
+		{
+			std::cout << "Base destructor called." << std::endl;
+		}
 
 };
-
-std::ostream &			operator<<( std::ostream & o, Base const & i );
 
 #endif /* ************************************************************ BASE_H */

@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <string>
+# include <cmath>
+# include <limits>
+# include <cfloat>
 
 class Scalar
 {
@@ -10,14 +13,13 @@ class Scalar
 	public:
 
 		Scalar();
-		Scalar( Scalar const & src );
 		~Scalar();
-
-		Scalar &		operator=( Scalar const & rhs );
-
-		static void	convert(const std::string& literal);
+		static void	convert(const std::string& input);
 
 	private:
+		
+		Scalar( Scalar const & src );	
+		Scalar &		operator=( Scalar const & rhs );
 
 };
 

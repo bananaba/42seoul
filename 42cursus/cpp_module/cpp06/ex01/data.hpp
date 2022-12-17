@@ -1,14 +1,30 @@
-#ifndef DATA_HPP_
-# define DATA_HPP_
+#ifndef DATA_HPP
+# define DATA_HPP
 
-# include <cstdint>
+# include <string>
+# include <iostream>
 
-struct Data {
-	int n;
+struct Data
+{
+	std::string	_name;
+	int			_age;
+	std::string	_mdti;
 };
 
-uintptr_t serialize(Data *ptr);
+uintptr_t serialize(Data* ptr)
+{
+	return(reinterpret_cast<uintptr_t>(ptr));
+}
 
-Data* deserialize(uintptr_t raw);
+Data* deserialize(uintptr_t raw)
+{
+	return(reinterpret_cast<Data *>(raw));
+}
 
-#endif
+std::ostream &			operator<<( std::ostream & o, Data const & i )
+{
+	o << "Address: " << &i << ", Name: "<< i._name << ", Age: " << i._age << ", MBTI: " << i._mdti;
+	return o;
+}
+
+#endif /* ************************************************************ DATA_H */
