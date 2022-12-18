@@ -10,7 +10,7 @@ class ValueNotFound : public std::exception
 	public:
 		char const * what() const throw()
 		{
-			return ("Could't find the value in the container");
+			return ("The value is not in the container");
 		}
 };
 

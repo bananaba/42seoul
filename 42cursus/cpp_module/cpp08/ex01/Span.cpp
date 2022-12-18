@@ -57,7 +57,7 @@ Span &				Span::operator=( Span const & rhs )
 
 void 			Span::addNumber(int number)
 {
-	if (_numbers.size() == _numbers.capacity())
+	if (_numbers.size() >= this->_size)
 		throw Span::AlreadyNElementException();
 	_numbers.push_back(number);
 }
@@ -66,12 +66,12 @@ void	Span::addRange( std::vector<int>::iterator begin, std::vector<int>::iterato
 {
 	std::vector<int>			tmp(begin, end);
 	std::vector<int>::iterator	iter = tmp.begin();
-	unsigned int				_capacity;
+	long long					_capacity;
 
 	_capacity = _size - _numbers.size();
 	if (_numbers.size() == _size)
 		throw Span::AlreadyNElementException();
-	else if (tmp.size() > _capacity)
+	else if (static_cast<long long>(tmp.size()) > _capacity)
 		for (unsigned int n = 0; n < _capacity; n++)
 		{
 			_numbers.push_back(*iter);

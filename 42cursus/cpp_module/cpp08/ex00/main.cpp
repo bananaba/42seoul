@@ -26,7 +26,7 @@ int main(void) {
 	try
 	{
 		std::list<char>::iterator iter = easyfind(l, 6 + 'a');
-		std::cout << "Value " << 6 << " found on Index "
+		std::cout << "Value " << 6 + 'a' << " found on Index "
 			<< std::distance(std::begin(l), iter) << std::endl;
 	}
 	catch (std::exception& e)
