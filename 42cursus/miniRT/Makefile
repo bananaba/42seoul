@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2023/01/29 17:43:41 by balee            ###   ########.fr        #
+#    Updated: 2023/01/30 16:54:18 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIB_FLAGS	= -L$(LIB) -lft
 MLX_FLAGS	= -L./mlx -lmlx -framework OpenGL -framework Appkit
 
 SRC = raytrace.c \
-		vector.c
+		vector_util1.c \
+		vector_util2.c
 
 SRCS = $(addprefix ./srcs/, $(SRC))
 OBJS = $(SRCS:.c=.o)

@@ -1,72 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   vector_util2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:18:35 by snoh              #+#    #+#             */
-/*   Updated: 2023/01/30 02:35:15 by balee            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:04:33 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Libft/libft.h"
 #include "../includes/miniRT.h"
 
-t_vec3	vec3_add(t_vec3 a, t_vec3 b)
+t_vec3	*vec3_norm(t_vec3 a, t_vec3 *result)
 {
-	t_vec3 result;
+	double	len;
 
-	result.x = a.x + b.x;
-	result.y = a.y + b.y;
-	result.z = a.z + b.z;
+	len = sqrt(pow(a.x, 2) + pow(a.y, 2) + pow(a.z, 2));
+	result->x = a.x / len;
+	result->y = a.y / len;
+	result->z = a.z / len;
 	return (result);
-}
-
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
-{
-	t_vec3 result;
-
-	result.x = a.x - b.x;
-	result.y = a.y - b.y;
-	result.z = a.z - b.z;
-	return (result);
-}
-
-double	vec3_inner_pd(t_vec3 a, t_vec3 b)
-{
-	double result;
-
-	result = 0.0;
-	result += a.x * b.x;
-	result += a.y * b.y;
-	result += a.z * b.z;
-
-	return (result);
-}
-
-t_vec3	vec3_cross_pd(t_vec3 a, t_vec3 b)
-{
-    t_vec3 result;
-    result.x = a.y * b.z - a.z * b.y;
-    result.y = a.z * b.x - a.x * b.z;
-    result.z = a.x * b.y - a.y * b.x;
-    return result;
-}
-
-t_vec3	vec3_scalar_mul(double scalar, t_vec3 a)
-{
-	t_vec3 result;
-
-	result.x = scalar * a.x;
-	result.y = scalar * a.y;
-	result.z = scalar * a.z;
-	return (result);
-}
-
-double	vec3_norm(t_vec3 a)
-{
-	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 
 t_vec3	vec3_unit(t_vec3 a)
@@ -87,4 +42,12 @@ double vec3_ang_deg(t_vec3 a, t_vec3 b)
     double norm_product = vec3_norm(a) * vec3_norm(b);
     double angle_rad = acos(dot_product / norm_product);
     return (angle_rad * 180.0 / M_PI);
+}
+
+t_vec3	*vec3_mat3_mul(double mat[3][3], t_vec3 a, t_vec3 *result)
+{
+	result->x = a.x * mat[0][0] + a.y * mat[1][0] + a.z * mat[2][0];
+	result->y = a.x * mat[0][1] + a.y * mat[1][1] + a.z * mat[2][1];
+	result->z = a.x * mat[0][2] + a.y * mat[1][2] + a.z * mat[2][2];
+	return (result);
 }
