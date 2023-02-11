@@ -6,71 +6,63 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:42:59 by balee             #+#    #+#             */
-/*   Updated: 2023/01/30 18:52:53 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 05:05:11 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-void	set_rot_mat(t_camera c, double mat[3][3])
-{
-	mat[0][2] = c.orient.x;
-	mat[1][2] = c.orient.y;
-	mat[2][2] = c.orient.z;
-	if (c.orient.x == 0 && c.orient.z == 0)
-	{
-		mat[0][0] = 1;
-		mat[1][0] = 0;
-		mat[2][0] = 0;
-		mat[0][1] = 0;
-		mat[1][1] = 1;
-		mat[2][1] = -c.orient.y;
-	}
-	else
-	{
-		mat[0][0] = c.orient.z / sqrt(pow(c.orient.x, 2) + (c.orient.z, 2));
-		mat[1][0] = 0;
-		mat[2][0] = -c.orient.x / sqrt(pow(c.orient.x, 2) + (c.orient.z, 2));
-		mat[0][1] = c.orient.y * mat[2][0] - c.orient.z * mat[1][0];
-		mat[1][1] = c.orient.z * mat[0][0] - c.orient.x * mat[2][0];
-		mat[2][1] = c.orient.x * mat[1][0] - c.orient.y * mat[0][0];
-	}
-}
-
 int	draw(t_miniRT miniRT)
 {
-	t_vec3	ray;
-	double	d;
-	double	h;
-	double	w;
+	t_vec3	pixel;
+	t_ray	ray;
+	t_rgb	color;
 	double	mat[3][3];
 
 	set_rot_mat(miniRT.camera, mat);
-	d = (WIDTH / 2) / tan(miniRT.camera.fov / 2);
-	h = 0;
-	while (h < HEIGHT)
+	pixel.z = (WIDTH / 2.0) / tan(miniRT.camera.fov / 2.0);
+	pixel.y = 0;
+	while (pixel.y < HEIGHT)
 	{
-		w = 0;
-		while (w < WIDTH)
+		pixel.x = 0;
+		while (pixel.x < WIDTH)
 		{
-			ray.x = w - (WIDTH / 2);
-			ray.y = (HEIGHT / 2) - h;
-			ray.z = d;
-			vec3_norm(ray, &ray);
-			vec3_mat3_mul(mat, ray, &ray);
-			w++;
+			ray = set_ray(pixel, mat, miniRT.camera);
+			color = ray_tracing(miniRT, ray, 0, 0);
+			pixel.x++;
 		}
-		h++;
+		pixel.y++;
 	}
 }
 
-t_rgb	ray_tracing(t_miniRT miniRT, t_ray ray, int object, int depth)
+t_ray	reflection_ray(t_object *object, t_ray ray)
 {
-	t_rgb	result;
+	t_vec3	pos;
+	t_vec3	n;
+	t_ray	result;
 
-	if (/*충돌 없음*/)
-	{}
-	else if ()
-	else if (depth < MAX_DEPTH)
-	{}
+	pos = get_pos(object, ray);
+	n = get_normal(object, pos, ray);
+	result.coord = pos;
+	result.orient = vec3_sub(ray.orient, vec3_scalar_mul(2 * vec3_inner_pd(n, r), n));
+	return (result);
+}
+
+t_rgb	ray_tracing(t_miniRT miniRT, t_ray ray, int n, int depth)
+{
+	t_rgb		result;
+	t_object	*object;
+
+	n = is_hitted(miniRT, ray, n);
+	if (!n)
+		return (miniRT.alight.rgb);
+	else
+	{
+		object = get_object(miniRT, n);
+		result = rgb_component_mul(result, object->ambient);
+		result = rgb_component_add(result, shadow_ray(miniRT, ray, object, n));
+		if (depth < MAX_DEPTH)
+			result = rgb_component_add(result,rgb_component_mul(ray_tracing(miniRT, reflection_ray(object, ray), n, depth + 1), object->specular));
+	}
+	return (result);
 }

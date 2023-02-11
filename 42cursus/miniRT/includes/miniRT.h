@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/01/30 18:16:08 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 04:40:40 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_rgb
 
 typedef struct s_ambient
 {
-	double	ratio;
 	t_rgb	rgb;
 }	t_ambient;
 
@@ -55,7 +54,6 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_vec3	coord;
-	double	ratio;
 	t_rgb	rgb;
 }	t_light;
 
@@ -67,21 +65,60 @@ typedef struct s_ray
 
 typedef struct s_object
 {
+	char	type;
 	t_rgb	ambient;
 	t_rgb	diffuse;
-	t_rgb	sepcular;
+	t_rgb	specular;
 	double	shininess;
-	double	opacity;
+	t_vec3	coord;
+	void	*info;
 }	t_object;
+
+typedef struct s_sphere
+{
+	double	radius;
+}    t_sphere;
+
+typedef struct s_plane
+{
+    t_vec3    normal;
+}	t_plane;
 
 typedef struct s_miniRT
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	t_ambient		ambient_light;
+	t_ambient		alight;
 	t_list			*lights;
 	t_list			*objects;
 	t_camera		camera;
 }	t_miniRT;
+
+//raytracing
+int			draw(t_miniRT miniRT);
+t_rgb		ray_tracing(t_miniRT miniRT, t_ray ray, int object, int depth);
+
+//raytracing_util1
+void		set_rot_mat(t_camera c, double mat[3][3]);
+t_ray		set_ray(t_vec3 pixel, double mat[3][3], t_camera c);
+t_object	*get_object(t_miniRT miniRT, int n);
+
+//is_hitted
+int			is_hitted(t_miniRT miniRT, t_ray ray, int n);
+
+//rgb_util1
+t_rgb		rgb_component_add(t_rgb rgb, t_rgb ratio);
+t_rgb		rgb_component_mul(t_rgb rgb, t_rgb ratio);
+t_rgb		rgb_scalar_mul(t_rgb rgb, double ratio);
+
+//position
+t_vec3		get_pos(t_object *object, t_ray ray);
+double		get_k(t_object *object, t_ray ray);
+
+//normal
+t_vec3	get_normal(t_object *object, t_vec3 pos, t_ray ray);
+
+//shadow_ray
+t_rgb		shadow_ray(t_miniRT miniRT, t_ray ray, t_object *object, int n);
 
 #endif
