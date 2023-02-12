@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:18:35 by snoh              #+#    #+#             */
-/*   Updated: 2023/02/12 04:31:17 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 13:35:40 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,26 @@ double	vec3_norm(t_vec3 a)
 	return (sqrt(pow(a.x, 2) + pow(a.y, 2) + pow(a.z, 2)));
 }
 
-double vec3_ang_rad(t_vec3 a, t_vec3 b)
+double	vec3_ang_rad(t_vec3 a, t_vec3 b)
 {
-    double dot_product = vec3_inner_pd(a, b);
-	double norm_product = vec3_norm(a) * vec3_norm(b);
-    return (acos(dot_product / norm_product));
+	double	dot_product;
+	double	norm_product;
+
+	dot_product = vec3_inner_pd(a, b);
+	norm_product = vec3_norm(a) * vec3_norm(b);
+	return (acos(dot_product / norm_product));
 }
 
-double vec3_ang_deg(t_vec3 a, t_vec3 b)
+double	vec3_ang_deg(t_vec3 a, t_vec3 b)
 {
-    double dot_product = vec3_inner_pd(a, b);
-    double norm_product = vec3_norm(a) * vec3_norm(b);
-    double angle_rad = acos(dot_product / norm_product);
-    return (angle_rad * 180.0 / M_PI);
+	double	dot_product;
+	double	norm_product;
+	double	angle_rad;
+
+	dot_product = vec3_inner_pd(a, b);
+	norm_product = vec3_norm(a) * vec3_norm(b);
+	angle_rad = acos(dot_product / norm_product);
+	return (angle_rad * 180.0 / M_PI);
 }
 
 t_vec3	vec3_mat3_mul(double mat[3][3], t_vec3 a)

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:18:35 by snoh              #+#    #+#             */
-/*   Updated: 2023/02/10 04:38:59 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 13:33:31 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 {
-	t_vec3 result;
+	t_vec3	result;
 
 	result.x = a.x - b.x;
 	result.y = a.y - b.y;

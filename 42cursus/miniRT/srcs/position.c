@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   position.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/12 13:31:03 by balee             #+#    #+#             */
+/*   Updated: 2023/02/12 13:31:25 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/miniRT.h"
 
 double	sphere_k(t_object *object, t_ray ray)
@@ -25,8 +37,8 @@ double	plane_k(t_object *object, t_ray ray)
 
 	normal = ((t_plane *)object->info)->normal;
 	k = ((object->coord.x - ray.coord.x) * normal.x
-		+ (object->coord.y - ray.coord.y) * normal.y
-		+ (object->coord.z - ray.coord.z) * normal.z)
+			+ (object->coord.y - ray.coord.y) * normal.y
+			+ (object->coord.z - ray.coord.z) * normal.z)
 		/ (ray.orient.x * normal.x + ray.orient.y * normal.y + ray.orient.z * normal.z);
 	return (k);
 }

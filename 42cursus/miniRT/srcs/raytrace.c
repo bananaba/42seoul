@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:42:59 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 05:05:11 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 13:32:08 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_ray	reflection_ray(t_object *object, t_ray ray)
 	pos = get_pos(object, ray);
 	n = get_normal(object, pos, ray);
 	result.coord = pos;
-	result.orient = vec3_sub(ray.orient, vec3_scalar_mul(2 * vec3_inner_pd(n, r), n));
+	result.orient = vec3_sub(ray.orient, vec3_scalar_mul(2 * vec3_inner_pd(n, ray.orient), n));
 	return (result);
 }
 

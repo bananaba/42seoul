@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 01:38:23 by balee             #+#    #+#             */
-/*   Updated: 2023/02/10 05:54:00 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 13:28:46 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_rot_mat(t_camera c, double mat[3][3])
 
 t_ray	set_ray(t_vec3 pixel, double mat[3][3], t_camera c)
 {
-	t_ray ray;
+	t_ray	ray;
 
 	ray.orient.x = pixel.x - (WIDTH / 2);
 	ray.orient.y = (HEIGHT / 2) - pixel.y;

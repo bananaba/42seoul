@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 04:40:40 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 13:52:24 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include "vector.h"
 # include "../Libft/libft.h"
+# include "../mlx/mlx.h"
 
 # ifndef HEIGHT
 #  define HEIGHT 1080
@@ -31,6 +32,10 @@
 # ifndef MAX_DEPTH
 #  define MAX_DEPTH 10
 # endif
+
+# define KEY_PRESS		2
+# define KEY_ESC		53
+# define DESTROY_NOTIFY	17
 
 typedef struct s_rgb
 {
@@ -77,17 +82,17 @@ typedef struct s_object
 typedef struct s_sphere
 {
 	double	radius;
-}    t_sphere;
+}	t_sphere;
 
 typedef struct s_plane
 {
-    t_vec3    normal;
+	t_vec3	normal;
 }	t_plane;
 
 typedef struct s_miniRT
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void			*mlx;
+	void			*win;
 	t_ambient		alight;
 	t_list			*lights;
 	t_list			*objects;

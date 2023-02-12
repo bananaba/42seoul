@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shadow_ray.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/12 13:33:06 by balee             #+#    #+#             */
+/*   Updated: 2023/02/12 13:33:23 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/miniRT.h"
 
 t_ray	get_ray(t_light *light, t_vec3 pos)
@@ -24,7 +36,7 @@ t_rgb	get_specular(t_light *light, t_object *object, t_vec3 pos, t_ray ray)
 	r.z = light->coord.z - pos.z;
 	r = vec3_normal(r);
 	r = vec3_sub(vec3_scalar_mul(2 * vec3_inner_pd(n, r), n), r);
-	result = rgb_scalar_mul(light->rgb, pow(-vec3_inner_pd(r, ray.orient), object->shininess)); 
+	result = rgb_scalar_mul(light->rgb, pow(-vec3_inner_pd(r, ray.orient), object->shininess));
 	result = rgb_component_mul(result, object->specular);
 	return (result);
 }

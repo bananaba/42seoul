@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_hitted.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/12 13:30:26 by balee             #+#    #+#             */
+/*   Updated: 2023/02/12 13:30:28 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/miniRT.h"
 
 double	sphere_hitted(t_object *object, t_ray ray)
@@ -20,7 +32,7 @@ double	plane_hitted(t_object *object, t_ray ray)
 	double	k;
 
 	if (vec3_inner_pd(ray.orient, ((t_plane *)object->info)->normal) == 0)
-	    return (0);
+		return (0);
 	k = get_k(object, ray);
 	if (k <= 0)
 		return (0);
