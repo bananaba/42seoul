@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:33:06 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 13:33:23 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 20:11:12 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ t_rgb	get_specular(t_light *light, t_object *object, t_vec3 pos, t_ray ray)
 	t_rgb	result;
 	t_vec3	r;
 	t_vec3	n;
+	double	max;
 
 	n = get_normal(object, pos, ray);
-	r.x = light->coord.x - pos.x;
-	r.y = light->coord.y - pos.y;
-	r.z = light->coord.z - pos.z;
+	r = vec3_sub(light->coord, pos);
 	r = vec3_normal(r);
 	r = vec3_sub(vec3_scalar_mul(2 * vec3_inner_pd(n, r), n), r);
-	result = rgb_scalar_mul(light->rgb, pow(-vec3_inner_pd(r, ray.orient), object->shininess));
+	max = -vec3_inner_pd(r, ray.orient);
+	if (max < 0)
+		max = 0;
+	result = rgb_scalar_mul(light->rgb, pow(max, object->shininess));
 	result = rgb_component_mul(result, object->specular);
 	return (result);
 }
@@ -50,12 +52,15 @@ t_rgb	shadow_ray(t_miniRT miniRT, t_ray ray, t_object *object, int n)
 
 	pos = get_pos(object, ray);
 	lights = miniRT.lights;
+	result.r = 0;
+	result.g = 0;
+	result.b = 0;
 	while (lights != NULL)
 	{
 		if (is_hitted(miniRT, get_ray(lights->content, pos), n) == 0)
 		{
 			light = (t_light *)lights->content;
-			result = rgb_component_mul(light->rgb, object->diffuse);
+			result = rgb_component_add(result, rgb_component_mul(light->rgb, object->diffuse));
 			result = rgb_component_add(result, get_specular(light, object, pos, ray));
 		}
 		lights = lights->next;

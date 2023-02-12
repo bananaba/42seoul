@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:30:26 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 13:30:28 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 18:39:22 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ double	sphere_hitted(t_object *object, t_ray ray)
 	double	d;
 	double	k;
 
-	d = vec3_norm(vec3_cross_pd(vec3_sub(object->coord, ray.coord), ray.orient))
-		/ vec3_norm(ray.orient);
+	d = vec3_norm(vec3_cross_pd(vec3_sub(object->coord, ray.coord), ray.orient));
+	if (d < 0)
+		d *= -1;
 	if (((t_sphere *)object->info)->radius < d)
 		return (0);
 	k = get_k(object, ray);
@@ -43,7 +44,7 @@ double	check_hitted(t_object *object, t_ray ray)
 {
 	if (object->type == 'S')
 		return (sphere_hitted(object, ray));
-	else if (object->type == 'P')
+	else
 		return (plane_hitted(object, ray));
 }
 

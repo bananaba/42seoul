@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:31:03 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 13:31:25 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 19:20:17 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ double	sphere_k(t_object *object, t_ray ray)
 		+ ray.orient.z * (ray.coord.z - object->coord.z);
 	c = pow(ray.coord.x - object->coord.x, 2)
 		+ pow(ray.coord.y - object->coord.y, 2)
-		+ pow(ray.coord.z - object->coord.z, 2);
+		+ pow(ray.coord.z - object->coord.z, 2)
+		- pow(((t_sphere *)object->info)->radius, 2);
 	k = (-b - sqrt(pow(b, 2) - a * c)) / a;
 	return (k);
 }
@@ -47,7 +48,7 @@ double	get_k(t_object *object, t_ray ray)
 {
 	if (object->type == 'S')
 		return (sphere_k(object, ray));
-	else if (object->type == 'P')
+	else
 		return (plane_k(object, ray));
 }
 

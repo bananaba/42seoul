@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:30:34 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 13:30:53 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/12 15:35:57 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ t_vec3	get_normal(t_object *object, t_vec3 pos, t_ray ray)
 {
 	if (object->type == 'S')
 		return (sphere_normal(object, pos));
-	else if (object->type == 'P')
+	else
 		return (plane_normal(object, ray));
 }

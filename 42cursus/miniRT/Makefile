@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2023/01/30 16:54:18 by balee            ###   ########.fr        #
+#    Updated: 2023/02/12 15:33:57 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,14 @@ MLX_FLAGS	= -L./mlx -lmlx -framework OpenGL -framework Appkit
 
 SRC = raytrace.c \
 		vector_util1.c \
-		vector_util2.c
+		vector_util2.c \
+		is_hitted.c \
+		main.c \
+		normal.c \
+		position.c \
+		raytracing_util1.c \
+		rgb_util1.c \
+		shadow_ray.c
 
 SRCS = $(addprefix ./srcs/, $(SRC))
 OBJS = $(SRCS:.c=.o)
