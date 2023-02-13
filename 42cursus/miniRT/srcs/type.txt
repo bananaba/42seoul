@@ -1,0 +1,25 @@
+brass				bs
+bronze				bz
+chrome				cr
+copper				co
+gold				gd
+tin					tn
+silver				sv
+emerald				em
+jade				jd
+obsidian			os
+perl				pr
+ruby				rb
+turquoise			tq
+black plastic		bp
+cyan plastic		cp
+green plastic		gp
+red plastic			rp
+white plastic		wp
+yellow plastic		yp
+black rubber		br
+cyan rubber			cr
+green rubber		gr
+red rubber			rr
+white rubber		wr
+yellow rubber		yr

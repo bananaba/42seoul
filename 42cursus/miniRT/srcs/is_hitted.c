@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:30:26 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 18:39:22 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/13 18:00:46 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ double	check_hitted(t_object *object, t_ray ray)
 		return (plane_hitted(object, ray));
 }
 
-int	is_hitted(t_miniRT miniRT, t_ray ray, int n)
+int	is_hitted(t_miniRT minirt, t_ray ray, int n)
 {
 	t_list	*object;
 	int		i;
@@ -56,7 +56,7 @@ int	is_hitted(t_miniRT miniRT, t_ray ray, int n)
 	double	k;
 	double	temp;
 
-	object = miniRT.objects;
+	object = minirt.objects;
 	i = 1;
 	hit = 0;
 	while (object != NULL)

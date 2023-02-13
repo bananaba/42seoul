@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:33:06 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 20:11:12 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/13 18:02:56 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_rgb	get_specular(t_light *light, t_object *object, t_vec3 pos, t_ray ray)
 	return (result);
 }
 
-t_rgb	shadow_ray(t_miniRT miniRT, t_ray ray, t_object *object, int n)
+t_rgb	shadow_ray(t_miniRT minirt, t_ray ray, t_object *object, int n)
 {
 	t_rgb	result;
 	t_vec3	pos;
@@ -51,13 +51,13 @@ t_rgb	shadow_ray(t_miniRT miniRT, t_ray ray, t_object *object, int n)
 	t_light	*light;
 
 	pos = get_pos(object, ray);
-	lights = miniRT.lights;
+	lights = minirt.lights;
 	result.r = 0;
 	result.g = 0;
 	result.b = 0;
 	while (lights != NULL)
 	{
-		if (is_hitted(miniRT, get_ray(lights->content, pos), n) == 0)
+		if (is_hitted(minirt, get_ray(lights->content, pos), n) == 0)
 		{
 			light = (t_light *)lights->content;
 			result = rgb_component_add(result, rgb_component_mul(light->rgb, object->diffuse));

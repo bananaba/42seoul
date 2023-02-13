@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 18:46:47 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/13 22:43:57 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <unistd.h>
 # include <errno.h>
 # include <math.h>
-# include "vector.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include "./vector.h"
 # include "../Libft/libft.h"
 # include "../mlx/mlx.h"
 
@@ -84,6 +86,13 @@ typedef struct s_plane
 	t_vec3	normal;
 }	t_plane;
 
+typedef struct s_cylinder
+{
+	t_vec3	normal;
+	double	radius;
+	double	height;
+}	t_cylinder;
+
 typedef struct s_mlx_hpr_image
 {
 	void	*img;
@@ -97,24 +106,54 @@ typedef struct s_miniRT
 {
 	void			*mlx;
 	void			*win;
+	char			*str;
 	t_img			img;
 	t_rgb			alight;
 	t_list			*lights;
 	t_list			*objects;
 	t_camera		camera;
+	int				checker;
 }	t_miniRT;
 
+//init
+void		init_minirt(t_miniRT *minirt, char *file);
+
+//init_util1
+void		get_ambient_light(t_miniRT *minirt, char **str);
+void		get_camera(t_miniRT *minirt, char **str);
+void		get_light(t_miniRT *minirt, char **str);
+double		get_num(t_miniRT *minirt, char **str);
+void		skip_whitespace(char **str, double *temp);
+
+//init_util2
+void		wrong_input(t_miniRT *minirt);
+void		check_rgb(t_rgb color, t_miniRT *minirt);
+void		check_orient(t_vec3 orient, t_miniRT *minirt);
+
+//init_util3
+void		get_objects(t_miniRT *minirt, char **str);
+t_object	*malloc_obj(t_miniRT *minirt, int type);
+void		malloc_info(t_miniRT *minirt, int type, t_object *obj);
+
+//init_util4
+void		get_sphere(t_miniRT *minirt, char **str);
+void		get_plane(t_miniRT *minirt, char **str);
+void		get_cylinder(t_miniRT *minirt, char **str);
+
+//init_util5
+void		set_color_info(t_object *obj, t_miniRT *minirt, char **str);
+
 //raytracing
-void		draw(t_miniRT miniRT);
-t_rgb		ray_tracing(t_miniRT miniRT, t_ray ray, int object, int depth);
+void		draw(t_miniRT minirt);
+t_rgb		ray_tracing(t_miniRT minirt, t_ray ray, int object, int depth);
 
 //raytracing_util1
 void		set_rot_mat(t_camera c, double mat[3][3]);
 t_ray		set_ray(t_vec3 pixel, double mat[3][3], t_camera c);
-t_object	*get_object(t_miniRT miniRT, int n);
+t_object	*get_object(t_miniRT minirt, int n);
 
 //is_hitted
-int			is_hitted(t_miniRT miniRT, t_ray ray, int n);
+int			is_hitted(t_miniRT minirt, t_ray ray, int n);
 
 //rgb_util1
 t_rgb		rgb_component_add(t_rgb rgb1, t_rgb rgb2);
@@ -129,6 +168,11 @@ double		get_k(t_object *object, t_ray ray);
 t_vec3		get_normal(t_object *object, t_vec3 pos, t_ray ray);
 
 //shadow_ray
-t_rgb		shadow_ray(t_miniRT miniRT, t_ray ray, t_object *object, int n);
+t_rgb		shadow_ray(t_miniRT minirt, t_ray ray, t_object *object, int n);
+
+//exit
+void		free_all(t_miniRT *minirt);
+int			exit_err(void);
+int			destroy_notify(t_miniRT *minirt);
 
 #endif

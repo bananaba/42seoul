@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 01:38:23 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 19:35:36 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/13 18:02:35 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ t_ray	set_ray(t_vec3 pixel, double mat[3][3], t_camera c)
 	return (ray);
 }
 
-t_object	*get_object(t_miniRT miniRT, int n)
+t_object	*get_object(t_miniRT minirt, int n)
 {
 	t_list	*object;
 	int		i;
 
 	i = 1;
-	object = miniRT.objects;
+	object = minirt.objects;
 	while (i++ < n)
 		object = object->next;
 	return (object->content);
