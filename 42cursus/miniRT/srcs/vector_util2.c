@@ -6,11 +6,10 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:18:35 by snoh              #+#    #+#             */
-/*   Updated: 2023/02/12 13:35:40 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/16 19:36:39 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Libft/libft.h"
 #include "../includes/miniRT.h"
 
 t_vec3	vec3_normal(t_vec3 a)

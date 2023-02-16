@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/14 19:20:43 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/16 21:50:17 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,11 @@ t_rgb		rgb_scalar_mul(t_rgb rgb, double ratio);
 //position
 t_vec3		get_pos(t_object *object, t_ray ray);
 double		get_k(t_object *object, t_ray ray);
+double		plane_k(t_vec3 coord, t_vec3 normal, t_ray ray);
+
+//position_util1
+double		get_cylinder_k_base(t_object *obj, t_ray ray);
+double		get_cylinder_k_side(t_object *obj, t_ray ray);
 
 //normal
 t_vec3		get_normal(t_object *object, t_vec3 pos, t_ray ray);

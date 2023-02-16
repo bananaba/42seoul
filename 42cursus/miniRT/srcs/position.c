@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:31:03 by balee             #+#    #+#             */
-/*   Updated: 2023/02/12 19:20:17 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/16 23:03:15 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,49 @@ double	sphere_k(t_object *object, t_ray ray)
 	return (k);
 }
 
-double	plane_k(t_object *object, t_ray ray)
+double	plane_k(t_vec3 coord, t_vec3 normal, t_ray ray)
 {
 	double	k;
-	t_vec3	normal;
 
-	normal = ((t_plane *)object->info)->normal;
-	k = ((object->coord.x - ray.coord.x) * normal.x
-			+ (object->coord.y - ray.coord.y) * normal.y
-			+ (object->coord.z - ray.coord.z) * normal.z)
-		/ (ray.orient.x * normal.x + ray.orient.y * normal.y + ray.orient.z * normal.z);
+	k = ((coord.x - ray.coord.x) * normal.x
+			+ (coord.y - ray.coord.y) * normal.y
+			+ (coord.z - ray.coord.z) * normal.z)
+		/ (ray.orient.x * normal.x + ray.orient.y * normal.y
+			+ ray.orient.z * normal.z);
 	return (k);
+}
+
+double	cylinder_k(t_object *object, t_ray ray)
+{
+	double		k1;
+	double		k2;
+	t_cylinder	*cyl;
+
+	cyl = (t_cylinder *)object->info;
+	if (vec3_inner_pd(ray.orient, cyl->normal) == 1
+		|| vec3_inner_pd(ray.orient, cyl->normal) == -1)
+		return (get_cylinder_k_base(object, ray));
+	else if (vec3_inner_pd(ray.orient, cyl->normal) == 0)
+		return (get_cylinder_k_side(object, ray));
+	else
+	{
+		k1 = get_cylinder_k_base(object, ray);
+		k2 = get_cylinder_k_side(object, ray);
+	}
+	if (k1 > k2 && k2 > 0)
+		return (k2);
+	return (k1);
 }
 
 double	get_k(t_object *object, t_ray ray)
 {
 	if (object->type == 'S')
 		return (sphere_k(object, ray));
-	else
-		return (plane_k(object, ray));
+	else if (object->type == 'P')
+		return (plane_k(object->coord, ((t_plane *)object->info)->normal, ray));
+	else if (object->type == 'C')
+		return (cylinder_k(object, ray));
+	return (0);
 }
 
 t_vec3	get_pos(t_object *object, t_ray ray)

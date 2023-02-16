@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2023/02/14 19:21:34 by balee            ###   ########.fr        #
+#    Updated: 2023/02/16 21:54:50 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = exit.c \
 		is_hitted.c \
 		main.c \
 		normal.c \
+		position_util1.c \
 		position.c \
 		raytrace.c \
 		raytracing_util1.c \
@@ -41,7 +42,8 @@ SRC = exit.c \
 		set_obj4.c \
 		shadow_ray.c \
 		vector_util1.c \
-		vector_util2.c 
+		vector_util2.c \
+		vector_util3.c \
 
 SRCS = $(addprefix ./srcs/, $(SRC))
 OBJS = $(SRCS:.c=.o)

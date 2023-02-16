@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:57:07 by balee             #+#    #+#             */
-/*   Updated: 2023/02/15 00:41:05 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/16 18:49:41 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	read_map(t_miniRT *minirt, int fd)
 		else if (!(c == '\n' || c == ' ' || (c >= 0x9 && c <= 0xd)))
 			get_objects(minirt, fd, c);
 	}
+	close(fd);
 }
 
 void	init_minirt(t_miniRT *minirt, char *file)
