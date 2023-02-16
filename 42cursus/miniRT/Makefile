@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2023/02/13 21:50:24 by balee            ###   ########.fr        #
+#    Updated: 2023/02/14 19:21:34 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,10 @@ SRC = exit.c \
 		raytrace.c \
 		raytracing_util1.c \
 		rgb_util1.c \
+		set_obj1.c \
+		set_obj2.c \
+		set_obj3.c \
+		set_obj4.c \
 		shadow_ray.c \
 		vector_util1.c \
 		vector_util2.c 

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:42:59 by balee             #+#    #+#             */
-/*   Updated: 2023/02/13 19:17:35 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/15 00:41:58 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_rgb	ray_tracing(t_miniRT minirt, t_ray ray, int n, int depth)
 		result = rgb_component_mul(minirt.alight, object->ambient);
 		result = rgb_component_add(result, shadow_ray(minirt, ray, object, n));
 		if (depth < MAX_DEPTH)
-			result = rgb_component_add(result, rgb_component_mul(ray_tracing(minirt, reflection_ray(object, ray), n, depth + 1), rgb_scalar_mul(object->specular, 0.2)));
+			result = rgb_component_add(result, rgb_component_mul(ray_tracing(minirt, reflection_ray(object, ray), n, depth + 1), rgb_scalar_mul(object->specular, 0.5)));
 		if (result.r > 255)
 			result.r = 255;
 		if (result.g > 255)

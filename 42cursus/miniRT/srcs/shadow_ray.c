@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:33:06 by balee             #+#    #+#             */
-/*   Updated: 2023/02/13 18:02:56 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:53:25 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,24 @@ t_ray	get_ray(t_light *light, t_vec3 pos)
 }
 
 t_rgb	get_specular(t_light *light, t_object *object, t_vec3 pos, t_ray ray)
+{
+	t_rgb	result;
+	t_vec3	r;
+	t_vec3	n;
+	double	max;
+
+	n = get_normal(object, pos, ray);
+	r = vec3_sub(light->coord, pos);
+	r = vec3_normal(r);
+	max = vec3_inner_pd(n, r);
+	if (max < 0)
+		max = 0;
+	result = rgb_scalar_mul(light->rgb, max);
+	result = rgb_component_mul(result, object->diffuse);
+	return (result);
+}
+
+t_rgb	get_diffuse(t_light *light, t_object *object, t_vec3 pos, t_ray ray)
 {
 	t_rgb	result;
 	t_vec3	r;
@@ -60,7 +78,7 @@ t_rgb	shadow_ray(t_miniRT minirt, t_ray ray, t_object *object, int n)
 		if (is_hitted(minirt, get_ray(lights->content, pos), n) == 0)
 		{
 			light = (t_light *)lights->content;
-			result = rgb_component_add(result, rgb_component_mul(light->rgb, object->diffuse));
+			result = rgb_component_add(result, get_diffuse(light, object, pos, ray));
 			result = rgb_component_add(result, get_specular(light, object, pos, ray));
 		}
 		lights = lights->next;

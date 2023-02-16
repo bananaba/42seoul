@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/13 22:43:57 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/14 19:20:43 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ typedef struct s_miniRT
 {
 	void			*mlx;
 	void			*win;
-	char			*str;
 	t_img			img;
 	t_rgb			alight;
 	t_list			*lights;
@@ -119,29 +118,29 @@ typedef struct s_miniRT
 void		init_minirt(t_miniRT *minirt, char *file);
 
 //init_util1
-void		get_ambient_light(t_miniRT *minirt, char **str);
-void		get_camera(t_miniRT *minirt, char **str);
-void		get_light(t_miniRT *minirt, char **str);
-double		get_num(t_miniRT *minirt, char **str);
-void		skip_whitespace(char **str, double *temp);
+void		get_ambient_light(t_miniRT *minirt, int fd);
+void		get_camera(t_miniRT *minirt, int fd);
+void		get_light(t_miniRT *minirt, int fd);
+double		get_num(t_miniRT *minirt, int fd);
+char		skip_whitespace(int fd, double *temp);
 
 //init_util2
-void		wrong_input(t_miniRT *minirt);
-void		check_rgb(t_rgb color, t_miniRT *minirt);
-void		check_orient(t_vec3 orient, t_miniRT *minirt);
+void		wrong_input(t_miniRT *minirt, int fd);
+void		check_rgb(t_rgb color, t_miniRT *minirt, int fd);
+void		check_orient(t_vec3 orient, t_miniRT *minirt, int fd);
 
 //init_util3
-void		get_objects(t_miniRT *minirt, char **str);
-t_object	*malloc_obj(t_miniRT *minirt, int type);
-void		malloc_info(t_miniRT *minirt, int type, t_object *obj);
+void		get_objects(t_miniRT *minirt, int fd, char c1);
+t_object	*malloc_obj(t_miniRT *minirt, int type, int fd);
+void		malloc_info(t_miniRT *minirt, int type, t_object *obj, int fd);
 
 //init_util4
-void		get_sphere(t_miniRT *minirt, char **str);
-void		get_plane(t_miniRT *minirt, char **str);
-void		get_cylinder(t_miniRT *minirt, char **str);
+void		get_sphere(t_miniRT *minirt, int fd);
+void		get_plane(t_miniRT *minirt, int fd);
+void		get_cylinder(t_miniRT *minirt, int fd);
 
 //init_util5
-void		set_color_info(t_object *obj, t_miniRT *minirt, char **str);
+void		set_color_info(t_object *obj, t_miniRT *minirt, int fd);
 
 //raytracing
 void		draw(t_miniRT minirt);
@@ -174,5 +173,25 @@ t_rgb		shadow_ray(t_miniRT minirt, t_ray ray, t_object *object, int n);
 void		free_all(t_miniRT *minirt);
 int			exit_err(void);
 int			destroy_notify(t_miniRT *minirt);
+
+void		set_brass_color(t_object *obj);
+void		set_bronze_color(t_object *obj);
+void		set_chrome_color(t_object *obj);
+void		set_copper_color(t_object *obj);
+void		set_gold_color(t_object *obj);
+void		set_tin_color(t_object *obj);
+void		set_silver_color(t_object *obj);
+void		set_emerald_color(t_object *obj);
+void		set_jade_color(t_object *obj);
+void		set_obsidian_color(t_object *obj);
+void		set_perl_color(t_object *obj);
+void		set_ruby_color(t_object *obj);
+void		set_turquoise_color(t_object *obj);
+void		set_black_plastic_color(t_object *obj);
+void		set_cyan_plastic_color(t_object *obj);
+void		set_green_plastic_color(t_object *obj);
+void		set_red_plastic_color(t_object *obj);
+void		set_white_plastic_color(t_object *obj);
+void		set_yellow_plastic_color(t_object *obj);
 
 #endif
