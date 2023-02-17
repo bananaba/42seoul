@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:25:19 by balee             #+#    #+#             */
-/*   Updated: 2023/02/14 18:47:57 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:08:59 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	malloc_info(t_miniRT *minirt, int type, t_object *obj, int fd)
 	else if (type == 2)
 		obj->info = (t_cylinder *)malloc(sizeof(t_cylinder));
 	else
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Wrong type object!");
 }
 
 t_object	*malloc_obj(t_miniRT *minirt, int type, int fd)
@@ -31,7 +31,7 @@ t_object	*malloc_obj(t_miniRT *minirt, int type, int fd)
 
 	object = (t_list *)malloc(sizeof(t_list));
 	if (object == NULL)
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Memory allocation fail!");
 	if (minirt->objects == NULL)
 		minirt->objects = object;
 	else
@@ -39,7 +39,7 @@ t_object	*malloc_obj(t_miniRT *minirt, int type, int fd)
 	object->next = NULL;
 	object->content = (t_object *)malloc(sizeof(t_object));
 	if (object->content == NULL)
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Memory allocation fail!");
 	obj = (t_object *)object->content;
 	malloc_info(minirt, type, obj, fd);
 	return (obj);
@@ -54,8 +54,8 @@ void	get_objects(t_miniRT *minirt, int fd, char c1)
 		get_sphere(minirt, fd);
 	else if (c1 == 'p' && c2 == 'l')
 		get_plane(minirt, fd);
-	else if (c1 == 'c' && c2 =='y')
+	else if (c1 == 'c' && c2 == 'y')
 		get_cylinder(minirt, fd);
 	else
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Undefined type object!");
 }

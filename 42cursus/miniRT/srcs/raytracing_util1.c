@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 01:38:23 by balee             #+#    #+#             */
-/*   Updated: 2023/02/13 18:02:35 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 16:08:17 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,27 @@ t_object	*get_object(t_miniRT minirt, int n)
 	while (i++ < n)
 		object = object->next;
 	return (object->content);
+}
+
+t_rgb	render_pixel(t_vec3 pixel, double mat[3][3], t_miniRT minirt)
+{
+	t_ray	ray;
+	t_rgb	color;
+	int		i;
+
+	color = (t_rgb){0, 0, 0};
+	i = -1;
+	while (++i < 9)
+	{
+		ray.orient.x = (WIDTH / 2) - pixel.x + (0.33 - 0.33 * (i / 3));
+		ray.orient.y = (HEIGHT / 2) - pixel.y + (0.33 - 0.33 * (i % 3));
+		ray.orient.z = pixel.z;
+		ray.orient = vec3_mat3_mul(mat, vec3_normal(ray.orient));
+		ray.coord.x = minirt.camera.coord.x;
+		ray.coord.y = minirt.camera.coord.y;
+		ray.coord.z = minirt.camera.coord.z;
+		color = rgb_component_add(color,
+				rgb_scalar_mul(ray_tracing(minirt, ray, 0, 0), 1.0 / 9.0));
+	}
+	return (color);
 }

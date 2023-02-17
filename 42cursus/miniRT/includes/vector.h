@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:55:35 by balee             #+#    #+#             */
-/*   Updated: 2023/02/16 19:40:49 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 13:44:18 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ t_vec3	vec3_scalar_mul(double scalar, t_vec3 a);
 t_vec3	vec3_normal(t_vec3 a);
 double	vec3_norm(t_vec3 a);
 double	vec3_ang_rad(t_vec3 a, t_vec3 b);
-double	vec3_ang_deg(t_vec3 a, t_vec3 b);
 t_vec3	vec3_mat3_mul(double mat[3][3], t_vec3 a);
-
-//vector_util3
 t_vec3	vec3_proj(t_vec3 a, t_vec3 b);
 
 #endif

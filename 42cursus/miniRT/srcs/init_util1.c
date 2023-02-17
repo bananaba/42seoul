@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:15:37 by balee             #+#    #+#             */
-/*   Updated: 2023/02/14 18:47:03 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:08:33 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ double	get_num(t_miniRT *minirt, int fd)
 	c = skip_whitespace(fd, &temp);
 	n = 0;
 	if (c < '0' || c > '9')
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Wrong char in map file!");
 	while ((c >= '0' && c <= '9') || c == '.')
 	{
 		if (temp != 1 && temp != -1)
@@ -45,7 +45,7 @@ double	get_num(t_miniRT *minirt, int fd)
 		if (c != '.')
 			n = n * 10 + c - '0';
 		else if (temp != 1 && temp != -1)
-			wrong_input(minirt, fd);
+			wrong_input(minirt, fd, "Double dot in map file!");
 		else
 			temp /= 10;
 		read(fd, &c, 1);
@@ -60,7 +60,7 @@ void	get_ambient_light(t_miniRT *minirt, int fd)
 	double	ratio;
 
 	if (minirt->checker & 0x1)
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "More than one ambient light!");
 	ratio = get_num(minirt, fd);
 	minirt->alight.r = get_num(minirt, fd);
 	minirt->alight.g = get_num(minirt, fd);
@@ -73,7 +73,7 @@ void	get_ambient_light(t_miniRT *minirt, int fd)
 void	get_camera(t_miniRT *minirt, int fd)
 {
 	if (minirt->checker & (0x1 << 1))
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "More than one camera!");
 	minirt->camera.coord.x = get_num(minirt, fd);
 	minirt->camera.coord.y = get_num(minirt, fd);
 	minirt->camera.coord.z = get_num(minirt, fd);
@@ -83,6 +83,8 @@ void	get_camera(t_miniRT *minirt, int fd)
 	check_orient(minirt->camera.orient, minirt, fd);
 	minirt->camera.orient = vec3_normal(minirt->camera.orient);
 	minirt->camera.fov = get_num(minirt, fd);
+	if (minirt->camera.fov >= 180 || minirt->camera.fov <= 0)
+		wrong_input(minirt, fd, "Out of camera fov range!");
 	minirt->checker |= (0x1 << 1);
 }
 
@@ -93,7 +95,7 @@ void	get_light(t_miniRT *minirt, int fd)
 
 	light = (t_list *)malloc(sizeof(t_list));
 	if (light == NULL)
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Memory allocation fail!");
 	if (minirt->lights == NULL)
 		minirt->lights = light;
 	else
@@ -101,7 +103,7 @@ void	get_light(t_miniRT *minirt, int fd)
 	light->next = NULL;
 	light->content = (t_light *)malloc(sizeof(t_light));
 	if (light->content == NULL)
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Memory allocation fail!");
 	((t_light *)light->content)->coord.x = get_num(minirt, fd);
 	((t_light *)light->content)->coord.y = get_num(minirt, fd);
 	((t_light *)light->content)->coord.z = get_num(minirt, fd);

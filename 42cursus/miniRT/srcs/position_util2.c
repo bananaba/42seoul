@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_util3.c                                     :+:      :+:    :+:   */
+/*   position_util2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: snoh <snoh@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 19:37:14 by balee             #+#    #+#             */
-/*   Updated: 2023/02/16 19:40:25 by balee            ###   ########.fr       */
+/*   Created: 2023/02/16 20:08:13 by balee             #+#    #+#             */
+/*   Updated: 2023/02/17 07:36:15 by snoh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
+#include "../includes/vector.h"
 
-t_vec3	vec3_proj(t_vec3 a, t_vec3 b)
+t_vec3	ray2point(double length, t_ray ray)
 {
-	t_vec3	result;
-	double	k;
-
-	k = vec3_inner_pd(a, b) / pow(vec3_norm(a), 2);
-	result = vec3_scalar_mul(k, a);
-	return result;
+	return (vec3_add(ray.coord, vec3_scalar_mul(length, ray.orient)));
 }

@@ -6,15 +6,22 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:00:10 by balee             #+#    #+#             */
-/*   Updated: 2023/02/13 18:51:26 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 16:53:56 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	exit_err(void)
+int	exit_err(char *str)
 {
-	perror("Error");
+	if (str == NULL)
+		perror("Error");
+	else
+	{
+		write(2, "Error: ", 7);
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
+	}
 	exit(1);
 }
 

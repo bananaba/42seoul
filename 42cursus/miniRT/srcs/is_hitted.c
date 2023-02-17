@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:30:26 by balee             #+#    #+#             */
-/*   Updated: 2023/02/16 23:01:19 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 15:59:44 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ double	sphere_hitted(t_object *object, t_ray ray)
 	double	d;
 	double	k;
 
-	d = vec3_norm(vec3_cross_pd(vec3_sub(object->coord, ray.coord), ray.orient));
+	d = vec3_norm(vec3_cross_pd(vec3_sub(object->coord, ray.coord),
+				ray.orient));
 	if (d < 0)
 		d *= -1;
 	if (((t_sphere *)object->info)->radius < d)
@@ -42,16 +43,17 @@ double	plane_hitted(t_object *object, t_ray ray)
 
 double	cylinder_hitted(t_object *object, t_ray ray)
 {
-	double	d;
-	double	k;
-	t_vec3	n;
+	double		k;
+	double		d;
+	t_vec3		coc;
+	t_cylinder	cyl;
 
-	n = ((t_cylinder *)object->info)->normal;
-	if (vec3_inner_pd(ray.orient, n) == 1 || vec3_inner_pd(ray.orient, n) == -1)
-		d = vec3_norm(vec3_cross_pd(vec3_sub(object->coord, ray.coord), ray.orient));
-	else
-		d = vec3_norm(vec3_proj(vec3_cross_pd(ray.orient, n), vec3_sub(object->coord, ray.coord)));
-	if (((t_cylinder *)object->info)->radius < d)
+	cyl = *(t_cylinder *)object->info;
+	coc = ray2point(cyl.height / 2.0,
+			(t_ray){object->coord, cyl.normal});
+	d = vec3_norm(vec3_cross_pd(vec3_sub(coc, ray.coord),
+				ray.orient));
+	if (1.1 * (sqrt(pow(cyl.height / 2.0, 2.0) + pow(cyl.radius, 2.0))) < d)
 		return (0);
 	k = get_k(object, ray);
 	if (k <= 0)

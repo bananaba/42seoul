@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:18:35 by snoh              #+#    #+#             */
-/*   Updated: 2023/02/16 19:36:39 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 13:43:46 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,6 @@ double	vec3_ang_rad(t_vec3 a, t_vec3 b)
 	return (acos(dot_product / norm_product));
 }
 
-double	vec3_ang_deg(t_vec3 a, t_vec3 b)
-{
-	double	dot_product;
-	double	norm_product;
-	double	angle_rad;
-
-	dot_product = vec3_inner_pd(a, b);
-	norm_product = vec3_norm(a) * vec3_norm(b);
-	angle_rad = acos(dot_product / norm_product);
-	return (angle_rad * 180.0 / M_PI);
-}
-
 t_vec3	vec3_mat3_mul(double mat[3][3], t_vec3 a)
 {
 	t_vec3	result;
@@ -58,5 +46,15 @@ t_vec3	vec3_mat3_mul(double mat[3][3], t_vec3 a)
 	result.x = a.x * mat[0][0] + a.y * mat[1][0] + a.z * mat[2][0];
 	result.y = a.x * mat[0][1] + a.y * mat[1][1] + a.z * mat[2][1];
 	result.z = a.x * mat[0][2] + a.y * mat[1][2] + a.z * mat[2][2];
+	return (result);
+}
+
+t_vec3	vec3_proj(t_vec3 a, t_vec3 b)
+{
+	t_vec3	result;
+	double	k;
+
+	k = vec3_inner_pd(a, b) / pow(vec3_norm(a), 2.0);
+	result = vec3_scalar_mul(k, a);
 	return (result);
 }

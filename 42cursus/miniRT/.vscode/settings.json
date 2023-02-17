@@ -4,6 +4,11 @@
 		"cdefs.h": "c",
 		"_errno_t.h": "c",
 		"stdio.h": "c",
-		"minirt.h": "c"
-	}
+		"minirt.h": "c",
+		"algorithm": "c",
+		"chrono": "c",
+		"limits": "c",
+		"ratio": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:31:03 by balee             #+#    #+#             */
-/*   Updated: 2023/02/16 23:03:15 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 13:42:57 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,19 @@ double	plane_k(t_vec3 coord, t_vec3 normal, t_ray ray)
 
 double	cylinder_k(t_object *object, t_ray ray)
 {
-	double		k1;
-	double		k2;
+	double		a[2];
 	t_cylinder	*cyl;
 
 	cyl = (t_cylinder *)object->info;
-	if (vec3_inner_pd(ray.orient, cyl->normal) == 1
-		|| vec3_inner_pd(ray.orient, cyl->normal) == -1)
-		return (get_cylinder_k_base(object, ray));
-	else if (vec3_inner_pd(ray.orient, cyl->normal) == 0)
-		return (get_cylinder_k_side(object, ray));
-	else
-	{
-		k1 = get_cylinder_k_base(object, ray);
-		k2 = get_cylinder_k_side(object, ray);
-	}
-	if (k1 > k2 && k2 > 0)
-		return (k2);
-	return (k1);
+	a[0] = get_cylinder_k_base(object, ray);
+	a[1] = get_cylinder_k_side(object, ray);
+	if (a[0] <= 0)
+		a[0] = DBL_MAX;
+	if (a[1] <= 0)
+		a[1] = DBL_MAX;
+	if (double_min(a[0], a[1]) == DBL_MAX)
+		return (0);
+	return (double_min(a[0], a[1]));
 }
 
 double	get_k(t_object *object, t_ray ray)

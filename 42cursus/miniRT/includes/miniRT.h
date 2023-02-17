@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/16 21:50:17 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:02:34 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <float.h>
 # include "./vector.h"
 # include "../Libft/libft.h"
 # include "../mlx/mlx.h"
 
 # ifndef HEIGHT
-#  define HEIGHT 1080
+#  define HEIGHT 720
 # endif
 
 # ifndef WIDTH
-#  define WIDTH 1920
+#  define WIDTH 1280
 # endif
 
 # ifndef MAX_DEPTH
@@ -125,7 +126,7 @@ double		get_num(t_miniRT *minirt, int fd);
 char		skip_whitespace(int fd, double *temp);
 
 //init_util2
-void		wrong_input(t_miniRT *minirt, int fd);
+void		wrong_input(t_miniRT *minirt, int fd, char *str);
 void		check_rgb(t_rgb color, t_miniRT *minirt, int fd);
 void		check_orient(t_vec3 orient, t_miniRT *minirt, int fd);
 
@@ -153,6 +154,7 @@ t_object	*get_object(t_miniRT minirt, int n);
 
 //is_hitted
 int			is_hitted(t_miniRT minirt, t_ray ray, int n);
+double		check_hitted(t_object *object, t_ray ray);
 
 //rgb_util1
 t_rgb		rgb_component_add(t_rgb rgb1, t_rgb rgb2);
@@ -176,7 +178,7 @@ t_rgb		shadow_ray(t_miniRT minirt, t_ray ray, t_object *object, int n);
 
 //exit
 void		free_all(t_miniRT *minirt);
-int			exit_err(void);
+int			exit_err(char *str);
 int			destroy_notify(t_miniRT *minirt);
 
 void		set_brass_color(t_object *obj);
@@ -199,4 +201,12 @@ void		set_red_plastic_color(t_object *obj);
 void		set_white_plastic_color(t_object *obj);
 void		set_yellow_plastic_color(t_object *obj);
 
+double		double_min(double a, double b);
+double		double_max(double a, double b);
+int			int_min(int a, int b);
+int			int_max(int a, int b);
+double		double_window(double min, double max, double x);
+int			int_window(int min, int max, int x);
+t_vec3		ray2point(double length, t_ray ray);
+t_rgb		render_pixel(t_vec3 pixel, double mat[3][3], t_miniRT minirt);
 #endif

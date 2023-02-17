@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:11:01 by balee             #+#    #+#             */
-/*   Updated: 2023/02/14 19:57:58 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:09:09 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_rgb	set_rgb_color(t_miniRT *minirt, int fd, double temp, char c)
 		if (c != '.')
 			rgb.r = rgb.r * 10 + c - '0';
 		else if (temp != 1 && temp != -1)
-			wrong_input(minirt, fd);
+			wrong_input(minirt, fd, "Double dot in map file!");
 		else
 			temp /= 10;
 		read(fd, &c, 1);
@@ -89,7 +89,7 @@ void	set_object_color1(t_object *obj, t_miniRT *minirt, int fd, char c1)
 	else if (c1 == 'o' && c2 == 's')
 		set_obsidian_color(obj);
 	else if (set_object_color2(obj, c1, c2))
-		wrong_input(minirt, fd);
+		wrong_input(minirt, fd, "Undefined material!");
 }
 
 void	set_color_info(t_object *obj, t_miniRT *minirt, int fd)
@@ -106,5 +106,5 @@ void	set_color_info(t_object *obj, t_miniRT *minirt, int fd)
 		obj->shininess = 20;
 	}
 	else
-	 	set_object_color1(obj, minirt, fd, c);
+		set_object_color1(obj, minirt, fd, c);
 }
