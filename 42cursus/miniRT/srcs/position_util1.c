@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:08:13 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 16:05:31 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 21:40:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,30 @@
 
 double	get_cylinder_k_base(t_object *obj, t_ray ray)
 {
+	double		k1;
+	double		k2;
+	t_vec3		coord;
 	t_cylinder	cyl;
-	double		a[2];
-	t_vec3		p;
 
 	cyl = *(t_cylinder *)obj->info;
-	p = obj->coord;
-	a[0] = plane_k(p, cyl.normal, ray);
-	if (cyl.radius < vec3_norm(vec3_sub(p, \
-		vec3_add(ray.coord, vec3_scalar_mul(a[0], ray.orient)))))
-		a[0] = DBL_MAX;
-	p = vec3_add(obj->coord, vec3_scalar_mul(cyl.height, cyl.normal));
-	a[1] = plane_k(p, cyl.normal, ray);
-	if (cyl.radius < vec3_norm(vec3_sub(p, \
-	vec3_add(ray.coord, vec3_scalar_mul(a[0], ray.orient)))))
-		a[1] = DBL_MAX;
-	a[0] = double_min(a[0], a[1]);
-	if (a[0] == DBL_MAX)
+	if (vec3_inner_pd(cyl.normal, ray.orient) == 0)
 		return (0);
+	k1 = plane_k(obj->coord, cyl.normal, ray);
+	coord = vec3_add(obj->coord, vec3_scalar_mul(cyl.height, cyl.normal));
+	k2 = plane_k(coord, cyl.normal, ray);
+	if (k1 > k2)
+		k1 = 0;
 	else
-		return (a[0]);
+		k2 = 0;
+	if (vec3_norm(vec3_sub(vec3_add(ray.coord,
+					vec3_scalar_mul(k1, ray.orient)), obj->coord)) > cyl.radius)
+		k1 = 0;
+	if (vec3_norm(vec3_sub(vec3_add(ray.coord,
+					vec3_scalar_mul(k2, ray.orient)), coord)) > cyl.radius)
+		k2 = 0;
+	if (k2 > 0)
+		return (k2);
+	return (k1);
 }
 
 int	check_out_of_cylinder(t_object *obj, t_ray ray, double k)
