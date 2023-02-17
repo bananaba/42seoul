@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:42:59 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 16:01:27 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:51:29 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	draw(t_miniRT minirt)
 			pixel.x++;
 		}
 		pixel.y++;
+		if (((int) pixel.y) % (HEIGHT / 50) == 0)
+			write(1, "#", 1);
 	}
+	write(1, "\nFinish!!\n\033[0m", ft_strlen("\nFinish!!\n\033[0m"));
 }
 
 t_ray	reflection_ray(t_object *object, t_ray ray)

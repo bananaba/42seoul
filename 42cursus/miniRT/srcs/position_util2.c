@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   position_util2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snoh <snoh@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:08:13 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 07:36:15 by snoh             ###   ########.fr       */
+/*   Updated: 2023/02/17 17:24:24 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
-#include "../includes/vector.h"
 
 t_vec3	ray2point(double length, t_ray ray)
 {

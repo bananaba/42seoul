@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:00:10 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 16:53:56 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:50:07 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	exit_err(char *str)
 {
 	if (str == NULL)
-		perror("Error");
+		perror("\033[0;31mError\033[0m");
 	else
 	{
-		write(2, "Error: ", 7);
+		write(2, "\033[0;31mError: ", 14);
 		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
+		write(2, "\n\033[0m", ft_strlen("\n\033[0m"));
 	}
 	exit(1);
 }

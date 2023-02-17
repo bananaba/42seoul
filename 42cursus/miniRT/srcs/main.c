@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:36:08 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 17:14:03 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:50:28 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		exit_err(NULL);
 	init_minirt(&minirt, argv[1]);
+	printf("\033[0;32m0%%                                             100%%\n");
+	printf("---------------------------------------------------\n");
 	draw(minirt);
 	mlx_put_image_to_window(minirt.mlx, minirt.win, minirt.img.img, 0, 0);
 	mlx_hook(minirt.win, DESTROY_NOTIFY, 0, &destroy_notify, &minirt);
