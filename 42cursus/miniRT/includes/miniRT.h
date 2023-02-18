@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 13:05:36 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 17:25:14 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/18 21:02:33 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void		get_ambient_light(t_miniRT *minirt, int fd);
 void		get_camera(t_miniRT *minirt, int fd);
 void		get_light(t_miniRT *minirt, int fd);
 double		get_num(t_miniRT *minirt, int fd);
-char		skip_whitespace(int fd, double *temp);
+char		skip_whitespace(t_miniRT *minirt, int fd, double *temp);
 
 //init_util2
 void		wrong_input(t_miniRT *minirt, int fd, char *str);
@@ -209,4 +209,7 @@ double		double_window(double min, double max, double x);
 int			int_window(int min, int max, int x);
 t_vec3		ray2point(double length, t_ray ray);
 t_rgb		render_pixel(t_vec3 pixel, double mat[3][3], t_miniRT minirt);
+
+void		check_camera_pos(t_miniRT *minirt, t_camera camera, t_list *objs);
+
 #endif

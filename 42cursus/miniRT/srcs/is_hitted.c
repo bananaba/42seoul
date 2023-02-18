@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 13:30:26 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 21:40:49 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/18 23:48:19 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ int	is_hitted(t_miniRT minirt, t_ray ray, int n)
 		if (i != n)
 		{
 			temp = check_hitted(object->content, ray);
-			if (temp != 0 && (hit == 0 || k > temp))
+			if (temp != 0 && (hit == 0 || (k - temp > -0.000000000001
+						&& temp > 0.000000000001)))
 			{
 				hit = i;
 				k = temp;

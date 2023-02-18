@@ -6,7 +6,7 @@
 #    By: balee <balee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 13:06:34 by balee             #+#    #+#              #
-#    Updated: 2023/02/17 13:43:53 by balee            ###   ########.fr        #
+#    Updated: 2023/02/18 02:35:52 by balee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIB			= ./Libft
 LIB_FLAGS	= -L$(LIB) -lft
 MLX_FLAGS	= -L./mlx -lmlx -framework OpenGL -framework Appkit
 
-SRC = exit.c \
+SRC = camera_pos.c \
+		exit.c \
 		init_util1.c \
 		init_util2.c \
 		init_util3.c \
@@ -46,6 +47,7 @@ SRC = exit.c \
 		shadow_ray.c \
 		vector_util1.c \
 		vector_util2.c \
+		vector_util3.c
 
 SRCS = $(addprefix ./srcs/, $(SRC))
 OBJS = $(SRCS:.c=.o)

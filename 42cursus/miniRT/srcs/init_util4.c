@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:54:32 by balee             #+#    #+#             */
-/*   Updated: 2023/02/14 19:28:11 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/18 22:50:01 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	get_sphere(t_miniRT *minirt, int fd)
 	obj->coord.y = get_num(minirt, fd);
 	obj->coord.z = get_num(minirt, fd);
 	((t_sphere *)obj->info)->radius = get_num(minirt, fd) / 2;
+	if (((t_sphere *)obj->info)->radius < 0)
+		wrong_input(minirt, fd, "Minus diameter of sphere!");
 	set_color_info(obj, minirt, fd);
 }
 
@@ -59,6 +61,10 @@ void	get_cylinder(t_miniRT *minirt, int fd)
 	((t_cylinder *)obj->info)->normal
 		= vec3_normal(((t_cylinder *)obj->info)->normal);
 	((t_cylinder *)obj->info)->radius = get_num(minirt, fd) / 2;
+	if (((t_cylinder *)obj->info)->radius < 0)
+		wrong_input(minirt, fd, "Minus diameter of cylinder!");
 	((t_cylinder *)obj->info)->height = get_num(minirt, fd);
+	if (((t_cylinder *)obj->info)->height < 0)
+		wrong_input(minirt, fd, "Minus height of cylinder!");
 	set_color_info(obj, minirt, fd);
 }

@@ -6,17 +6,18 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:15:37 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 17:08:33 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/18 20:51:10 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-char	skip_whitespace(int fd, double *temp)
+char	skip_whitespace(t_miniRT *minirt, int fd, double *temp)
 {
 	char	c;
 
-	read(fd, &c, 1);
+	if (!read(fd, &c, 1))
+		wrong_input(minirt, fd, "Wrong map file!");
 	*temp = 1;
 	while (c == ' ' || (c >= 0x9 && c <= 0xd))
 		read(fd, &c, 1);
@@ -34,7 +35,7 @@ double	get_num(t_miniRT *minirt, int fd)
 	double	temp;
 	char	c;
 
-	c = skip_whitespace(fd, &temp);
+	c = skip_whitespace(minirt, fd, &temp);
 	n = 0;
 	if (c < '0' || c > '9')
 		wrong_input(minirt, fd, "Wrong char in map file!");
@@ -48,7 +49,8 @@ double	get_num(t_miniRT *minirt, int fd)
 			wrong_input(minirt, fd, "Double dot in map file!");
 		else
 			temp /= 10;
-		read(fd, &c, 1);
+		if (!read(fd, &c, 1))
+			break ;
 	}
 	if (temp != 1 && temp != -1)
 		temp *= 10;

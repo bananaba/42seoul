@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:57:07 by balee             #+#    #+#             */
-/*   Updated: 2023/02/17 17:08:01 by balee            ###   ########.fr       */
+/*   Updated: 2023/02/18 21:02:23 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	init_minirt(t_miniRT *minirt, char *file)
 		exit_err("Map file open fail!");
 	read_map(minirt, fd);
 	if (!(minirt->checker & 0x11))
-		exit_err("No ambient light or no camera!");
+		wrong_input(minirt, fd, "No ambient light or no camera!");
+	check_camera_pos(minirt, minirt->camera, minirt->objects);
 	img = &minirt->img;
 	minirt->mlx = mlx_init();
 	img->img = mlx_new_image(minirt->mlx, WIDTH, HEIGHT);
