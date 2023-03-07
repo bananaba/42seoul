@@ -157,13 +157,11 @@ int	exec_cmd(t_list *lst, char **env)
 	else
 	{
 		if (lst->prev && lst->prev->type == 1)
-		{
 			close(lst->prev->pipe[0]);
-			close(lst->prev->pipe[1]);
-		}
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			ret = WEXITSTATUS(status);
+		close(lst->pipe[1]);
 	}
 	return (ret);
 }
