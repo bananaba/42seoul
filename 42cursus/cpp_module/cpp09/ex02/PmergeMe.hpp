@@ -9,7 +9,6 @@
 # include <iterator>
 # include <iomanip>
 # include <ctime>
-# include <sys/time.h>
 
 # define THRESHOLD_MAX 10
 

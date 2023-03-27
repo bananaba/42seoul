@@ -24,12 +24,12 @@ int	reversePolishNotation(std::string str)
 			num[1] = st.top();
 			st.pop();
 			if (st.empty())
+				num[0] = 0;
+			else
 			{
-				std::cout << "Error: wrong formula" << std::endl;
-				return (1);
+				num[0] = st.top();
+				st.pop();
 			}
-			num[0] = st.top();
-			st.pop();
 			if (str[i] == '+')
 				st.push(num[0] + num[1]);
 			else if (str[i] == '-')
