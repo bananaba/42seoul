@@ -6,7 +6,7 @@
 /*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:11:08 by balee             #+#    #+#             */
-/*   Updated: 2023/03/27 15:11:09 by balee            ###   ########.fr       */
+/*   Updated: 2023/03/28 17:28:21 by balee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	reversePolishNotation(std::string str)
 	double				result;
 
 	i = 0;
+	while (isspace(str[i]))
+		i++;
 	while (str[i] != 0)
 	{
-		while (isspace(str[i]))
-			i++;
 		if (isdigit(str[i]) != false)
-			st.push(str[i++] - '0');
+			st.push(str[i] - '0');
 		else if (str[i] == '+' || str[i] == '-' || str[i] == '/' || str[i] == '*')
 		{
 			if (st.empty())
@@ -36,12 +36,12 @@ int	reversePolishNotation(std::string str)
 			num[1] = st.top();
 			st.pop();
 			if (st.empty())
-				num[0] = 0;
-			else
 			{
-				num[0] = st.top();
-				st.pop();
+				std::cout << "Error: wrong formula" << std::endl;
+				return (1);
 			}
+			num[0] = st.top();
+			st.pop();
 			if (str[i] == '+')
 				st.push(num[0] + num[1]);
 			else if (str[i] == '-')
@@ -65,6 +65,8 @@ int	reversePolishNotation(std::string str)
 			return (1);
 		}
 		i++;
+		while (isspace(str[i]))
+			i++;
 	}
 	result = st.top();
 	st.pop();
