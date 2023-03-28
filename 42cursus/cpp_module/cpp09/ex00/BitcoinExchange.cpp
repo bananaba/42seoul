@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 15:10:40 by balee             #+#    #+#             */
+/*   Updated: 2023/03/28 16:48:28 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
 
 int	printErr(std::string str)
@@ -12,6 +24,13 @@ int	printErr(std::string str1, std::string str2)
 	return (1);
 }
 
+t_ymd	wrongDate(void)
+{
+	t_ymd	date = {0, 0, 0};
+
+	return (date);
+}
+
 t_ymd	checkDate(std::string ymd)
 {
 	t_ymd	date = {0, 0, 0};
@@ -24,16 +43,16 @@ t_ymd	checkDate(std::string ymd)
 		if (ymd[i] == '-')
 		{
 			if (i == 0)
-				return ((t_ymd){0, 0, 0});
+				return (wrongDate());
 			else if (pos[0] == 0)
 				pos[0] = i;
 			else if (pos[1] == 0)
 				pos[1] = i;
 			else
-				return ((t_ymd){0, 0, 0});
+				return (wrongDate());
 		}
 		else if (isdigit(ymd[i]) == false)
-			return ((t_ymd){0, 0, 0});
+			return (wrongDate());
 		else
 		{
 			if (pos[0] == 0)
@@ -45,28 +64,28 @@ t_ymd	checkDate(std::string ymd)
 		}
 	}
 	if (date.month > 12 || date.month < 1 || date.day > 31 || date.day < 1)
-		return ((t_ymd){0, 0, 0});
+		return (wrongDate());
 	else if (date.month == 2)
 	{
 		if (date.year % 400 == 0)
 		{
 			if (date.day > 29)
-				return ((t_ymd){0, 0, 0});
+				return (wrongDate());
 		}
 		else if (date.year % 4 == 0 && date.year % 100 != 0)
 		{
 			if (date.day > 29)
-				return ((t_ymd){0, 0, 0});
+				return (wrongDate());
 		}
 		else if (date.day > 28)
-			return ((t_ymd){0, 0, 0});
+			return (wrongDate());
 	}
 	else if (((date.month <= 7 && date.month % 2 == 1)
 		|| (date.month > 7 && date.month % 2 == 0)) && date.day > 31)
-		return ((t_ymd){0, 0, 0});
+		return (wrongDate());
 	else if (((date.month <= 7 && date.month % 2 == 0)
 		|| (date.month > 7 && date.month % 2 == 1)) && date.day > 30)
-		return ((t_ymd){0, 0, 0});
+		return (wrongDate());
 	return (date);
 }
 
@@ -119,10 +138,10 @@ void	printValue(t_ymd date, double value, std::string str, t_map &db)
 void	parseInput(std::ifstream &ifs, t_map &db)
 {
 	std::string				content;
-	std::string::size_type	sz;
 	std::size_t				pos;
 	t_ymd					date;
 	double					value;
+	char					*stop;
 
 	while (std::getline(ifs >> std::ws, content))
 	{
@@ -135,13 +154,13 @@ void	parseInput(std::ifstream &ifs, t_map &db)
 			continue ;
 		}
 		date = checkDate(content.substr(0, pos));
-		if (date.year == 0 && date.month == 0 && date.day == 0)
+		if (date.year == 0 || date.month == 0 || date.day == 0)
 		{
 			printErr("bad input", content.substr(0, pos));
 			continue ;
 		}
-		value = std::stod(content.substr(pos + 3), &sz);
-		if (content.length() - (pos + 3) != sz)
+		value = std::strtod((content.substr(pos + 3)).c_str(), &stop);
+		if (*stop != 0)
 			printErr("bad input", content);
 		else if (value < 0)
 			printErr("not a positive number.");
@@ -156,9 +175,9 @@ void	parseDB(t_map &db, std::ifstream &ifs)
 {
 	std::string				content;
 	std::size_t				pos;
-	std::string::size_type	sz;
 	t_ymd					date;
 	double					value;
+	char					*stop;
 	
 	while (std::getline(ifs >> std::ws, content))
 	{
@@ -171,13 +190,13 @@ void	parseDB(t_map &db, std::ifstream &ifs)
 			continue ;
 		}
 		date = checkDate(content.substr(0, pos));
-		if (date.year == 0 && date.month == 0 && date.day == 0)
+		if (date.year == 0 || date.month == 0 || date.day == 0)
 		{
 			printErr("bad database", content);
 			continue ;
 		}
-		value = std::stod(content.substr(pos + 1, content.length() - pos), &sz);
-		if (content.length() - (pos + 1) != sz)
+		value = std::strtod((content.substr(pos + 1, content.length() - pos)).c_str(), &stop);
+		if (*stop != 0)
 		{
 			printErr("bad database", content);
 			continue ;

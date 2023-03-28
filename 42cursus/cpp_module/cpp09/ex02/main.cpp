@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: balee <balee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 15:11:14 by balee             #+#    #+#             */
+/*   Updated: 2023/03/28 17:02:14 by balee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PmergeMe.hpp"
-#include <ios>
 
 void	printResult(t_data &data)
 {
@@ -22,9 +33,9 @@ void	printResult(t_data &data)
 			std::cout << std::endl;
 	}
 	std::cout << "Time to process a range of " << std::setw(5) << data.num << " elements with std::list : ";
-	std::cout << std::fixed << data.listTime << " us" << std::endl;
+	std::cout << std::fixed << std::setprecision(5) << data.listTime << " us" << std::endl;
 	std::cout << "Time to process a range of " << std::setw(5) << data.num << " elements with std::vector : ";
-	std::cout << std::fixed << data.vectorTime << " us" << std::endl;
+	std::cout << std::fixed << std::setprecision(5) << data.vectorTime << " us" << std::endl;
 }
 
 int	main(int argc, char **argv)
